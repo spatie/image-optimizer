@@ -11,6 +11,4 @@ class OptimizerTest extends TestCase
 
         $optimizer->optimize($this->getTestFilePath('test.jpg'));
     }
-
-
 }
