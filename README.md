@@ -1,3 +1,5 @@
+**DO NOT USE YET, WORK IN PROGRESS**
+
 # Easily optimize images using PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
