@@ -17,7 +17,7 @@ class TestCase extends BaseTest
     {
         $this->emptyTempDirectory();
 
-        $this->setUpLogger();
+        $this->arrayLogger = new ArrayLogger();
     }
 
     protected function emptyTempDirectory()
@@ -62,16 +62,5 @@ class TestCase extends BaseTest
         $this->assertTrue($modifiedFileSize < $originalFileSize,
             "File {$modifiedFilePath} as size {$modifiedFileSize} which is not less than {$originalFileSize}"
         );
-    }
-
-    protected function setUpLogger()
-    {
-        $log = new Logger('test');
-
-        $this->arrayLogger = new ArrayLogger();
-
-        $log->pushHandler($this->arrayLogger);
-
-        $this->logger = $log;
     }
 }
