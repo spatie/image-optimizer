@@ -3,8 +3,8 @@
 namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
-use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Symfony\Component\Process\Process;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
@@ -35,7 +35,7 @@ class ImageOptimizer
     {
         $this->optimizers = [];
 
-        foreach($optimizers as $optimizer) {
+        foreach ($optimizers as $optimizer) {
             $this->addOptimizer($optimizer);
         }
 
