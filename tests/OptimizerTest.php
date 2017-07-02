@@ -2,13 +2,27 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
+use Spatie\ImageOptimizer\ImageOptimizer;
+
 class OptimizerTest extends TestCase
 {
-    /** @test */
-    public function it_tests()
-    {
-        $optimizer = new \Spatie\ImageOptimizer\ImageOptimizer();
+    /** @var \Spatie\ImageOptimizer\ImageOptimizer */
+    protected $optimizer;
 
-        $optimizer->optimize($this->getTestFilePath('test.jpg'));
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->optimizer = new ImageOptimizer();
+    }
+
+    /** @test */
+    public function it_can_optimize_a_jpg()
+    {
+        $tempFilePath = $this->getTempFilePath('test.jpg');
+
+        $this->optimizer->optimize($this->getTempFilePath('test.jpg'));
+
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.jpg'));
     }
 }
