@@ -2,7 +2,6 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
-use Monolog\Logger;
 use PHPUnit\Framework\TestCase as BaseTest;
 
 class TestCase extends BaseTest
