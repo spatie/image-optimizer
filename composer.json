@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.0",
         "psr/log": "^1.0",
         "symfony/process": "^3.3",
         "tightenco/collect": "^5.4"
