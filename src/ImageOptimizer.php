@@ -15,6 +15,24 @@ class ImageOptimizer
         $this->add(new Jpegoptim());
     }
 
+    public function add(Optimizer $optimizer)
+    {
+        $this->optimizers[] = $optimizer;
+
+        return $this;
+    }
+
+    public function setOptimizers(array $optimizers)
+    {
+        $this->optimizers = [];
+
+        foreach($optimizers as $optimizer) {
+            $this->add($optimizer);
+        }
+
+        return $this;
+    }
+
     public function optimize(string $imagePath)
     {
         $mimeType = mime_content_type($imagePath);
@@ -32,8 +50,5 @@ class ImageOptimizer
             });
     }
 
-    public function add(Optimizer $optimizer)
-    {
-        $this->optimizers[] = $optimizer;
-    }
+
 }
