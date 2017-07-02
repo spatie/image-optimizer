@@ -80,6 +80,4 @@ class ImageOptimizer
 
         $this->logger->error("Process errored with `{$process->getErrorOutput()}`}");
     }
-
-
 }
