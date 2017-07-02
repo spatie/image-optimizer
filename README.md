@@ -27,7 +27,7 @@ composer require spatie/image-optimizer
 ## Usage
 
 ``` php
-$skeleton = new Spatie\Skeleton();
+$skeleton = new Spatie\ImageOptimizer();
 echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
 
