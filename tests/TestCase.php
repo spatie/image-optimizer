@@ -26,9 +26,9 @@ class TestCase extends BaseTest
 
     public function getTestFilePath(string $fileName)
     {
-        $source = __DIR__ . "/testfiles/{$fileName}";
+        $source = __DIR__."/testfiles/{$fileName}";
 
-        $destination = __DIR__ . "/temp/{$fileName}";
+        $destination = __DIR__."/temp/{$fileName}";
 
         copy($source, $destination);
 
