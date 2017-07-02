@@ -6,7 +6,7 @@ use Symfony\Component\Process\Process;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
-class MainOptimizer
+class ImageOptimizer
 {
     public $optimizers = [];
 
