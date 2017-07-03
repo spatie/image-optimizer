@@ -8,7 +8,7 @@ use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
 class ImageOptimizer
 {
-    public $optimizers = [];
+    protected $optimizers = [];
 
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
@@ -16,6 +16,11 @@ class ImageOptimizer
     public function __construct()
     {
         $this->useLogger(new DummyLogger());
+    }
+
+    public function getOptimizers(): array
+    {
+        return $this->optimizers;
     }
 
     public function addOptimizer(Optimizer $optimizer)
