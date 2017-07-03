@@ -3,6 +3,7 @@
 namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Symfony\Component\Process\Process;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
@@ -21,7 +22,8 @@ class ImageOptimizer
 
         $this
             ->addOptimizer(new Jpegoptim())
-            ->addOptimizer(new Pngquant());
+            ->addOptimizer(new Pngquant())
+            ->addOptimizer(new Gifsicle());
     }
 
     public function addOptimizer(Optimizer $optimizer)

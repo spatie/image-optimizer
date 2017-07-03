@@ -36,4 +36,14 @@ class OptimizerTest extends TestCase
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
     }
+
+    /** @test */
+    public function it_can_optimize_a_gif()
+    {
+        $tempFilePath = $this->getTempFilePath('test.gif');
+
+        $this->optimizer->optimize($tempFilePath);
+
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.gif'));
+    }
 }

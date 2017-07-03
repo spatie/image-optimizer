@@ -14,6 +14,7 @@ before_script:
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
   - sudo apt-get install jpegoptim
   - sudo apt-get install pngquant
+  - sudo apt-get install gifsicle
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
