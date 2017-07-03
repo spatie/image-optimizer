@@ -4,13 +4,44 @@ namespace Spatie\ImageOptimizer\Optimizers;
 
 interface Optimizer
 {
-    public function setImagePath(string $imagePath);
+    /**
+     * Returns the name of the binary to be executed.
+     *
+     * @return string
+     */
+    public function binaryName(): string;
 
-    public function setOptions(array $options = []);
-
-    public function getCommand();
-
+    /**
+     * Determines if the given mimetype can be handled by the optimizer.
+     *
+     * @param string $mimeType
+     *
+     * @return bool
+     */
     public function canHandle(string $mimeType): bool;
 
-    public function binaryName(): string;
+    /**
+     * Set the path to the image that should be optimized.
+     *
+     * @param string $imagePath
+     *
+     * @return $this
+     */
+    public function setImagePath(string $imagePath);
+
+    /**
+     * Set the options the optimizer should use.
+     *
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options = []);
+
+    /**
+     * Get the command that should be executed.
+     *
+     * @return string
+     */
+    public function getCommand(): string;
 }

@@ -4,6 +4,7 @@ namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
+use Spatie\ImageOptimizer\Optimizers\Jpegtran;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Symfony\Component\Process\Process;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
@@ -19,6 +20,12 @@ class ImageOptimizerFactory
                 '--strip-all',
                 '--all-progressive',
             ]))
+
+            ->addOptimizer(new Jpegtran([
+                '-optmize',
+                '-progressive',
+            ]))
+
 
             ->addOptimizer(new Pngquant([
                 '--force',

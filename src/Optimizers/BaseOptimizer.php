@@ -4,10 +4,8 @@ namespace Spatie\ImageOptimizer\Optimizers;
 
 abstract class BaseOptimizer implements Optimizer
 {
-    /** @var array */
     public $options = [];
 
-    /** @var string */
     public $imagePath = '';
 
     public function __construct($options = [])
@@ -15,22 +13,26 @@ abstract class BaseOptimizer implements Optimizer
         $this->setOptions($options);
     }
 
-    public function setImagePath(string $imagePath)
-    {
-        $this->imagePath = $imagePath;
-    }
-
     public function binaryName(): string
     {
         return $this->binaryName;
     }
 
+    public function setImagePath(string $imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
     public function setOptions(array $options = [])
     {
         $this->options = $options;
+
+        return $this;
     }
 
-    public function getCommand()
+    public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
 

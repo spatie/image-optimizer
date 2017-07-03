@@ -11,7 +11,7 @@ class Pngquant extends BaseOptimizer
         return $mimeType === 'image/png';
     }
 
-    public function getCommand()
+    public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
 
