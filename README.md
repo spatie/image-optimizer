@@ -9,7 +9,19 @@
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package can optimize gifs, pngs and jpgs by running them to tools such as `jpegoptim`, `optipng`, `pngquant`. Here's how you can use it:
+
+```php
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
+
+$imageOptimizer = ImageOptimizerFactory::create();
+
+$imageOptimizer->optimize($pathToImage);
+```
+
+The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
+
+The package will automatically detect which optimization binaries are installed on your system and use them.
 
 ## Postcardware
 
@@ -30,8 +42,11 @@ composer require spatie/image-optimizer
 ## Usage
 
 ``` php
-$skeleton = new Spatie\ImageOptimizer();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
+
+$imageOptimizer = ImageOptimizerFactory::create();
+
+$imageOptimizer->optimize($pathToImage);
 ```
 
 ## Changelog
