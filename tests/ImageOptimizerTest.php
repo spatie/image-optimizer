@@ -3,9 +3,9 @@
 namespace Spatie\ImageOptimizer\Test;
 
 use Spatie\ImageOptimizer\ImageOptimizer;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
 class ImageOptimizerTest extends TestCase
 {
