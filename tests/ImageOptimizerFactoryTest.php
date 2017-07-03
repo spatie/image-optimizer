@@ -8,7 +8,7 @@ use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
 
-class ImageOptimizerTest extends TestCase
+class ImageOptimizerFactoryTest extends TestCase
 {
     /** @var \Spatie\ImageOptimizer\ImageOptimizer */
     protected $imageOptimizer;
