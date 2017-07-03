@@ -73,5 +73,4 @@ class ImageOptimizerFactoryTest extends TestCase
 
         $this->assertEquals($optimizedContent, $originalContent);
     }
-
 }

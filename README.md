@@ -60,10 +60,10 @@ sudo apt-get install pngquant
 And here's how to install the on MacOS (requireds both `brew` and `npm`):
 
 ```php
-brew install install gifsicle
+brew install gifsicle
 brew install jpegoptim
-brew install install optipng
-brew install install pngquant
+brew install optipng
+brew install pngquant
 ```
 
 ## Usage
