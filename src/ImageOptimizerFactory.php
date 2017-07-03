@@ -2,14 +2,10 @@
 
 namespace Spatie\ImageOptimizer;
 
-use Psr\Log\LoggerInterface;
-use Spatie\ImageOptimizer\Optimizers\Gifsicle;
-use Spatie\ImageOptimizer\Optimizers\Jpegtran;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
-use Symfony\Component\Process\Process;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
-use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
 class ImageOptimizerFactory
 {
@@ -28,7 +24,7 @@ class ImageOptimizerFactory
             ->addOptimizer(new Optipng([
                 '-i0',
                 '-o2',
-                '-quiet'
+                '-quiet',
             ]))
 
             ->addOptimizer(new Gifsicle([

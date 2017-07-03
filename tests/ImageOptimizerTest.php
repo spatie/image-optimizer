@@ -2,11 +2,11 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
-use Spatie\ImageOptimizer\ImageOptimizerFactory;
-use Spatie\ImageOptimizer\Optimizers\Gifsicle;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
 
 class ImageOptimizerTest extends TestCase
 {
