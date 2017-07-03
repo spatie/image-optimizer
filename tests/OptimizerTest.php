@@ -28,4 +28,14 @@ class ImageOptimizerTest extends TestCase
 
         $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('test.jpg'));
     }
+
+    /** @test */
+    public function it_can_get_all_optimizers()
+    {
+        $this->assertEquals([], $this->imageOptimizer->getOptimizers());
+
+        $this->imageOptimizer->addOptimizer(new Jpegoptim());
+
+        $this->assertInstanceOf(Jpegoptim::class, $this->imageOptimizer->getOptimizers()[0]);
+    }
 }
