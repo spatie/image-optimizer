@@ -185,6 +185,8 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 This package has been inspired by [psliwa/image-optimizer](https://github.com/psliwa/image-optimizer)
 
+Emotional support provided by [Joke Forment](https://twitter.com/pronneur)
+
 ## About Spatie
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
