@@ -35,6 +35,8 @@ class OptimizerTest extends TestCase
         $this->optimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
+
+        dd($this->log->getAllLines());
     }
 
     /** @test */
