@@ -13,7 +13,8 @@ class OptimizerTest extends TestCase
     {
         parent::setUp();
 
-        $this->optimizer = new ImageOptimizer();
+        $this->optimizer = (new ImageOptimizer())
+            ->useLogger($this->log);
     }
 
     /** @test */

@@ -15,7 +15,7 @@ class ImageOptimizer
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
 
-    public function __construct()
+    public function __construct(array $optmizers = [])
     {
         $this->useLogger(new DummyLogger());
 
@@ -45,6 +45,8 @@ class ImageOptimizer
     public function useLogger(LoggerInterface $log)
     {
         $this->logger = $log;
+
+        return $this;
     }
 
     public function optimize(string $imagePath)
@@ -58,6 +60,7 @@ class ImageOptimizer
                 return $optimizer->canHandle($mimeType);
             })
             ->each(function (Optimizer $optimizer) use ($imagePath) {
+
                 $optimizer->setImagePath($imagePath);
 
                 $command = $optimizer->getCommand();
@@ -76,6 +79,8 @@ class ImageOptimizer
     {
         if ($process->isSuccessful()) {
             $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
+
+            return;
         }
 
         $this->logger->error("Process errored with `{$process->getErrorOutput()}`}");

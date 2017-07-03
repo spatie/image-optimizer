@@ -4,7 +4,7 @@ namespace Spatie\ImageOptimizer\Optimizers;
 
 class Jpegoptim extends BaseOptimizer
 {
-    public $binaryName = 'pngquant';
+    public $binaryName = 'jpegoptim';
 
     public function __construct()
     {

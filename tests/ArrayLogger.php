@@ -6,50 +6,55 @@ use Psr\Log\LoggerInterface;
 
 class ArrayLogger implements LoggerInterface
 {
-    public $log = [];
+    protected $logLines = [];
 
     public function emergency($message, array $context = [])
     {
-        $log[] = "emergency: {$message}";
+        $this->logLines[] = "emergency: {$message}";
     }
 
     public function alert($message, array $context = [])
     {
-        $log[] = "alert: {$message}";
+        $this->logLines[] = "alert: {$message}";
     }
 
     public function critical($message, array $context = [])
     {
-        $log[] = "critical: {$message}";
+        $this->logLines[] = "critical: {$message}";
     }
 
     public function error($message, array $context = [])
     {
-        $log[] = "error: {$message}";
+        $this->logLines[] = "error: {$message}";
     }
 
     public function warning($message, array $context = [])
     {
-        $log[] = "warning: {$message}";
+        $this->logLines[] = "warning: {$message}";
     }
 
     public function notice($message, array $context = [])
     {
-        $log[] = "notice: {$message}";
+        $this->logLines[] = "notice: {$message}";
     }
 
     public function info($message, array $context = [])
     {
-        $log[] = "info: {$message}";
+        $this->logLines[] = "info: {$message}";
     }
 
     public function debug($message, array $context = [])
     {
-        $log[] = "debug: {$message}";
+        $this->logLines[] = "debug: {$message}";
     }
 
     public function log($level, $message, array $context = [])
     {
-        $log[] = "log: {$message}";
+        $this->logLines[] = "log: {$message}";
+    }
+
+    public function getAllLines(): array
+    {
+        return $this->logLines;
     }
 }

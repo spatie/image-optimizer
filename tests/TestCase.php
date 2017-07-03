@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase as BaseTest;
 class TestCase extends BaseTest
 {
     /** @var \Spatie\ImageOptimizer\Test\ArrayLogger */
-    public $arrayLogger;
+    public $log;
 
     /** @var \Monolog\Logger */
     public $logger;
@@ -17,7 +17,7 @@ class TestCase extends BaseTest
     {
         $this->emptyTempDirectory();
 
-        $this->arrayLogger = new ArrayLogger();
+        $this->log = new ArrayLogger();
     }
 
     protected function emptyTempDirectory()
