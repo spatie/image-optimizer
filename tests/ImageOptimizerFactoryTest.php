@@ -59,4 +59,19 @@ class ImageOptimizerFactoryTest extends TestCase
 
         $this->assertOptimizersUsed(Gifsicle::class);
     }
+
+    /** @test */
+    public function it_will_not_not_touch_a_non_image_file()
+    {
+        $tempFilePath = $this->getTempFilePath('test.txt');
+
+        $originalContent = file_get_contents($tempFilePath);
+
+        $this->imageOptimizer->optimize($tempFilePath);
+
+        $optimizedContent = file_get_contents($tempFilePath);
+
+        $this->assertEquals($optimizedContent, $originalContent);
+    }
+
 }
