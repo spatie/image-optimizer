@@ -9,7 +9,7 @@
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize gifs, pngs and jpgs by running them to tools such as `jpegoptim`, `optipng`, `pngquant`. Here's how you can use it:
+This package can optimize gifs, pngs and jpgs by running them through various [image optimization tools](#image-optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
@@ -39,11 +39,12 @@ You can install the package via composer:
 composer require spatie/image-optimizer
 ```
 
+### Optimization tools
+
 The package will use these optimizers if they are present on your system:
 
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
 - [JpegOptim](http://freecode.com/projects/jpegoptim)
-- [JpegTran](http://jpegclub.org/jpegtran/)
 - [Optipng](http://optipng.sourceforge.net/)
 - [Pngquant](https://pngquant.org/)
 
@@ -52,7 +53,6 @@ Here's how to install all the optimizers on Ubuntu:
 ```bash
 sudo apt-get install gifsicle
 sudo apt-get install jpegoptim
-sudo apt-get install libjpeg-prog #jpegtran
 sudo apt-get install optipng
 sudo apt-get install pngquant
 ```
@@ -62,7 +62,6 @@ And here's how to install the on MacOS (requireds both `brew` and `npm`):
 ```php
 brew install install gifsicle
 brew install jpegoptim
-npm install --global jpegtran-bin
 brew install install optipng
 brew install install pngquant
 ```

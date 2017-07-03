@@ -3,6 +3,10 @@
 namespace Spatie\ImageOptimizer\Test;
 
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\Optipng;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
 
 class ImageOptimizerTest extends TestCase
 {
@@ -25,6 +29,8 @@ class ImageOptimizerTest extends TestCase
         $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.jpg'));
+
+        $this->assertOptimizersUsed(Jpegoptim::class);
     }
 
     /** @test */
@@ -35,6 +41,11 @@ class ImageOptimizerTest extends TestCase
         $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
+
+        $this->assertOptimizersUsed([
+            Optipng::class,
+            Pngquant::class,
+        ]);
     }
 
     /** @test */
@@ -45,5 +56,7 @@ class ImageOptimizerTest extends TestCase
         $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.gif'));
+
+        $this->assertOptimizersUsed(Gifsicle::class);
     }
 }

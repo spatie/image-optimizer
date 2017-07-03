@@ -21,12 +21,6 @@ class ImageOptimizerFactory
                 '--all-progressive',
             ]))
 
-            ->addOptimizer(new Jpegtran([
-                '-optmize',
-                '-progressive',
-            ]))
-
-
             ->addOptimizer(new Pngquant([
                 '--force',
             ]))

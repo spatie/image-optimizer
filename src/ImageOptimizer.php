@@ -59,6 +59,10 @@ class ImageOptimizer
             })
             ->each(function (Optimizer $optimizer) use ($imagePath) {
 
+                $optimizerClass = get_class($optimizer);
+
+                $this->logger->info("Using optimizer: `{$optimizerClass}`");
+
                 $optimizer->setImagePath($imagePath);
 
                 $command = $optimizer->getCommand();
