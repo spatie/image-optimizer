@@ -4,6 +4,8 @@ namespace Spatie\ImageOptimizer\Test;
 
 use Spatie\ImageOptimizer\ImageOptimizer;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\Optipng;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
 
 class ImageOptimizerTest extends TestCase
 {
@@ -37,5 +39,22 @@ class ImageOptimizerTest extends TestCase
         $this->imageOptimizer->addOptimizer(new Jpegoptim());
 
         $this->assertInstanceOf(Jpegoptim::class, $this->imageOptimizer->getOptimizers()[0]);
+    }
+
+    /** @test */
+    public function it_can_replace_all_optimizers_with_other_ones()
+    {
+        $this->assertEquals([], $this->imageOptimizer->getOptimizers());
+
+        $this->imageOptimizer->addOptimizer(new Jpegoptim());
+
+        $this->imageOptimizer->setOptimizers([
+            new Optipng(),
+            new Pngquant(),
+        ]);
+
+        $this->assertCount(2, $this->imageOptimizer->getOptimizers());
+        $this->assertInstanceOf(Optipng::class, $this->imageOptimizer->getOptimizers()[0]);
+        $this->assertInstanceOf(Pngquant::class, $this->imageOptimizer->getOptimizers()[1]);
     }
 }
