@@ -22,6 +22,6 @@ class Pngquant extends BaseOptimizer
     {
         $optionString = implode(' ', $this->options);
 
-        return "'{$this->binaryName}' {$optionString} '{$this->imagePath}' --output='{$this->imagePath}'";
+        return "{$this->binaryName} {$optionString} '{$this->imagePath}' --output='{$this->imagePath}'";
     }
 }
