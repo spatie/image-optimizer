@@ -146,7 +146,7 @@ $imageOptimizer
 
 ## Logging the optimization process
 
-By default the package will not throw any errors and just operate silently. If the package does not behave as expected you can set a logger like this:
+By default the package will not throw any errors and just operate silently. To verify what the package is doing you can set a logger:
 
 ```php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
