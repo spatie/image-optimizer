@@ -68,6 +68,8 @@ brew install pngquant
 
 ## Usage
 
+This is the default way to use the package
+
 ``` php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
 
@@ -75,6 +77,88 @@ $imageOptimizer = ImageOptimizerFactory::create();
 
 $imageOptimizer->optimize($pathToImage);
 ```
+
+The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
+
+The package will automatically detect which optimization binaries are installed on your system and use them.
+
+### Writing a custom optimizers
+
+Want to use another command line utility to optimize your images? No problem. Just write your own optimizer. An optimizer is any class that implements the `Spatie\ImageOptimizer\Optimizers\Optimizer` interface:
+
+```php
+interface Optimizer
+{
+    /**
+     * Returns the name of the binary to be executed.
+     *
+     * @return string
+     */
+    public function binaryName(): string;
+
+    /**
+     * Determines if the given mimetype can be handled by the optimizer.
+     *
+     * @param string $mimeType
+     *
+     * @return bool
+     */
+    public function canHandle(string $mimeType): bool;
+
+    /**
+     * Set the path to the image that should be optimized.
+     *
+     * @param string $imagePath
+     *
+     * @return $this
+     */
+    public function setImagePath(string $imagePath);
+
+    /**
+     * Set the options the optimizer should use.
+     *
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options = []);
+
+    /**
+     * Get the command that should be executed.
+     *
+     * @return string
+     */
+    public function getCommand(): string;
+}
+```
+
+You can easily add your optimizer by using the `addOptimizer` method on an `ImageOptimizer`.
+
+``` php
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
+
+$imageOptimizer = ImageOptimizerFactory::create();
+
+$imageOptimizer
+   ->addOptimizer(new YourCustomOptimizer())
+   ->optimize($pathToImage);
+```
+
+## Logging the optimization process
+
+By default the package will not throw any errors and just operate silently. If the package does not behave as expected you can set a logger like this:
+
+```php
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
+
+$imageOptimizer = ImageOptimizerFactory::create();
+
+$imageOptimizer
+   ->setLogger(new MyLogger())
+   ->optimize($pathToImage);
+```
+
+A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging library that's fully compliant is [Monolog](https://github.com/Seldaek/monolog). The package will write the to log which `Optimizers` are used, which command
 
 ## Changelog
 
