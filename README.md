@@ -39,6 +39,34 @@ You can install the package via composer:
 composer require spatie/image-optimizer
 ```
 
+The package will use these optimizers if they are present on your system:
+
+- [Gifsicle](http://www.lcdf.org/gifsicle/)
+- [JpegOptim](http://freecode.com/projects/jpegoptim)
+- [JpegTran](http://jpegclub.org/jpegtran/)
+- [Optipng](http://optipng.sourceforge.net/)
+- [Pngquant](https://pngquant.org/)
+
+Here's how to install all the optimizers on Ubuntu:
+
+```bash
+sudo apt-get install gifsicle
+sudo apt-get install jpegoptim
+sudo apt-get install libjpeg-prog #jpegtran
+sudo apt-get install optipng
+sudo apt-get install pngquant
+```
+
+And here's how to install the on MacOS (requireds both `brew` and `npm`):
+
+```php
+brew install install gifsicle
+brew install jpegoptim
+npm install --global jpegtran-bin
+brew install install optipng
+brew install install pngquant
+```
+
 ## Usage
 
 ``` php
