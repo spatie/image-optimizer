@@ -57,4 +57,9 @@ class ArrayLogger implements LoggerInterface
     {
         return $this->logLines;
     }
+
+    public function getAllLinesAsString(): string
+    {
+        return implode(PHP_EOL, $this->getAllLines());
+    }
 }
