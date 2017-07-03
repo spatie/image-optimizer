@@ -57,7 +57,7 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 ```
 
-And here's how to install the on MacOS (requireds both `brew` and `npm`):
+And here's how to install the on MacOS (using [Homebrew](https://brew.sh/)):
 
 ```php
 brew install gifsicle
