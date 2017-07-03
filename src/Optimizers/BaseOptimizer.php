@@ -10,6 +10,11 @@ abstract class BaseOptimizer implements Optimizer
     /** @var string */
     public $imagePath = '';
 
+    public function __construct($options = [])
+    {
+        $this->setOptions($options);
+    }
+
     public function setImagePath(string $imagePath)
     {
         $this->imagePath = $imagePath;

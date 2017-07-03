@@ -2,18 +2,18 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
-use Spatie\ImageOptimizer\ImageOptimizer;
+use Spatie\ImageOptimizer\ImageOptimizerFactory;
 
-class OptimizerTest extends TestCase
+class ImageOptimizerTest extends TestCase
 {
     /** @var \Spatie\ImageOptimizer\ImageOptimizer */
-    protected $optimizer;
+    protected $imageOptimizer;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->optimizer = (new ImageOptimizer())
+        $this->imageOptimizer = ImageOptimizerFactory::create()
             ->useLogger($this->log);
     }
 
@@ -22,7 +22,7 @@ class OptimizerTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.jpg');
 
-        $this->optimizer->optimize($tempFilePath);
+        $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.jpg'));
     }
@@ -32,11 +32,9 @@ class OptimizerTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.png');
 
-        $this->optimizer->optimize($tempFilePath);
+        $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
-
-        dd($this->log->getAllLines());
     }
 
     /** @test */
@@ -44,7 +42,7 @@ class OptimizerTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.gif');
 
-        $this->optimizer->optimize($tempFilePath);
+        $this->imageOptimizer->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.gif'));
     }

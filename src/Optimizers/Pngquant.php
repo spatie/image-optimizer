@@ -6,13 +6,6 @@ class Pngquant extends BaseOptimizer
 {
     public $binaryName = 'pngquant';
 
-    public function __construct()
-    {
-        $this->setOptions([
-            '--force',
-        ]);
-    }
-
     public function canHandle(string $mimeType): bool
     {
         return $mimeType === 'image/png';

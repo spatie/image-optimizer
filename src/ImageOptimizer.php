@@ -17,15 +17,9 @@ class ImageOptimizer
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
 
-    public function __construct(array $optmizers = [])
+    public function __construct()
     {
         $this->useLogger(new DummyLogger());
-
-        $this
-            ->addOptimizer(new Jpegoptim())
-            ->addOptimizer(new Pngquant())
-            ->addOptimizer(new Optipng())
-            ->addOptimizer(new Gifsicle());
     }
 
     public function addOptimizer(Optimizer $optimizer)
