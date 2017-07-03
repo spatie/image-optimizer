@@ -3,11 +3,7 @@
 namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
-use Spatie\ImageOptimizer\Optimizers\Gifsicle;
-use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Symfony\Component\Process\Process;
-use Spatie\ImageOptimizer\Optimizers\Pngquant;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
 class ImageOptimizer
@@ -58,7 +54,6 @@ class ImageOptimizer
                 return $optimizer->canHandle($mimeType);
             })
             ->each(function (Optimizer $optimizer) use ($imagePath) {
-
                 $optimizerClass = get_class($optimizer);
 
                 $this->logger->info("Using optimizer: `{$optimizerClass}`");

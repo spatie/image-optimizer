@@ -21,12 +21,12 @@ class TestCase extends BaseTest
 
     protected function emptyTempDirectory()
     {
-        $tempDirPath = __DIR__ . '/temp';
+        $tempDirPath = __DIR__.'/temp';
 
         $files = scandir($tempDirPath);
 
         foreach ($files as $file) {
-            if (!in_array($file, ['.', '..', '.gitignore'])) {
+            if (! in_array($file, ['.', '..', '.gitignore'])) {
                 unlink("{$tempDirPath}/{$file}");
             }
         }
@@ -34,9 +34,9 @@ class TestCase extends BaseTest
 
     public function getTempFilePath(string $fileName)
     {
-        $source = __DIR__ . "/testfiles/{$fileName}";
+        $source = __DIR__."/testfiles/{$fileName}";
 
-        $destination = __DIR__ . "/temp/{$fileName}";
+        $destination = __DIR__."/temp/{$fileName}";
 
         copy($source, $destination);
 
@@ -45,7 +45,7 @@ class TestCase extends BaseTest
 
     public function getTestFilePath(string $fileName)
     {
-        return __DIR__ . "/testfiles/{$fileName}";
+        return __DIR__."/testfiles/{$fileName}";
     }
 
     public function assertDecreasedFileSize(string $modifiedFilePath, string $originalFilePath)
@@ -71,12 +71,12 @@ class TestCase extends BaseTest
 
         $logText = $this->log->getAllLinesAsString();
 
-        foreach($optimizerClasses as $optimizerClass) {
+        foreach ($optimizerClasses as $optimizerClass) {
             $searchString = "Using optimizer: `{$optimizerClass}`";
 
             $this->assertContains($searchString, $logText, "Optimizer `{$optimizerClass}` was not used");
         }
 
-        $this->assertNotContains("error", $logText, "The log contained errors: `$logText`");
+        $this->assertNotContains('error', $logText, "The log contained errors: `$logText`");
     }
 }
