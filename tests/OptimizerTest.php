@@ -2,59 +2,25 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
-use Spatie\ImageOptimizer\ImageOptimizer;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
-use Spatie\ImageOptimizer\Optimizers\Optipng;
-use Spatie\ImageOptimizer\Optimizers\Pngquant;
 
-class ImageOptimizerTest extends TestCase
+class OptimizerTest extends TestCase
 {
-    /** @var \Spatie\ImageOptimizer\ImageOptimizer; */
-    protected $imageOptimizer;
-
-    public function setUp()
+    /** @test */
+    public function it_can_accept_options_via_the_constructor()
     {
-        parent::setUp();
+        $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
 
-        $this->imageOptimizer = new ImageOptimizer();
+        $this->assertEquals("'jpegoptim' option1 option2 'my-image.jpg'", $optimizer->getCommand());
     }
 
     /** @test */
-    public function it_will_not_throw_an_exception_when_not_using_a_logger()
+    public function it_can_override_options()
     {
-        $testImage = $this->getTempFilePath('test.jpg');
+        $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
 
-        $this->imageOptimizer
-            ->addOptimizer(new Jpegoptim())
-            ->optimize($testImage);
+        $optimizer->setOptions(['option3', 'option4']);
 
-        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('test.jpg'));
-    }
-
-    /** @test */
-    public function it_can_get_all_optimizers()
-    {
-        $this->assertEquals([], $this->imageOptimizer->getOptimizers());
-
-        $this->imageOptimizer->addOptimizer(new Jpegoptim());
-
-        $this->assertInstanceOf(Jpegoptim::class, $this->imageOptimizer->getOptimizers()[0]);
-    }
-
-    /** @test */
-    public function it_can_replace_all_optimizers_with_other_ones()
-    {
-        $this->assertEquals([], $this->imageOptimizer->getOptimizers());
-
-        $this->imageOptimizer->addOptimizer(new Jpegoptim());
-
-        $this->imageOptimizer->setOptimizers([
-            new Optipng(),
-            new Pngquant(),
-        ]);
-
-        $this->assertCount(2, $this->imageOptimizer->getOptimizers());
-        $this->assertInstanceOf(Optipng::class, $this->imageOptimizer->getOptimizers()[0]);
-        $this->assertInstanceOf(Pngquant::class, $this->imageOptimizer->getOptimizers()[1]);
+        $this->assertEquals("'jpegoptim' option3 option4 'my-image.jpg'", $optimizer->getCommand());
     }
 }
