@@ -23,33 +23,7 @@ The image at `$pathToImage` will be overwritten by an optimized version which sh
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
-## Examples
-
-Here's are some example conversions done by this package.
-
-### png
-
-Original (size: 40 Kb)
-![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
-
-Optimized (size: 16 Kb)
-![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
-
-### jpg
-
-Original (size: 547 Kb)
-![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
-
-Optimized (size: 525 Kb)
-![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
-
-### svg
-
-Original (size: 26 Kb)
-![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
-
-Optimized (size: 20 Kb)
-![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
+Here are some [example conversions](#example-conversions) that have been done by this package.
 
 ## Postcardware
 
@@ -232,6 +206,34 @@ $optimizerChain
 ```
 
 A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging library that's fully compliant is [Monolog](https://github.com/Seldaek/monolog). The package will write the to log which `Optimizers` are used, which commands are executed and their output.
+
+## Example conversions
+
+Here's are some example conversions done by this package.
+
+### png
+
+Original (size: 40 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
+
+Optimized (size: 16 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
+
+### jpg
+
+Original (size: 547 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
+
+Optimized (size: 525 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
+
+### svg
+
+Original (size: 26 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
+
+Optimized (size: 20 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
 ## Changelog
 
