@@ -106,7 +106,7 @@ In this example each optimizer in the chain will get a maximum 10 seconds to do 
 
 ### Creating your own optimization chains
 
-If you want to customize the chain of optimizers used you can do so by adding `Optimizer`s manually to an `OptimizerChain`.
+If you want to customize the chain of optimizers you can do so by adding `Optimizer`s manually to a `OptimizerChain`.
 
 Here's an example where we only want `optipng` and `jpegoptim` to be used:
 
