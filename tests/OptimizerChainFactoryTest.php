@@ -66,11 +66,11 @@ class OptimizerChainFactoryTest extends TestCase
     /** @test */
     public function it_can_optimize_a_gif()
     {
-        $tempFilePath = $this->getTempFilePath('test.gif');
+        $tempFilePath = $this->getTempFilePath('animated.gif');
 
         $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.gif'));
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('animated.gif'));
 
         $this->assertOptimizersUsed(Gifsicle::class);
     }
