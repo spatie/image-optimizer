@@ -28,7 +28,9 @@ class OptimizerChainFactory
                 '-quiet',
             ]))
 
-            ->addOptimizer(new Svgo())
+            ->addOptimizer(new Svgo([
+                '--disable=cleanupIDs'
+            ]))
 
             ->addOptimizer(new Gifsicle([
                 '-b',
