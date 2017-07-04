@@ -73,7 +73,7 @@ brew install gifsicle
 
 ## Which tools will do what?
 
-The package will automatically decide which tools to use.
+The package will automatically decide which tools to use on a particular image.
 
 ### JPGs
 
