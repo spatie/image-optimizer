@@ -25,7 +25,7 @@ The package will automatically detect which optimization binaries are installed 
 
 ## Example
 
-Here's an example of `png` which was optimized by this package.
+Here's an example of a `png` which was optimized by this package.
 
 Original (size: 179 Kb):
 ![Original](https://spatie.github.io/image-optimizer/examples/example.png)
