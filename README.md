@@ -81,19 +81,19 @@ JPGs will be made smaller by running them through [JpegOptim](http://freecode.co
 - `--strip-all`: this strips out all text information such as comments and EXIF data
 - `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloading using multiple passes of progressively higher details.
 
-## PNGs
+### PNGs
 
 PNGs will be made smaller by running them through two tools. The first one is [Pngquant 2](https://pngquant.org/), a lossy PNG comprossor. We set no extra options, their defaults are used. After that we run the image throug a second one: [Optipng](http://optipng.sourceforge.net/). These options are used:
 - `-i0`: this will result in a non-interlaced, progressive scanned image
 - `-o2`: this set the optimization level to two (multiple IDAT compression trials)
 
-## SVGs
+### SVGs
 
 SVGs will be minified by [SVGO](https://github.com/svg/svgo). No extra options will be passed, so SVGO's default configuration will be used.
 
 Please be aware that SVGO can break your an svg. You'll find more info on that in this [excellent blogpost](https://www.sarasoueidan.com/blog/svgo-tools/) by [Sara Soueidan](https://twitter.com/SaraSoueidan)
 
-## GIFs
+### GIFs
 
 GIFs will be optimized by [Gifsicle](http://www.lcdf.org/gifsicle/). These options will be used:
 - `-O3`: this sets the optimization level to Gifsicle's maximum, which produces the slowest but best results
