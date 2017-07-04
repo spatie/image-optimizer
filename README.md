@@ -23,15 +23,33 @@ The image at `$pathToImage` will be overwritten by an optimized version which sh
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
-## Example
+## Examples
 
-Here's an example of a `png` which was optimized by this package.
+Here's are some example conversions done by this package.
 
-Original (size: 179 Kb)
-![Original](https://spatie.github.io/image-optimizer/examples/example.png)
+### png
 
-Optimized (size: 64 Kb)
-![Optimized](https://spatie.github.io/image-optimizer/examples/example-optimized.png)
+Original (size: 40 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
+
+Optimized (size: 16 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
+
+### jpg
+
+Original (size: 547 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
+
+Optimized (size: 525 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
+
+### svg
+
+Original (size: 26 Kb)
+![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
+
+Optimized (size: 20 Kb)
+![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
 ## Postcardware
 

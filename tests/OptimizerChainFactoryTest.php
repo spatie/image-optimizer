@@ -50,7 +50,7 @@ class OptimizerChainFactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_optimize_a_svg()
+    public function it_can_optimize_an_svg()
     {
         $tempFilePath = $this->getTempFilePath('graph.svg');
 
