@@ -45,33 +45,56 @@ composer require spatie/image-optimizer
 
 The package will use these optimizers if they are present on your system:
 
-- [Gifsicle](http://www.lcdf.org/gifsicle/)
 - [JpegOptim](http://freecode.com/projects/jpegoptim)
 - [Optipng](http://optipng.sourceforge.net/)
-- [Pngquant](https://pngquant.org/)
+- [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
+- [Gifsicle](http://www.lcdf.org/gifsicle/)
 
 Here's how to install all the optimizers on Ubuntu:
 
 ```bash
-sudo apt-get install gifsicle
 sudo apt-get install jpegoptim
 sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo brew install -g svgo
+sudo apt-get install gifsicle
 ```
 
 And here's how to install the on MacOS (using [Homebrew](https://brew.sh/)):
 
 ```bash
-brew install gifsicle
 brew install jpegoptim
 brew install optipng
 brew install pngquant
 brew install svgo
+brew install gifsicle
 ```
 
-## Which optimizers will run wi
+## Which tools will do what?
+
+The package will automatically decide which tools to use.
+
+### JPGs
+
+JPGs will be made smaller by running them through [JpegOptim](http://freecode.com/projects/jpegoptim). These options are used:
+- `--strip-all`: this strips out all text information such as comments and EXIF data
+- `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloading using multiple passes of progressively higher details.
+
+## PNGs
+
+PNGs will be made smaller by running them through two tools. The first one is [Pngquant 2](https://pngquant.org/), a lossy PNG comprossor. We set no extra options, their defaults are used. After that we run the image throug a second one: [Optipng](http://optipng.sourceforge.net/). These options are used:
+- `-i0`: this will result in a non-interlaced, progressive scanned image
+- `-o2`: this set the optimization level to two (multiple IDAT compression trials)
+
+## SVGs
+
+SVGs will be minified by [SVGO](https://github.com/svg/svgo). No extra options will be passed, so SVGO's default configuration will be used.
+
+## GIFs
+
+GIFs will be optimized by [Gifsicle](http://www.lcdf.org/gifsicle/). These options will be used:
+- `-O3`: this sets the optimization level to Gifsicle's maximum, which produces the slowest but best results
 
 ## Usage
 

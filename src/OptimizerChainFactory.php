@@ -32,7 +32,7 @@ class OptimizerChainFactory
 
             ->addOptimizer(new Gifsicle([
                 '-b',
-                '-O5',
+                '-O3',
             ]));
     }
 }
