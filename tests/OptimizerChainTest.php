@@ -22,13 +22,13 @@ class OptimizerChainTest extends TestCase
     /** @test */
     public function it_will_not_throw_an_exception_when_not_using_a_logger()
     {
-        $testImage = $this->getTempFilePath('test.jpg');
+        $testImage = $this->getTempFilePath('image.jpg');
 
         $this->optimizerChain
             ->addOptimizer(new Jpegoptim())
             ->optimize($testImage);
 
-        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('test.jpg'));
+        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('image.jpg'));
     }
 
     /** @test */

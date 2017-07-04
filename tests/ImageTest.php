@@ -18,7 +18,7 @@ class ImageTest extends TestCase
     /** @test */
     public function it_can_get_type_mime_type()
     {
-        $image = new Image($this->getTestFilePath('test.jpg'));
+        $image = new Image($this->getTestFilePath('image.jpg'));
 
         $this->assertEquals('image/jpeg', $image->mime());
     }
@@ -26,10 +26,18 @@ class ImageTest extends TestCase
     /** @test */
     public function it_can_get_the_path()
     {
-        $path = $this->getTestFilePath('test.jpg');
+        $path = $this->getTestFilePath('image.jpg');
 
         $image = new Image($path);
 
         $this->assertEquals($path, $image->path());
+    }
+
+    /** @test */
+    public function it_can_get_the_extension()
+    {
+        $image = new Image($this->getTestFilePath('image.jpg'));
+
+        $this->assertEquals('jpg', $image->extension());
     }
 }

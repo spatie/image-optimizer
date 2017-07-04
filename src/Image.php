@@ -26,4 +26,11 @@ class Image
     {
         return $this->pathToImage;
     }
+
+    public function extension(): string
+    {
+        $extension = pathinfo($this->pathToImage, PATHINFO_EXTENSION);
+
+        return strtolower($extension);
+    }
 }

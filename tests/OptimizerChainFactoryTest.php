@@ -7,6 +7,7 @@ use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Spatie\ImageOptimizer\Optimizers\Svgo;
 
 class OptimizerChainFactoryTest extends TestCase
 {
@@ -24,11 +25,11 @@ class OptimizerChainFactoryTest extends TestCase
     /** @test */
     public function it_can_optimize_a_jpg()
     {
-        $tempFilePath = $this->getTempFilePath('test.jpg');
+        $tempFilePath = $this->getTempFilePath('image.jpg');
 
         $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.jpg'));
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.jpg'));
 
         $this->assertOptimizersUsed(Jpegoptim::class);
     }
@@ -36,16 +37,30 @@ class OptimizerChainFactoryTest extends TestCase
     /** @test */
     public function it_can_optimize_a_png()
     {
-        $tempFilePath = $this->getTempFilePath('test.png');
+        $tempFilePath = $this->getTempFilePath('logo.png');
 
         $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('logo.png'));
 
         $this->assertOptimizersUsed([
             Optipng::class,
             Pngquant::class,
         ]);
+    }
+
+    /** @test */
+    public function it_can_optimize_a_svg()
+    {
+        $tempFilePath = $this->getTempFilePath('graph.svg');
+
+        $this->optimizerChain->optimize($tempFilePath);
+
+        $this->assertOptimizersUsed(Svgo::class);
+
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('graph.svg'));
+
+
     }
 
     /** @test */

@@ -9,7 +9,7 @@
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize `gif`s, `png`s and `jpg`s by running them through a chain of various [image optimization tools](#image-optimization-tools). Here's how you can use it:
+This package can optimize `png`s, `jpg`s, `svg`s and `gif`s by running them through a chain of various [image optimization tools](#image-optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
@@ -57,6 +57,7 @@ The package will use these optimizers if they are present on your system:
 - [JpegOptim](http://freecode.com/projects/jpegoptim)
 - [Optipng](http://optipng.sourceforge.net/)
 - [Pngquant](https://pngquant.org/)
+- [SVGO](https://github.com/svg/svgo)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -65,6 +66,7 @@ sudo apt-get install gifsicle
 sudo apt-get install jpegoptim
 sudo apt-get install optipng
 sudo apt-get install pngquant
+sudo brew install -g svgo
 ```
 
 And here's how to install the on MacOS (using [Homebrew](https://brew.sh/)):
@@ -74,6 +76,7 @@ brew install gifsicle
 brew install jpegoptim
 brew install optipng
 brew install pngquant
+brew install svgo
 ```
 
 ## Usage
