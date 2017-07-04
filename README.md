@@ -236,7 +236,7 @@ A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging li
 
 ## Example conversions
 
-Here's are some example conversions done by this package.
+Here are some example conversions done by this package.
 
 ### png
 
