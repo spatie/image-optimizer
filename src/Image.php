@@ -10,7 +10,7 @@ class Image
 
     public function __construct(string $pathToImage)
     {
-        if (!file_exists($pathToImage)) {
+        if (! file_exists($pathToImage)) {
             throw new InvalidArgumentException("`{$pathToImage}` does not exist");
         }
 

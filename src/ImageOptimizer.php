@@ -54,7 +54,7 @@ class ImageOptimizer
 
         $this->logger->info("Start optimizing {$pathToImage}");
 
-        foreach($this->optimizers as $optimizer) {
+        foreach ($this->optimizers as $optimizer) {
             $this->applyOptimizer($optimizer, $image);
         }
     }
