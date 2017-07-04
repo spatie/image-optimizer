@@ -71,11 +71,11 @@ brew install pngquant
 This is the default way to use the package:
 
 ``` php
-use Spatie\ImageOptimizer\ImageOptimizerFactory;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-$imageOptimizer = ImageOptimizerFactory::create();
+$optimizerChain = OptimizerChainFactory::create();
 
-$imageOptimizer->optimize($pathToImage);
+$optimizerChain->optimize($pathToImage);
 ```
 
 The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
@@ -87,25 +87,25 @@ The package will automatically detect which optimization binaries are installed 
 You can set the maximum of time in seconds that each indivual optimizer in a chain can use by calling `setTimeout`:
 
 ```php
-$imageOptimizer
+$optimizerChain
     ->setTimeout(10)
     ->optimize($pathToImage);
 ```
 
 In this example each optimizer in the chain will get a maximum 10 seconds to do it's job.
 
-### Creating your own optimization chain
+### Creating your own optimization chains
 
-If you want to customize the chain of optimizers used you can do so by adding `Optimizer`s manually to an `ImageOptimizer`.
+If you want to customize the chain of optimizers used you can do so by adding `Optimizer`s manually to an `OptimizerChain`.
 
 Here's an example where we only want `optipng` and `jpegoptim` to be used:
 
 ```php
-use Spatie\ImageOptimizer\ImageOptimizer;
+use Spatie\ImageOptimizer\OptimizerChain;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 
-$imageOptimizer = (new ImageOptimizer)
+$optimizerChain = (new OptimizerChain)
    ->addOptimizer(new Jpegoptim([
        '--strip-all',
        '--all-progressive',
@@ -168,14 +168,14 @@ interface Optimizer
 }
 ```
 
-You can easily add your optimizer by using the `addOptimizer` method on an `ImageOptimizer`.
+You can easily add your optimizer by using the `addOptimizer` method on an `OptimizerChain`.
 
 ``` php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
 
-$imageOptimizer = ImageOptimizerFactory::create();
+$optimizerChain = OptimizerChainFactory::create();
 
-$imageOptimizer
+$optimizerChain
    ->addOptimizer(new YourCustomOptimizer())
    ->optimize($pathToImage);
 ```
@@ -185,11 +185,11 @@ $imageOptimizer
 By default the package will not throw any errors and just operate silently. To verify what the package is doing you can set a logger:
 
 ```php
-use Spatie\ImageOptimizer\ImageOptimizerFactory;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-$imageOptimizer = ImageOptimizerFactory::create();
+$optimizerChain = OptimizerChainFactory::create();
 
-$imageOptimizer
+$optimizerChain
    ->setLogger(new MyLogger())
    ->optimize($pathToImage);
 ```
