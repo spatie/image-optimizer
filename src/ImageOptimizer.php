@@ -48,36 +48,41 @@ class ImageOptimizer
         return $this;
     }
 
-    public function optimize(string $imagePath)
+    public function optimize(string $pathToImage)
     {
-        $this->logger->info("Start optimizing {$imagePath}");
+        $image = new Image($pathToImage);
 
-        $mimeType = mime_content_type($imagePath);
+        $this->logger->info("Start optimizing {$pathToImage}");
 
-        collect($this->optimizers)
-            ->filter(function (Optimizer $optimizer) use ($mimeType) {
-                return $optimizer->canHandle($mimeType);
-            })
-            ->each(function (Optimizer $optimizer) use ($imagePath) {
-                $optimizerClass = get_class($optimizer);
-
-                $this->logger->info("Using optimizer: `{$optimizerClass}`");
-
-                $optimizer->setImagePath($imagePath);
-
-                $command = $optimizer->getCommand();
-
-                $this->logger->info("Executing `{$command}`");
-
-                $process = new Process($command);
-
-                $process->run();
-
-                $this->logResult($process);
-            });
+        foreach($this->optimizers as $optimizer) {
+            $this->applyOptimizer($optimizer, $image);
+        }
     }
 
-    public function logResult(Process $process)
+    protected function applyOptimizer(Optimizer $optimizer, Image $image)
+    {
+        if (! $optimizer->canHandle($image)) {
+            return;
+        }
+
+        $optimizerClass = get_class($optimizer);
+
+        $this->logger->info("Using optimizer: `{$optimizerClass}`");
+
+        $optimizer->setImagePath($image->path());
+
+        $command = $optimizer->getCommand();
+
+        $this->logger->info("Executing `{$command}`");
+
+        $process = new Process($command);
+
+        $process->run();
+
+        $this->logResult($process);
+    }
+
+    protected function logResult(Process $process)
     {
         if ($process->isSuccessful()) {
             $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");

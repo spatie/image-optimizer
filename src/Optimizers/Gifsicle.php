@@ -2,12 +2,14 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
+use Spatie\ImageOptimizer\Image;
+
 class Gifsicle extends BaseOptimizer
 {
     public $binaryName = 'gifsicle';
 
-    public function canHandle(string $mimeType): bool
+    public function canHandle(Image $image): bool
     {
-        return $mimeType === 'image/gif';
+        return $image->mime() === 'image/gif';
     }
 }

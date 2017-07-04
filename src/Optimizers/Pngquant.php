@@ -2,13 +2,15 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
+use Spatie\ImageOptimizer\Image;
+
 class Pngquant extends BaseOptimizer
 {
     public $binaryName = 'pngquant';
 
-    public function canHandle(string $mimeType): bool
+    public function canHandle(Image $image): bool
     {
-        return $mimeType === 'image/png';
+        return $image->mime() === 'image/png';
     }
 
     public function getCommand(): string

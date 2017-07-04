@@ -2,6 +2,8 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
+use Spatie\ImageOptimizer\Image;
+
 interface Optimizer
 {
     /**
@@ -14,11 +16,11 @@ interface Optimizer
     /**
      * Determines if the given mimetype can be handled by the optimizer.
      *
-     * @param string $mimeType
+     * @param \Spatie\ImageOptimizer\Image $image
      *
      * @return bool
      */
-    public function canHandle(string $mimeType): bool;
+    public function canHandle(Image $image): bool;
 
     /**
      * Set the path to the image that should be optimized.
