@@ -50,7 +50,7 @@ class ImageOptimizer
 
     public function optimize(string $imagePath)
     {
-        $this->logger->info("start optimizing {$imagePath}");
+        $this->logger->info("Start optimizing {$imagePath}");
 
         $mimeType = mime_content_type($imagePath);
 
@@ -69,7 +69,7 @@ class ImageOptimizer
 
                 $this->logger->info("Executing `{$command}`");
 
-                $process = new Process($optimizer->getCommand());
+                $process = new Process($command);
 
                 $process->run();
 
