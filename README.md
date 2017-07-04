@@ -68,7 +68,7 @@ brew install pngquant
 
 ## Usage
 
-This is the default way to use the package
+This is the default way to use the package:
 
 ``` php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
@@ -81,6 +81,30 @@ $imageOptimizer->optimize($pathToImage);
 The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
+
+### Creating your own optimization chain
+
+If you want to customize the chain of optimizers used you can do so by adding `Optimizer`s manually to an `ImageOptimizer`.
+
+Here's an example where we only want `optipng` and `jpegoptim` to be used:
+
+```php
+use Spatie\ImageOptimizer\ImageOptimizer;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
+
+$imageOptimizer = (new ImageOptimizer)
+   ->addOptimizer(new Jpegoptim([
+       '--strip-all',
+       '--all-progressive',
+   ]))
+
+   ->addOptimizer(new Pngquant([
+       '--force',
+   ]))
+```
+
+Notice that you can pass the options an `Optimizer` should use to it's constructor.
 
 ### Writing a custom optimizers
 
