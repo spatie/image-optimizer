@@ -27,10 +27,10 @@ The package will automatically detect which optimization binaries are installed 
 
 Here's an example of a `png` which was optimized by this package.
 
-Original (size: 179 Kb):
+Original (size: 179 Kb)
 ![Original](https://spatie.github.io/image-optimizer/examples/example.png)
 
-Optimized (size: 64 Kb):
+Optimized (size: 64 Kb)
 ![Optimized](https://spatie.github.io/image-optimizer/examples/example-optimized.png)
 
 ## Postcardware
