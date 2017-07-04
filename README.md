@@ -9,7 +9,7 @@
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize gifs, pngs and jpgs by running them through various [image optimization tools](#image-optimization-tools). Here's how you can use it:
+This package can optimize `gif`s, `png`s and `jpg`s by running them through a chain of various [image optimization tools](#image-optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\ImageOptimizerFactory;
@@ -123,6 +123,10 @@ Notice that you can pass the options an `Optimizer` should use to it's construct
 Want to use another command line utility to optimize your images? No problem. Just write your own optimizer. An optimizer is any class that implements the `Spatie\ImageOptimizer\Optimizers\Optimizer` interface:
 
 ```php
+namespace Spatie\ImageOptimizer\Optimizers;
+
+use Spatie\ImageOptimizer\Image;
+
 interface Optimizer
 {
     /**
@@ -135,11 +139,11 @@ interface Optimizer
     /**
      * Determines if the given mimetype can be handled by the optimizer.
      *
-     * @param string $mimeType
+     * @param \Spatie\ImageOptimizer\Image $image
      *
      * @return bool
      */
-    public function canHandle(string $mimeType): bool;
+    public function canHandle(Image $image): bool;
 
     /**
      * Set the path to the image that should be optimized.
