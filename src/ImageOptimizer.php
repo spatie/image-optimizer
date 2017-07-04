@@ -13,6 +13,8 @@ class ImageOptimizer
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
 
+    protected $timeout = 60;
+
     public function __construct()
     {
         $this->useLogger(new DummyLogger());
@@ -39,6 +41,14 @@ class ImageOptimizer
         }
 
         return $this;
+    }
+
+    /*
+     * Set the amount of seconds each separte optimizer may use
+     */
+    public function setTimeout(int $timeoutInSeconds)
+    {
+        $this->timeout = $timeoutInSeconds;
     }
 
     public function useLogger(LoggerInterface $log)
@@ -77,7 +87,9 @@ class ImageOptimizer
 
         $process = new Process($command);
 
-        $process->run();
+        $process
+            ->setTimeout($this->timeout)
+            ->run();
 
         $this->logResult($process);
     }
