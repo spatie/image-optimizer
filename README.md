@@ -23,6 +23,16 @@ The image at `$pathToImage` will be overwritten by an optimized version which sh
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
+## Example
+
+Here's an example of `png` which was optimized by this package.
+
+Original
+
+Optimized
+
+
+
 ## Postcardware
 
 You're free to use this package (it's [MIT-licensed](LICENSE.md)), but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
