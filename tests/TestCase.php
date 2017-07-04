@@ -61,6 +61,8 @@ class TestCase extends BaseTest
         $this->assertTrue($modifiedFileSize < $originalFileSize,
             "File {$modifiedFilePath} as size {$modifiedFileSize} which is not less than {$originalFileSize}. Log: {$this->log->getAllLinesAsString()}"
         );
+
+        $this->assertTrue($modifiedFileSize > 0, "File {$modifiedFilePath} had a filesize of zero. Something must have gone wrong...");
     }
 
     public function assertOptimizersUsed($optimizerClasses)
