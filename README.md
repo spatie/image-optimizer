@@ -182,6 +182,8 @@ interface Optimizer
 }
 ```
 
+If you want to view an example implementation take a look at [the existing optimizers](https://github.com/spatie/image-optimizer/tree/master/src/Optimizers) shipped with this package.
+
 You can easily add your optimizer by using the `addOptimizer` method on an `OptimizerChain`.
 
 ``` php
