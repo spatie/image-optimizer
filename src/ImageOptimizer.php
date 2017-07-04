@@ -54,27 +54,27 @@ class ImageOptimizer
 
         $mimeType = mime_content_type($imagePath);
 
-        collect($this->optimizers)
-            ->filter(function (Optimizer $optimizer) use ($mimeType) {
-                return $optimizer->canHandle($mimeType);
-            })
-            ->each(function (Optimizer $optimizer) use ($imagePath) {
-                $optimizerClass = get_class($optimizer);
+        $optimizers = array_filter($this->optimizers, function (Optimizer $optimizer) use ($mimeType) {
+            return $optimizer->canHandle($mimeType);
+        });
 
-                $this->logger->info("Using optimizer: `{$optimizerClass}`");
+        foreach ($optimizers as $optimizer) {
+            $optimizerClass = get_class($optimizer);
 
-                $optimizer->setImagePath($imagePath);
+            $this->logger->info("Using optimizer: `{$optimizerClass}`");
 
-                $command = $optimizer->getCommand();
+            $optimizer->setImagePath($imagePath);
 
-                $this->logger->info("Executing `{$command}`");
+            $command = $optimizer->getCommand();
 
-                $process = new Process($command);
+            $this->logger->info("Executing `{$command}`");
 
-                $process->run();
+            $process = new Process($command);
 
-                $this->logResult($process);
-            });
+            $process->run();
+
+            $this->logResult($process);
+        }
     }
 
     public function logResult(Process $process)
