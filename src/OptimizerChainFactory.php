@@ -7,11 +7,11 @@ use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
-class ImageOptimizerFactory
+class OptimizerChainFactory
 {
-    public static function create(): ImageOptimizer
+    public static function create(): OptimizerChain
     {
-        return (new ImageOptimizer())
+        return (new OptimizerChain())
             ->addOptimizer(new Jpegoptim([
                 '--strip-all',
                 '--all-progressive',

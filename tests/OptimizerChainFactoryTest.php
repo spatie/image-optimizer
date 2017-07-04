@@ -6,18 +6,18 @@ use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
-use Spatie\ImageOptimizer\ImageOptimizerFactory;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-class ImageOptimizerFactoryTest extends TestCase
+class OptimizerChainFactoryTest extends TestCase
 {
-    /** @var \Spatie\ImageOptimizer\ImageOptimizer */
-    protected $imageOptimizer;
+    /** @var \Spatie\ImageOptimizer\OptimizerChain */
+    protected $optimizerChain;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->imageOptimizer = ImageOptimizerFactory::create()
+        $this->optimizerChain = OptimizerChainFactory::create()
             ->useLogger($this->log);
     }
 
@@ -26,7 +26,7 @@ class ImageOptimizerFactoryTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.jpg');
 
-        $this->imageOptimizer->optimize($tempFilePath);
+        $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.jpg'));
 
@@ -38,7 +38,7 @@ class ImageOptimizerFactoryTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.png');
 
-        $this->imageOptimizer->optimize($tempFilePath);
+        $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.png'));
 
@@ -53,7 +53,7 @@ class ImageOptimizerFactoryTest extends TestCase
     {
         $tempFilePath = $this->getTempFilePath('test.gif');
 
-        $this->imageOptimizer->optimize($tempFilePath);
+        $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('test.gif'));
 
@@ -67,7 +67,7 @@ class ImageOptimizerFactoryTest extends TestCase
 
         $originalContent = file_get_contents($tempFilePath);
 
-        $this->imageOptimizer->optimize($tempFilePath);
+        $this->optimizerChain->optimize($tempFilePath);
 
         $optimizedContent = file_get_contents($tempFilePath);
 

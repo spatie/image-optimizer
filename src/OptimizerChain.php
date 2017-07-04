@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Process\Process;
 use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
-class ImageOptimizer
+class OptimizerChain
 {
     protected $optimizers = [];
 
