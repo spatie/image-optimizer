@@ -11,7 +11,6 @@ class Svgo extends BaseOptimizer
     public function canHandle(Image $image): bool
     {
         if ($image->extension() !== 'svg') {
-
             return false;
         }
 
