@@ -12,11 +12,11 @@
 This package can optimize PNGs, JPGs, SVGs and GIFs by running them through a chain of various [image optimization tools](#image-optimization-tools). Here's how you can use it:
 
 ```php
-use Spatie\ImageOptimizer\ImageOptimizerFactory;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-$imageOptimizer = ImageOptimizerFactory::create();
+$optimizerChain = OptimizerChainFactory::create();
 
-$imageOptimizer->optimize($pathToImage);
+$optimizerChain->optimize($pathToImage);
 ```
 
 The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
