@@ -89,7 +89,7 @@ PNGs will be made smaller by running them through two tools. The first one is [P
 
 ### SVGs
 
-SVGs will be minified by [SVGO](https://github.com/svg/svgo). No extra options will be passed, so SVGO's default configuration will be used.
+SVGs will be minified by [SVGO](https://github.com/svg/svgo). SVGO's default configuration will be used, with the omission of the `cleanupIDs` plugin because that one is know to cause troubles when displaying multiple optimized SVGs on one page.
 
 Please be aware that SVGO can break your an svg. You'll find more info on that in this [excellent blogpost](https://www.sarasoueidan.com/blog/svgo-tools/) by [Sara Soueidan](https://twitter.com/SaraSoueidan)
 
