@@ -82,6 +82,18 @@ The image at `$pathToImage` will be overwritten by an optimized version which sh
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
+### Setting a timeout
+
+You can set the maximum of time in seconds that each indivual optimizer in a chain can use by calling `setTimeout`:
+
+```php
+$imageOptimizer
+    ->setTimeout(10)
+    ->optimize($pathToImage);
+```
+
+In this example each optimizer in the chain will get a maximum 10 seconds to do it's job.
+
 ### Creating your own optimization chain
 
 If you want to customize the chain of optimizers used you can do so by adding `Optimizer`s manually to an `ImageOptimizer`.
