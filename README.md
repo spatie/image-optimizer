@@ -147,7 +147,7 @@ interface Optimizer
     public function binaryName(): string;
 
     /**
-     * Determines if the given mimetype can be handled by the optimizer.
+     * Determines if the given image can be handled by the optimizer.
      *
      * @param \Spatie\ImageOptimizer\Image $image
      *
