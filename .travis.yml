@@ -12,6 +12,7 @@ env:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - sudo add-apt-repository ppa:danmbox/ppa
   - sudo apt-get update
   - sudo apt-get install jpegoptim
   - sudo apt-get install pngquant
