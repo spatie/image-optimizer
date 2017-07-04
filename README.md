@@ -9,7 +9,7 @@
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize PNGs, JPGs, SVGs and GIFs by running them through a chain of various [image optimization tools](#image-optimization-tools). Here's how you can use it:
+This package can optimize PNGs, JPGs, SVGs and GIFs by running them through a chain of various [image optimization tools](#optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\OptimizerChainFactory;
@@ -70,6 +70,8 @@ brew install optipng
 brew install pngquant
 brew install svgo
 ```
+
+## Which optimizers will run wi
 
 ## Usage
 

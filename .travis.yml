@@ -1,7 +1,6 @@
-language: php
-
-node_js:
-  - "node"
+language:
+  - php
+  - node_js
 
 php:
   - 7.0
