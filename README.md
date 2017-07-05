@@ -19,7 +19,16 @@ $optimizerChain = OptimizerChainFactory::create();
 $optimizerChain->optimize($pathToImage);
 ```
 
-The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
+The image at `$pathToImage` will be overwritten by an optimized version which should be smaller.
+
+To keep the original image, pass through the `$pathToOutput` as an additional argument to optimize the image there:
+```php
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+
+$optimizerChain = OptimizerChainFactory::create();
+
+$optimizerChain->optimize($pathToImage, $pathToOutput);
+```
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
@@ -110,7 +119,7 @@ $optimizerChain = OptimizerChainFactory::create();
 $optimizerChain->optimize($pathToImage);
 ```
 
-The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. 
+The image at `$pathToImage` will be overwritten by an optimized version which should be smaller.
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
 
@@ -245,19 +254,19 @@ Original: Photoshop 'Save for web' | PNG-24 with transparency<br>
 
 ![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
 
-Optimized<br> 
+Optimized<br>
 16 Kb (40%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
 ### jpg
 
-Original: Photoshop 'Save for web' | quality 60, optimized<br> 
+Original: Photoshop 'Save for web' | quality 60, optimized<br>
 547 Kb
 
 ![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
 
-Optimized<br> 
+Optimized<br>
 525 Kb (95%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
@@ -266,12 +275,12 @@ credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 
 ### svg
 
-Original: Illustrator | Web optimized SVG export<br> 
+Original: Illustrator | Web optimized SVG export<br>
 26 Kb
 
 ![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
 
-Optimized<br> 
+Optimized<br>
 20 Kb (76%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
