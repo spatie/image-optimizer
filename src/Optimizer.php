@@ -2,8 +2,6 @@
 
 namespace Spatie\ImageOptimizer;
 
-use Spatie\ImageOptimizer\Image;
-
 interface Optimizer
 {
     /**
