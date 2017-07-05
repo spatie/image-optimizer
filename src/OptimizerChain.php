@@ -58,8 +58,14 @@ class OptimizerChain
         return $this;
     }
 
-    public function optimize(string $pathToImage)
+    public function optimize(string $pathToImage, string $pathToOutput = null)
     {
+        if($pathToOutput)
+        {
+          copy($pathToImage, $pathToOutput);
+          $pathToImage = $pathToOutput;
+        }
+
         $image = new Image($pathToImage);
 
         $this->logger->info("Start optimizing {$pathToImage}");

@@ -86,4 +86,20 @@ class OptimizerChainFactoryTest extends TestCase
 
         $this->assertEquals($optimizedContent, $originalContent);
     }
+
+    /** @test */
+    public function it_can_output_to_a_specified_path()
+    {
+        $tempFilePath = $this->getTempFilePath('logo.png');
+        $outputFilePath = __DIR__."/temp/output.png";
+
+        $this->optimizerChain->optimize($tempFilePath, $outputFilePath);
+
+        $this->assertDecreasedFileSize($outputFilePath, $this->getTestFilePath('logo.png'));
+
+        $this->assertOptimizersUsed([
+            Optipng::class,
+            Pngquant::class,
+        ]);
+    }
 }
