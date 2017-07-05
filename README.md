@@ -17,18 +17,7 @@ $optimizerChain = OptimizerChainFactory::create();
 $optimizerChain->optimize($pathToImage);
 ```
 
-The image at `$pathToImage` will be overwritten by an optimized version which should be smaller.
-
-To keep the original image, pass through the `$pathToOutput` as an additional argument to optimize the image there:
-```php
-use Spatie\ImageOptimizer\OptimizerChainFactory;
-
-$optimizerChain = OptimizerChainFactory::create();
-
-$optimizerChain->optimize($pathToImage, $pathToOutput);
-```
-
-The package will automatically detect which optimization binaries are installed on your system and use them.
+The image at `$pathToImage` will be overwritten by an optimized version which should be smaller. The package will automatically detect which optimization binaries are installed on your system and use them.
 
 Here are some [example conversions](#example-conversions) that have been done by this package.
 
@@ -120,6 +109,17 @@ $optimizerChain->optimize($pathToImage);
 The image at `$pathToImage` will be overwritten by an optimized version which should be smaller.
 
 The package will automatically detect which optimization binaries are installed on your system and use them.
+
+To keep the original image, you can pass through a second argument`optimize`:
+```php
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+
+$optimizerChain = OptimizerChainFactory::create();
+
+$optimizerChain->optimize($pathToImage, $pathToOutput);
+```
+
+In that example the package won't touch `$pathToImage` and write an optimized version to `$pathToOutput`.
 
 ### Setting a timeout
 
