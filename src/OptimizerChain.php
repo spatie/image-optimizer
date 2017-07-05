@@ -4,15 +4,16 @@ namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Process\Process;
-use Spatie\ImageOptimizer\Optimizers\Optimizer;
 
 class OptimizerChain
 {
+    /* @var \Spatie\ImageOptimizer\Optimizer[] */
     protected $optimizers = [];
 
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
 
+    /** @var int */
     protected $timeout = 60;
 
     public function __construct()
@@ -44,7 +45,7 @@ class OptimizerChain
     }
 
     /*
-     * Set the amount of seconds each separte optimizer may use
+     * Set the amount of seconds each separate optimizer may use
      */
     public function setTimeout(int $timeoutInSeconds)
     {
@@ -96,12 +97,12 @@ class OptimizerChain
 
     protected function logResult(Process $process)
     {
-        if ($process->isSuccessful()) {
-            $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
+        if (! $process->isSuccessful()) {
+            $this->logger->error("Process errored with `{$process->getErrorOutput()}`}");
 
             return;
         }
 
-        $this->logger->error("Process errored with `{$process->getErrorOutput()}`}");
+        $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
     }
 }
