@@ -95,6 +95,7 @@ class OptimizerChainFactoryTest extends TestCase
 
         $this->optimizerChain->optimize($tempFilePath, $outputFilePath);
 
+        $this->assertFileEquals($tempFilePath, $this->getTestFilePath('logo.png'));
         $this->assertDecreasedFileSize($outputFilePath, $this->getTestFilePath('logo.png'));
 
         $this->assertOptimizersUsed([
