@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\ImageOptimizer\Optimizers;
+namespace Spatie\ImageOptimizer;
 
 use Spatie\ImageOptimizer\Image;
 
