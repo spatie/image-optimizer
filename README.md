@@ -83,7 +83,7 @@ JPGs will be made smaller by running them through [JpegOptim](http://freecode.co
 
 ### PNGs
 
-PNGs will be made smaller by running them through two tools. The first one is [Pngquant 2](https://pngquant.org/), a lossy PNG comprossor. We set no extra options, their defaults are used. After that we run the image throug a second one: [Optipng](http://optipng.sourceforge.net/). These options are used:
+PNGs will be made smaller by running them through two tools. The first one is [Pngquant 2](https://pngquant.org/), a lossy PNG compressor. We set no extra options, their defaults are used. After that we run the image through a second one: [Optipng](http://optipng.sourceforge.net/). These options are used:
 - `-i0`: this will result in a non-interlaced, progressive scanned image
 - `-o2`: this set the optimization level to two (multiple IDAT compression trials)
 
