@@ -91,7 +91,7 @@ PNGs will be made smaller by running them through two tools. The first one is [P
 
 SVGs will be minified by [SVGO](https://github.com/svg/svgo). SVGO's default configuration will be used, with the omission of the `cleanupIDs` plugin because that one is know to cause troubles when displaying multiple optimized SVGs on one page.
 
-Please be aware that SVGO can break your an svg. You'll find more info on that in this [excellent blogpost](https://www.sarasoueidan.com/blog/svgo-tools/) by [Sara Soueidan](https://twitter.com/SaraSoueidan)
+Please be aware that SVGO can break your svg. You'll find more info on that in this [excellent blogpost](https://www.sarasoueidan.com/blog/svgo-tools/) by [Sara Soueidan](https://twitter.com/SaraSoueidan)
 
 ### GIFs
 
@@ -236,30 +236,44 @@ A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging li
 
 ## Example conversions
 
-Here are some example conversions done by this package.
+Here are some real life example conversions done by this package.
 
 ### png
 
-Original (size: 40 Kb)
+Original: Photoshop 'Save for web' | PNG-24 with transparency<br>
+40 Kb
+
 ![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
 
-Optimized (size: 16 Kb)
+Optimized<br> 
+16 Kb (40%)
+
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
 ### jpg
 
-Original (size: 547 Kb)
+Original: Photoshop 'Save for web' | quality 60, optimized<br> 
+547 Kb
+
 ![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
 
-Optimized (size: 525 Kb)
+Optimized<br> 
+525 Kb (95%)
+
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
+
+credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 
 ### svg
 
-Original (size: 26 Kb)
+Original: Illustrator | Web optimized SVG export<br> 
+26 Kb
+
 ![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
 
-Optimized (size: 20 Kb)
+Optimized<br> 
+20 Kb (76%)
+
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
 ## Changelog
