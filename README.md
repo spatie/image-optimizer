@@ -61,7 +61,7 @@ sudo brew install -g svgo
 sudo apt-get install gifsicle
 ```
 
-And here's how to install the on MacOS (using [Homebrew](https://brew.sh/)):
+And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
 
 ```bash
 brew install jpegoptim
