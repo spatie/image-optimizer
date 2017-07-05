@@ -63,7 +63,7 @@ class OptimizerChain
     {
         if ($pathToOutput) {
             copy($pathToImage, $pathToOutput);
-            
+
             $pathToImage = $pathToOutput;
         }
 
