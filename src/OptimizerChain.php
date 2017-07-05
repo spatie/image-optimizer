@@ -45,7 +45,7 @@ class OptimizerChain
     }
 
     /*
-     * Set the amount of seconds each separate optimizer may use
+     * Set the amount of seconds each separate optimizer may use.
      */
     public function setTimeout(int $timeoutInSeconds)
     {
@@ -63,6 +63,7 @@ class OptimizerChain
     {
         if ($pathToOutput) {
             copy($pathToImage, $pathToOutput);
+            
             $pathToImage = $pathToOutput;
         }
 
