@@ -2,6 +2,11 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+
+## 1.0.3 - 2017-07-06
+
+- fix `composer.json`
+
 ## 1.0.2 - 2017-07-06
 
 - fix for Laravel 5.5 users
