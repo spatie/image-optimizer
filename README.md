@@ -235,7 +235,7 @@ use Spatie\ImageOptimizer\OptimizerChainFactory;
 $optimizerChain = OptimizerChainFactory::create();
 
 $optimizerChain
-   ->setLogger(new MyLogger())
+   ->useLogger(new MyLogger())
    ->optimize($pathToImage);
 ```
 
