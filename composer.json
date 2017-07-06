@@ -43,14 +43,4 @@
     "config": {
         "sort-packages": true
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Spatie\\ImageOptimizer\\ImageOptimizerServiceProvider"
-            ],
-            "aliases": {
-                "ImageOptimizer": "Spatie\\ImageOptimizer\\ImageOptimizerFacade"
-            }
-        }
-    }
 }
