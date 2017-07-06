@@ -53,7 +53,7 @@ Here's how to install all the optimizers on Ubuntu:
 sudo apt-get install jpegoptim
 sudo apt-get install optipng
 sudo apt-get install pngquant
-sudo brew install -g svgo
+sudo npm install -g svgo
 sudo apt-get install gifsicle
 ```
 
@@ -235,7 +235,7 @@ use Spatie\ImageOptimizer\OptimizerChainFactory;
 $optimizerChain = OptimizerChainFactory::create();
 
 $optimizerChain
-   ->setLogger(new MyLogger())
+   ->useLogger(new MyLogger())
    ->optimize($pathToImage);
 ```
 
