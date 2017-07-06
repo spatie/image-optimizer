@@ -21,6 +21,8 @@ class Svgo extends BaseOptimizer
     {
         $optionString = implode(' ', $this->options);
 
-        return "{$this->binaryName} {$optionString} --input='{$this->imagePath}' --output='{$this->imagePath}'";
+        return "{$this->binaryName} {$optionString}"
+           . ' --input=' . escapeshellarg($this->imagePath)
+           . ' --output=' . escapeshellarg($this->imagePath);
     }
 }
