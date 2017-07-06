@@ -38,6 +38,6 @@ abstract class BaseOptimizer implements Optimizer
     {
         $optionString = implode(' ', $this->options);
 
-        return "'{$this->binaryName}' {$optionString} " . escapeshellarg($this->imagePath);
+        return "'{$this->binaryName}' {$optionString} ".escapeshellarg($this->imagePath);
     }
 }
