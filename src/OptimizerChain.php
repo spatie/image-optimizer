@@ -50,6 +50,8 @@ class OptimizerChain
     public function setTimeout(int $timeoutInSeconds)
     {
         $this->timeout = $timeoutInSeconds;
+        
+        return $this;
     }
 
     public function useLogger(LoggerInterface $log)
