@@ -46,6 +46,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
+- [Mozjpeg](https://github.com/mozilla/mozjpeg)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -55,6 +56,18 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
+```
+
+Mozjpeg for Ubuntu:
+```bash
+sudo apt-get install autoconf automake libtool nasm make pkg-config git
+git clone https://github.com/mozilla/mozjpeg.git
+cd mozjpeg
+autoreconf -fiv
+./configure
+make
+sudo make install
+sudo ln -s /opt/mozjpeg/bin/jpegtran /usr/bin/mozjpeg
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
