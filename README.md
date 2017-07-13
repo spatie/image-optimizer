@@ -21,6 +21,8 @@ The image at `$pathToImage` will be overwritten by an optimized version which sh
 
 Here are some [example conversions](#example-conversions) that have been done by this package.
 
+Loving Laravel? Then head over to [the Laravel specific integration](https://github.com/spatie/laravel-image-optimizer).
+
 ## Postcardware
 
 You're free to use this package (it's [MIT-licensed](LICENSE.md)), but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
