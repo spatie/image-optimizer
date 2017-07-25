@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
+use Spatie\ImageOptimizer\Optimizers\Mozjpeg;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -32,6 +33,23 @@ class OptimizerChainFactoryTest extends TestCase
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.jpg'));
 
         $this->assertOptimizersUsed(Jpegoptim::class);
+    }
+
+    /** @test */
+    public function it_can_optimize_a_jpg_with_mozjpeg()
+    {
+        $tempFilePath = $this->getTempFilePath('image.jpg');
+
+        $this->optimizerChain->addOptimizer(new Mozjpeg([
+            '-optimize ',
+            '-progressiv ',
+        ]));
+
+        $this->optimizerChain->optimize($tempFilePath);
+
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.jpg'));
+
+        $this->assertOptimizersUsed(Mozjpeg::class);
     }
 
     /** @test */

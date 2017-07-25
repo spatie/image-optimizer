@@ -16,9 +16,10 @@ class Mozjpeg extends BaseOptimizer
     public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
-
+        // Directly overwriting of file is not possible, so do a mv after compression
         return "{$this->binaryName} {$optionString}"
-            .' -copy none -outfile '.escapeshellarg($this->imagePath)
+            .' -outfile '.escapeshellarg($this->imagePath.'optimized.jpg')
+            .' '.escapeshellarg($this->imagePath).' && mv '.escapeshellarg($this->imagePath.'optimized.jpg')
             .' '.escapeshellarg($this->imagePath);
     }
 }
