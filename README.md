@@ -48,6 +48,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
+- [Mozjpeg](https://github.com/mozilla/mozjpeg)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -59,6 +60,18 @@ sudo npm install -g svgo
 sudo apt-get install gifsicle
 ```
 
+Mozjpeg for Ubuntu:
+```bash
+sudo apt-get install autoconf automake libtool nasm make pkg-config git
+git clone https://github.com/mozilla/mozjpeg.git
+cd mozjpeg
+autoreconf -fiv
+./configure
+make
+sudo make install
+sudo ln -s /opt/mozjpeg/bin/cjpeg /usr/bin/mozjpeg
+```
+
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
 
 ```bash
@@ -67,6 +80,7 @@ brew install optipng
 brew install pngquant
 brew install svgo
 brew install gifsicle
+brew install mozjpeg
 ```
 
 ## Which tools will do what?
@@ -78,6 +92,9 @@ The package will automatically decide which tools to use on a particular image.
 JPGs will be made smaller by running them through [JpegOptim](http://freecode.com/projects/jpegoptim). These options are used:
 - `--strip-all`: this strips out all text information such as comments and EXIF data
 - `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloading using multiple passes of progressively higher details.
+
+JPG's can also be optimized through [mozjpeg](https://github.com/mozilla/mozjpeg/blob/master/usage.txt). Only the standard options are used by default.
+
 
 ### PNGs
 
