@@ -2,6 +2,9 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.7 - 2017-07-29
+- lower requirements of dependencies
+
 ## 1.0.6 - 2017-07-10
 - fix `jpegoptim` parameters
 
