@@ -77,7 +77,7 @@ The package will automatically decide which tools to use on a particular image.
 
 JPGs will be made smaller by running them through [JpegOptim](http://freecode.com/projects/jpegoptim). These options are used:
 - `--strip-all`: this strips out all text information such as comments and EXIF data
-- `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloading using multiple passes of progressively higher details.
+- `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloaded using multiple passes of progressively higher details.
 
 ### PNGs
 
