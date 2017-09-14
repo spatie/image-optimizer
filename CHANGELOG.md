@@ -3,7 +3,7 @@
 All notable changes to `image-optimizer` will be documented in this file
 
 ## 1.0.8 - 2017-09-14
-- allow Symfony 3 components
+- allow Symfony 2 components
 - make Google Pagespeed tests pass
 
 ## 1.0.7 - 2017-07-29
