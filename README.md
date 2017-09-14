@@ -76,6 +76,7 @@ The package will automatically decide which tools to use on a particular image.
 ### JPGs
 
 JPGs will be made smaller by running them through [JpegOptim](http://freecode.com/projects/jpegoptim). These options are used:
+- `-m85`: this will store the image with 85% quality. This setting [seems to satisfy Google's Pagespeed compression rules](https://webmasters.stackexchange.com/questions/102094/google-pagespeed-how-to-satisfy-the-new-image-compression-rules)
 - `--strip-all`: this strips out all text information such as comments and EXIF data
 - `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloaded using multiple passes of progressively higher details.
 
