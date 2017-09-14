@@ -14,6 +14,7 @@ class OptimizerChainFactory
     {
         return (new OptimizerChain())
             ->addOptimizer(new Jpegoptim([
+                '-m85'
                 '--strip-all',
                 '--all-progressive',
             ]))
