@@ -2,6 +2,9 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.9 - 2017-11-03
+- fix shell command quotes
+
 ## 1.0.8 - 2017-09-14
 - allow Symfony 2 components
 - make Google Pagespeed tests pass
