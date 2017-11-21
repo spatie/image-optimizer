@@ -69,8 +69,11 @@ The package will automatically decide which tools to use on a particular image.
 
 JPGs will be made smaller by running them through [JpegOptim](http://freecode.com/projects/jpegoptim). These options are used:
 - `-m85`: this will store the image with 85% quality. This setting [seems to satisfy Google's Pagespeed compression rules](https://webmasters.stackexchange.com/questions/102094/google-pagespeed-how-to-satisfy-the-new-image-compression-rules)
-- `--strip-all`: this strips out all text information such as comments and EXIF data
 - `--all-progressive`: this will make sure the resulting image is a progressive one, meaning it can be downloaded using multiple passes of progressively higher details.
+
+and one of these
+- `--strip-all`: (default) this strips out all text information such as comments and EXIF data
+- `--strip-com --strip-exif --strip-iptc`: this strips out commands and EXIF data but keeps the color profile. It does produce larger images but preserves color accuracy in specific cases.
 
 ### PNGs
 
@@ -235,6 +238,18 @@ $optimizerChain
 ```
 
 A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging library that's fully compliant is [Monolog](https://github.com/Seldaek/monolog). The package will write the to log which `Optimizers` are used, which commands are executed and their output.
+
+## JPG color profile optimizations
+
+For some JPG images stripping away all the information removes too much data and resulting image might look different after compression as the color profile is gone. You can set the library to use laxed version of the stripping tool to preserve the color accuracy at the cost of increased file size.
+
+``` php
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+
+$optimizerChain = OptimizerChainFactory::create(OptimizerChainFactory::MODE_JPG_PRESERVE_COLORS);
+
+$optimizerChain->optimize($pathToImage);
+```
 
 ## Example conversions
 
