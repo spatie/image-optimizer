@@ -2,7 +2,6 @@
 
 namespace Spatie\ImageOptimizer;
 
-use PHPUnit\Runner\Exception;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -21,7 +20,7 @@ class OptimizerChainFactory
     public static function create($mode = self::MODE_JPG_AGGRESSIVE): OptimizerChain
     {
         if (!in_array($mode, self::MODES_JPG)) {
-            throw new Exception('Invalid jpg mode parameter used.');
+            throw new \Exception('Invalid jpg mode parameter used.');
         }
 
         return (new OptimizerChain())
