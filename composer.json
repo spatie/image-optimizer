@@ -1,11 +1,11 @@
 {
-    "name": "spatie/image-optimizer",
+    "name": "tnduoc/image-optimizer",
     "description": "Easily optimize images using PHP",
     "keywords": [
         "spatie",
         "image-optimizer"
     ],
-    "homepage": "https://github.com/spatie/image-optimizer",
+    "homepage": "https://github.com/tnduoc/image-optimizer",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^5.6",
         "psr/log": "^1.0",
         "symfony/process": "^2.8|^3.0"
     },
