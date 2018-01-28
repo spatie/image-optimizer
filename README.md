@@ -23,6 +23,8 @@ Here are some [example conversions](#example-conversions) that have been done by
 
 Loving Laravel? Then head over to [the Laravel specific integration](https://github.com/spatie/laravel-image-optimizer).
 
+Using WordPress? Then try out [the WP CLI command](https://github.com/TypistTech/image-optimize-command).
+
 ## Installation
 
 You can install the package via composer:
