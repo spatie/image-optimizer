@@ -2,6 +2,11 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.10 - 2018-02-08
+
+- Support symfony ^4.0
+- Support phpunit ^7.0
+
 ## 1.0.9 - 2017-11-03
 - fix shell command quotes
 
