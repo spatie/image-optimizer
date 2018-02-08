@@ -14,7 +14,7 @@ class Svgo extends BaseOptimizer
             return false;
         }
 
-        return $image->mime() === 'text/html';
+        return in_array($image->mime(), ['text/html', 'image/svg']);
     }
 
     public function getCommand(): string
@@ -22,7 +22,7 @@ class Svgo extends BaseOptimizer
         $optionString = implode(' ', $this->options);
 
         return "{$this->binaryName} {$optionString}"
-           .' --input='.escapeshellarg($this->imagePath)
-           .' --output='.escapeshellarg($this->imagePath);
+            . ' --input=' . escapeshellarg($this->imagePath)
+            . ' --output=' . escapeshellarg($this->imagePath);
     }
 }
