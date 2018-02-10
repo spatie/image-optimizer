@@ -120,7 +120,7 @@ In that example the package won't touch `$pathToImage` and write an optimized ve
 
 ### Setting a timeout
 
-You can set the maximum of time in seconds that each indivual optimizer in a chain can use by calling `setTimeout`:
+You can set the maximum of time in seconds that each individual optimizer in a chain can use by calling `setTimeout`:
 
 ```php
 $optimizerChain
@@ -132,7 +132,7 @@ In this example each optimizer in the chain will get a maximum 10 seconds to do 
 
 ### Creating your own optimization chains
 
-If you want to customize the chain of optimizers you can do so by adding `Optimizer`s manually to a `OptimizerChain`.
+If you want to customize the chain of optimizers you can do so by adding `Optimizer`s manually to an `OptimizerChain`.
 
 Here's an example where we only want `optipng` and `jpegoptim` to be used:
 
@@ -152,7 +152,7 @@ $optimizerChain = (new OptimizerChain)
    ]))
 ```
 
-Notice that you can pass the options an `Optimizer` should use to it's constructor.
+Notice that you can pass the options an `Optimizer` should use to its constructor.
 
 ### Writing a custom optimizers
 
