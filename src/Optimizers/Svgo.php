@@ -17,7 +17,7 @@ class Svgo extends BaseOptimizer
         return in_array($image->mime(), [
             'text/html',
             'image/svg',
-            'image/svg+xml'
+            'image/svg+xml',
         ]);
     }
 
