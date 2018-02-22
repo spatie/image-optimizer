@@ -14,7 +14,11 @@ class Svgo extends BaseOptimizer
             return false;
         }
 
-        return in_array($image->mime(), ['text/html', 'image/svg', 'image/svg+xml']);
+        return in_array($image->mime(), [
+            'text/html',
+            'image/svg',
+            'image/svg+xml'
+        ]);
     }
 
     public function getCommand(): string

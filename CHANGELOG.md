@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.12. - 2018-02-21
+
+- added `image/svg+xml` mime type
+
 ## 1.0.11 - 2018-02-08
 
 - SVG mime type detection in PHP 7.2
