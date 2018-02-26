@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.13 - 2018-02-26
+
+- added `text/plain` to the list of valid svg mime types
+
 ## 1.0.12. - 2018-02-21
 
 - added `image/svg+xml` mime type
