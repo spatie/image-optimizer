@@ -18,7 +18,7 @@ class Svgo extends BaseOptimizer
             'text/html',
             'image/svg',
             'image/svg+xml',
-            'text/plain'
+            'text/plain',
         ]);
     }
 
