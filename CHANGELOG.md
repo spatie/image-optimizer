@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.0.14 - 2018-03-07
+
+- support more symfony versions
+
 ## 1.0.13 - 2018-02-26
 
 - added `text/plain` to the list of valid svg mime types
