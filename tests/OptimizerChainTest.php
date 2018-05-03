@@ -32,6 +32,19 @@ class OptimizerChainTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_the_timeout_when_doing_optimization()
+    {
+        $testImage = $this->getTempFilePath('image.jpg');
+
+        $this->optimizerChain
+            ->setTimeout(1)
+            ->addOptimizer(new Jpegoptim())
+            ->optimize($testImage);
+
+        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('image.jpg'));
+    }
+
+    /** @test */
     public function it_can_get_all_optimizers()
     {
         $this->assertEquals([], $this->optimizerChain->getOptimizers());
