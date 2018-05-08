@@ -2,7 +2,10 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
+use Psr\Log\LoggerInterface;
+use Spatie\ImageOptimizer\DummyLogger;
 use Spatie\ImageOptimizer\Optimizer;
+use Symfony\Component\Process\Process;
 
 abstract class BaseOptimizer implements Optimizer
 {
@@ -10,10 +13,59 @@ abstract class BaseOptimizer implements Optimizer
 
     public $imagePath = '';
 
+    /**
+     * List of binary paths to check for commands
+     * @var array $binaryPathList
+     */
+    protected $binaryPathList = [
+      '/usr/local',
+      '/usr/local/bin',
+      '/usr/bin',
+      '/usr/sbin',
+      '/usr/local/bin',
+      '/usr/local/sbin',
+      '/bin',
+      '/sbin'
+    ];
+
+    /**
+     * Binary path
+     * @var string $binaryPath
+     */
+    protected $binaryPath = '';
+
     public function __construct($options = [])
     {
+        $this->useLogger(new DummyLogger());
         $this->setOptions($options);
     }
+
+
+    /**
+     * Set binary Path
+     *
+     * Useful in case your commands are not accessible by global environment. ex. /usr/bin/local
+     *
+     * @param string $binaryName
+     * @return string
+     */
+    public function setBinaryPath(string $binaryPath)
+    {
+        $this->binaryPath = $binaryPath;
+
+        return $this;
+    }
+
+    /**
+     * Get binary path
+     *
+     * @return string
+     */
+    public function binaryPath(): string
+    {
+        return $this->binaryPath;
+    }
+
 
     public function binaryName(): string
     {
@@ -34,10 +86,66 @@ abstract class BaseOptimizer implements Optimizer
         return $this;
     }
 
+    public function useLogger(LoggerInterface $log)
+    {
+        $this->logger = $log;
+
+        return $this;
+    }
+
+
+    /**
+     * Get Binary path list
+     *
+     * @return array
+     */
+    public function binaryPathList(){
+        return $this->binaryPathList;
+    }
+
+    /**
+     * Authomatically detect the path where the image optimizes is installed
+     *
+     * @return $this
+     */
+    public function detectBinaryPath(){
+        // first check command without in the global environment
+        $process = new Process("which -a " .$this->binaryName());
+        $process->setTimeout(null);
+        $process->run();
+        if ($process->isSuccessful()) {
+            return $this;
+        }
+
+        // add custom path if given
+        if($this->binaryPath()) {
+            $this->binaryPathList = [
+              $this->binaryPath()
+            ];
+        }
+
+        // check command is found in every given path
+        foreach ($this->binaryPathList() as $path) {
+            $path = rtrim($path, '/') . '/';
+            $process = new Process("which -a " . $path . '' . $this->binaryName());
+            $process->setTimeout(null);
+            $process->run();
+            if ($process->isSuccessful()) {
+                $this->setBinaryPath($path);
+                return $this;
+            }
+        }
+
+        $this->logger->error("Could not find binary path: `".implode(",", array_values($this->binaryPathList))."`}");
+
+        return $this;
+    }
+
     public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
+        $fullBinaryPath = $this->detectBinaryPath()->binaryPath().$this->binaryName();
 
-        return "\"{$this->binaryName}\" {$optionString} ".escapeshellarg($this->imagePath);
+        return "\"{$fullBinaryPath}\" {$optionString} ".escapeshellarg($this->imagePath);
     }
 }
