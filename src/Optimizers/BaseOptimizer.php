@@ -109,7 +109,7 @@ abstract class BaseOptimizer implements Optimizer
      * @return $this
      */
     public function detectBinaryPath(){
-        // first check command without in the global environment
+        // first check if comman is executed in a global environment
         $process = new Process("which -a " .$this->binaryName());
         $process->setTimeout(null);
         $process->run();
@@ -117,14 +117,14 @@ abstract class BaseOptimizer implements Optimizer
             return $this;
         }
 
-        // add custom path if given
+        // add custom path (if given in config.php)
         if($this->binaryPath()) {
             $this->binaryPathList = [
               $this->binaryPath()
             ];
         }
 
-        // check command is found in every given path
+        // check if command is found in every given path
         foreach ($this->binaryPathList() as $path) {
             $path = rtrim($path, '/') . '/';
             $process = new Process("which -a " . $path . '' . $this->binaryName());
@@ -136,7 +136,7 @@ abstract class BaseOptimizer implements Optimizer
             }
         }
 
-        $this->logger->error("Could not find binary path: `".implode(",", array_values($this->binaryPathList))."`}");
+        $this->logger->error("Command could not be executed in any of the following binary path: `".implode(",", array_values($this->binaryPathList))."`}");
 
         return $this;
     }
