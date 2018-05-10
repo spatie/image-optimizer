@@ -14,7 +14,7 @@ abstract class BaseOptimizer implements Optimizer
     public $imagePath = '';
 
     /**
-     * List of binary paths to check for commands
+     * List of binary paths to check for commands.
      * @var array $binaryPathList
      */
     protected $binaryPathList = [
@@ -28,8 +28,18 @@ abstract class BaseOptimizer implements Optimizer
       '/sbin'
     ];
 
+    /** @var \Psr\Log\LoggerInterface */
+    protected $logger;
+
     /**
-     * Binary path
+     * Binary name of the optimizer.
+     * @var string $binaryName
+     */
+    protected $binaryName;
+
+    /**
+     * Binary path.
+     *
      * @var string $binaryPath
      */
     protected $binaryPath = '';
