@@ -1,11 +1,11 @@
 {
-    "name": "fatonsopa/image-optimizer",
+    "name": "spatie/image-optimizer",
     "description": "Easily optimize images using PHP",
     "keywords": [
         "spatie",
         "image-optimizer"
     ],
-    "homepage": "https://github.com/fatonsopa/image-optimizer",
+    "homepage": "https://github.com/spatie/image-optimizer",
     "license": "MIT",
     "authors": [
         {
