@@ -62,7 +62,7 @@ class OptimizerChain
     }
 
     /**
-     * Get logger
+     * Get logger.
      * @return LoggerInterface
      */
     public function getLogger()

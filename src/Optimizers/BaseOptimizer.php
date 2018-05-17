@@ -2,22 +2,30 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
-use Psr\Log\LoggerInterface;
-use Spatie\ImageOptimizer\DummyLogger;
 use Spatie\ImageOptimizer\Optimizer;
 use Symfony\Component\Process\Process;
 use Spatie\ImageOptimizer\OptimizerChain;
 
 abstract class BaseOptimizer implements Optimizer
 {
+    /**
+     * Options.
+     *
+     * @var array
+     */
     public $options = [];
 
+    /**
+     * Image path.
+     *
+     * @var string
+     */
     public $imagePath = '';
 
     /**
      * Binary path.
      *
-     * @var string $binaryPath
+     * @var string
      */
     protected $binaryPath = '';
 
@@ -28,7 +36,7 @@ abstract class BaseOptimizer implements Optimizer
 
 
     /**
-     * Set binary Path
+     * Set binary Path.
      *
      * @param string|array $binaryPath
      * @return string
@@ -41,7 +49,7 @@ abstract class BaseOptimizer implements Optimizer
     }
 
     /**
-     * Get binary path
+     * Get binary path.
      *
      * @return string|array
      */
@@ -72,16 +80,17 @@ abstract class BaseOptimizer implements Optimizer
 
 
     /**
-     * Authomatically detect the path where the image optimizes is installed
+     * Authomatically detect the path where the image optimizes is installed.
      *
      * @return $this
      */
-    public function checkBinary(){
+    public function checkBinary()
+    {
         // check binary by a given list of binary path
-        if(is_array($this->binaryPath())) {
+        if (is_array($this->binaryPath())) {
             foreach ($this->binaryPath() as $path) {
-                $path = rtrim($path, '/') . '/';
-                $process = new Process("which -a " . $path . '' . $this->binaryName());
+                $path = rtrim($path, '/').'/';
+                $process = new Process('which -a '.$path.''.$this->binaryName());
                 $process->setTimeout(null);
                 $process->run();
 
@@ -92,7 +101,7 @@ abstract class BaseOptimizer implements Optimizer
             }
 
             // if we come so far, it means the binary could not be found
-            (new OptimizerChain())->getLogger()->error("Binary could not be found in any of the following configured paths: `".implode(",", array_values($this->binaryPath())."`"));
+            (new OptimizerChain())->getLogger()->error('Binary could not be found in any of the following configured paths: `'.implode(',', array_values($this->binaryPath()).'`'));
 
             // Although a given list of possible binary path has been given, the binary may exists
             // in the global environment. Therefore, we will unset binary path list so we can later
@@ -101,13 +110,13 @@ abstract class BaseOptimizer implements Optimizer
         }
 
         // check if binary exists in the global environment
-        $process = new Process("which -a " .$this->binaryName());
+        $process = new Process('which -a '.$this->binaryName());
         $process->setTimeout(null);
         $process->run();
         if ($process->isSuccessful()) {
             return $this;
         }else{
-            (new OptimizerChain())->getLogger()->error("Binary could not be found: `".$this->binaryName()."`");
+            (new OptimizerChain())->getLogger()->error('Binary could not be found: `'.$this->binaryName().'`');
         }
 
         return $this;
