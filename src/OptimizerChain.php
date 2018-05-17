@@ -61,6 +61,15 @@ class OptimizerChain
         return $this;
     }
 
+    /**
+     * Get logger
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
     public function optimize(string $pathToImage, string $pathToOutput = null)
     {
         if ($pathToOutput) {
