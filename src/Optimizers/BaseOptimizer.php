@@ -100,8 +100,10 @@ abstract class BaseOptimizer implements Optimizer
                 }
             }
 
+            $binaryPath = implode(',', array_values($this->binaryPath()));
+
             // if we come so far, it means the binary could not be found
-            (new OptimizerChain())->getLogger()->error('Binary could not be found in any of the following configured paths: `'.implode(',', array_values($this->binaryPath()).'`'));
+            (new OptimizerChain())->getLogger()->error('Binary could not be found in any of the following configured paths: '. $binaryPath .'');
 
             // Although a given list of possible binary path has been given, the binary may exists
             // in the global environment. Therefore, we will unset binary path list so we can later
