@@ -15,6 +15,22 @@ class OptimizerTest extends TestCase
     }
 
     /** @test */
+    public function a_binary_path_can_be_set()
+    {
+        $optimizer = (new Jpegoptim())
+            ->setImagePath('my-image.jpg')
+            ->setBinaryPath('testPath');
+
+        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+
+        $optimizer = (new Jpegoptim())
+            ->setImagePath('my-image.jpg')
+            ->setBinaryPath('testPath/');
+
+        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+    }
+
+    /** @test */
     public function it_can_override_options()
     {
         $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');

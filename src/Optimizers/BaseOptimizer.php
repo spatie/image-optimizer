@@ -10,6 +10,8 @@ abstract class BaseOptimizer implements Optimizer
 
     public $imagePath = '';
 
+    public $binaryPath = '';
+
     public function __construct($options = [])
     {
         $this->setOptions($options);
@@ -18,6 +20,17 @@ abstract class BaseOptimizer implements Optimizer
     public function binaryName(): string
     {
         return $this->binaryName;
+    }
+
+    public function setBinaryPath(string $binaryPath)
+    {
+        if (substr($binaryPath, -1) !== DIRECTORY_SEPARATOR) {
+            $binaryPath = $binaryPath . DIRECTORY_SEPARATOR;
+        }
+
+        $this->binaryPath = $binaryPath;
+
+        return $this;
     }
 
     public function setImagePath(string $imagePath)
@@ -38,6 +51,6 @@ abstract class BaseOptimizer implements Optimizer
     {
         $optionString = implode(' ', $this->options);
 
-        return "\"{$this->binaryName}\" {$optionString} ".escapeshellarg($this->imagePath);
+        return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString} ".escapeshellarg($this->imagePath);
     }
 }
