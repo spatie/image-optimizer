@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 [![Build Status](https://img.shields.io/travis/spatie/image-optimizer/master.svg?style=flat-square)](https://travis-ci.org/spatie/image-optimizer)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/5e00b329-08b4-41c7-ba3b-2a3a2b2594f4.svg?style=flat-square)](https://insight.sensiolabs.com/projects/5e00b329-08b4-41c7-ba3b-2a3a2b2594f4)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/image-optimizer.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/image-optimizer)
 [![StyleCI](https://styleci.io/repos/96041872/shield?branch=master)](https://styleci.io/repos/96041872)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
@@ -245,24 +244,24 @@ Here are some real life example conversions done by this package.
 ### png
 
 Original: Photoshop 'Save for web' | PNG-24 with transparency<br>
-40 Kb
+40 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
 
 Optimized<br>
-16 Kb (40%)
+16 KB (40%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
 ### jpg
 
 Original: Photoshop 'Save for web' | quality 60, optimized<br>
-547 Kb
+547 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
 
 Optimized<br>
-525 Kb (95%)
+525 KB (95%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
 
@@ -271,12 +270,12 @@ credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 ### svg
 
 Original: Illustrator | Web optimized SVG export<br>
-26 Kb
+26 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
 
 Optimized<br>
-20 Kb (76%)
+20 KB (76%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
