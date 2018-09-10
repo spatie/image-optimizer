@@ -106,7 +106,7 @@ class OptimizerChain
     protected function logResult(Process $process)
     {
         if (! $process->isSuccessful()) {
-            $this->logger->error("Process errored with `{$process->getErrorOutput()}`}");
+            $this->logger->error("Process errored with `{$process->getErrorOutput()}`");
 
             return;
         }
