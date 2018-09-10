@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.1.1 - 2018-09-10
+
+- fix logger output
+
 ## 1.1.0 - 2018-06-05
 
 - add `setBinaryPath`
