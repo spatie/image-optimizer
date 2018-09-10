@@ -235,7 +235,7 @@ $optimizerChain
    ->optimize($pathToImage);
 ```
 
-A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging library that's fully compliant is [Monolog](https://github.com/Seldaek/monolog). The package will write the to log which `Optimizers` are used, which commands are executed and their output.
+A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging library that's fully compliant is [Monolog](https://github.com/Seldaek/monolog). The package will write to log which `Optimizers` are used, which commands are executed and their output.
 
 ## Example conversions
 
