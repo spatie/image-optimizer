@@ -100,6 +100,10 @@ class OptimizerChain
             ->setTimeout($this->timeout)
             ->run();
 
+        if (! $process->isSuccessful()) {
+            throw new \RuntimeException('Unable to process image. Please check if required binaries are installed');
+        }
+
         $this->logResult($process);
     }
 
