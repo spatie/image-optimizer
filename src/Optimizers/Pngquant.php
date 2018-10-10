@@ -16,7 +16,7 @@ class Pngquant extends BaseOptimizer
     public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
-        
+
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
             .' '.escapeshellarg($this->imagePath)
             .' --output='.escapeshellarg($this->imagePath);
