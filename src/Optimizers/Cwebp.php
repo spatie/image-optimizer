@@ -21,11 +21,11 @@ class Cwebp extends BaseOptimizer
         $optionString = implode(' ', $this->options);
 
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
-            . ' ' . escapeshellarg($this->imagePath)
-            . ' -o ' .
+            .' '.escapeshellarg($this->imagePath)
+            .' -o '.
             escapeshellarg(
                 preg_replace(
-                    '/' . pathinfo($this->imagePath, PATHINFO_EXTENSION) . '$/',
+                    '/'.pathinfo($this->imagePath, PATHINFO_EXTENSION).'$/',
                     'webp',
                     $this->imagePath
                 )

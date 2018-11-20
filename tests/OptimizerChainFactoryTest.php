@@ -2,8 +2,8 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
-use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
+use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
@@ -109,8 +109,8 @@ class OptimizerChainFactoryTest extends TestCase
     public function it_can_optimize_a_jpg_to_webp()
     {
         $tempFilePath = $this->getTempFilePath('image.jpg');
-        $webpTempFilePath =preg_replace(
-            '/' . pathinfo($tempFilePath, PATHINFO_EXTENSION) . '$/',
+        $webpTempFilePath = preg_replace(
+            '/'.pathinfo($tempFilePath, PATHINFO_EXTENSION).'$/',
             'webp',
             $tempFilePath
         );
@@ -128,8 +128,8 @@ class OptimizerChainFactoryTest extends TestCase
     public function it_can_optimize_a_png_to_webp()
     {
         $tempFilePath = $this->getTempFilePath('logo.png');
-        $webpTempFilePath =preg_replace(
-            '/' . pathinfo($tempFilePath, PATHINFO_EXTENSION) . '$/',
+        $webpTempFilePath = preg_replace(
+            '/'.pathinfo($tempFilePath, PATHINFO_EXTENSION).'$/',
             'webp',
             $tempFilePath
         );

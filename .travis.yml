@@ -24,6 +24,7 @@ before_script:
   - sudo apt-get install gifsicle
   - sudo apt-get install optipng
   - sudo apt-get install libjpeg-progs
+  - sudo apt-get install webp
   - npm install -g svgo
 
 script:
