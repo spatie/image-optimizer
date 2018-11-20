@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
+use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -102,5 +103,43 @@ class OptimizerChainFactoryTest extends TestCase
             Optipng::class,
             Pngquant::class,
         ]);
+    }
+
+    /** @test */
+    public function it_can_optimize_a_jpg_to_webp()
+    {
+        $tempFilePath = $this->getTempFilePath('image.jpg');
+        $webpTempFilePath =preg_replace(
+            '/' . pathinfo($tempFilePath, PATHINFO_EXTENSION) . '$/',
+            'webp',
+            $tempFilePath
+        );
+
+        $this->optimizerChain->setOptimizers([new Cwebp()]);
+
+        $this->optimizerChain->optimize($tempFilePath);
+
+        $this->assertDecreasedFileSize($webpTempFilePath, $this->getTestFilePath('image.jpg'));
+
+        $this->assertOptimizersUsed(Cwebp::class);
+    }
+
+    /** @test */
+    public function it_can_optimize_a_png_to_webp()
+    {
+        $tempFilePath = $this->getTempFilePath('logo.png');
+        $webpTempFilePath =preg_replace(
+            '/' . pathinfo($tempFilePath, PATHINFO_EXTENSION) . '$/',
+            'webp',
+            $tempFilePath
+        );
+
+        $this->optimizerChain->setOptimizers([new Cwebp()]);
+
+        $this->optimizerChain->optimize($tempFilePath);
+
+        $this->assertDecreasedFileSize($webpTempFilePath, $this->getTestFilePath('logo.png'));
+
+        $this->assertOptimizersUsed(Cwebp::class);
     }
 }

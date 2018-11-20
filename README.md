@@ -41,6 +41,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
+- [Webp](https://developers.google.com/speed/webp)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -50,6 +51,7 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
+sudo apt-get install webp 
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
@@ -60,6 +62,7 @@ brew install optipng
 brew install pngquant
 brew install svgo
 brew install gifsicle
+brew install webp
 ```
 
 ## Which tools will do what?
@@ -89,6 +92,11 @@ Please be aware that SVGO can break your svg. You'll find more info on that in t
 
 GIFs will be optimized by [Gifsicle](http://www.lcdf.org/gifsicle/). These options will be used:
 - `-O3`: this sets the optimization level to Gifsicle's maximum, which produces the slowest but best results
+
+### Webp
+
+Webp will be create new images by running sources images through [CWebp](https://developers.google.com/speed/webp/docs/cwebp). These options are used:
+- `-q 85`: this will store new image(*.webp) with 85% quality.
 
 ## Usage
 
@@ -253,6 +261,11 @@ Optimized<br>
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
+Webp<br>
+13.3 KB (33.7%)
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.webp)
+
 ### jpg
 
 Original: Photoshop 'Save for web' | quality 60, optimized<br>
@@ -264,6 +277,11 @@ Optimized<br>
 525 KB (95%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
+
+Webp<br>
+350.8 KB (64.1%)
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
 
 credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 
