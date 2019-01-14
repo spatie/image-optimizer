@@ -94,7 +94,7 @@ class OptimizerChain
 
         $this->logger->info("Executing `{$command}`");
 
-        $process =  Process::fromShellCommandline($command);
+        $process = Process::fromShellCommandline($command);
 
         $process
             ->setTimeout($this->timeout)
