@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.1.4 - 2019-01-14
+
+- fix deprecation warning for passing strings to processes
+
 ## 1.1.3 - 2018-11-19
 
 - require the fileinfo extension
