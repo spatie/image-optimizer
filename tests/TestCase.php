@@ -12,7 +12,7 @@ class TestCase extends BaseTest
     /** @var \Monolog\Logger */
     public $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->emptyTempDirectory();
 
@@ -76,9 +76,9 @@ class TestCase extends BaseTest
         foreach ($optimizerClasses as $optimizerClass) {
             $searchString = "Using optimizer: `{$optimizerClass}`";
 
-            $this->assertContains($searchString, $logText, "Optimizer `{$optimizerClass}` was not used");
+            $this->assertStringContainsString($searchString, $logText, "Optimizer `{$optimizerClass}` was not used");
         }
 
-        $this->assertNotContains('error', $logText, "The log contained errors: `$logText`");
+        $this->assertStringNotContainsString('error', $logText, "The log contained errors: `$logText`");
     }
 }

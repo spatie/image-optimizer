@@ -14,7 +14,7 @@ class OptimizerChainFactoryTest extends TestCase
     /** @var \Spatie\ImageOptimizer\OptimizerChain */
     protected $optimizerChain;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -2,6 +2,11 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.1.5 - 2019-01-15
+
+- fix for svg's
+- make compatible with PHPUnit 8
+
 ## 1.1.4 - 2019-01-14
 
 - fix deprecation warning for passing strings to processes
