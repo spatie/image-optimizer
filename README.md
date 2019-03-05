@@ -41,6 +41,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
+- [Imagemin]()
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -50,6 +51,7 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
+npm install --global imagemin-cli
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
