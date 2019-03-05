@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer;
 
+use Spatie\ImageOptimizer\Optimizers\Imagemin;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -36,6 +37,8 @@ class OptimizerChainFactory
             ->addOptimizer(new Gifsicle([
                 '-b',
                 '-O3',
-            ]));
+            ]))
+            ->addOptimizer(new Imagemin());
+
     }
 }

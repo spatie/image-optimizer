@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
+use Spatie\ImageOptimizer\Optimizers\Imagemin;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -71,6 +72,18 @@ class OptimizerChainFactoryTest extends TestCase
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('animated.gif'));
 
         $this->assertOptimizersUsed(Gifsicle::class);
+    }
+
+    /** @test */
+    public function it_can_optimize_a_webp()
+    {
+        $tempFilePath = $this->getTempFilePath('image.webp');
+
+        $this->optimizerChain->optimize($tempFilePath);
+
+        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.webp'));
+
+        $this->assertOptimizersUsed(Imagemin::class);
     }
 
     /** @test */
