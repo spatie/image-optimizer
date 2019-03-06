@@ -41,7 +41,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
-- [Imagemin]()
+- [Imagemin](https://github.com/imagemin/imagemin)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -51,7 +51,8 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
-npm install --global imagemin-cli
+sudo npm install -g imagemin-cli
+sudo npm install -g imagemin-webp
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
@@ -62,6 +63,8 @@ brew install optipng
 brew install pngquant
 brew install svgo
 brew install gifsicle
+npm install -g imagemin-cli
+npm install -g imagemin-webp
 ```
 
 ## Which tools will do what?
@@ -91,6 +94,10 @@ Please be aware that SVGO can break your svg. You'll find more info on that in t
 
 GIFs will be optimized by [Gifsicle](http://www.lcdf.org/gifsicle/). These options will be used:
 - `-O3`: this sets the optimization level to Gifsicle's maximum, which produces the slowest but best results
+
+### WEBPs
+
+WEBPs will be optimized by [Imagemin](https://github.com/imagemin/imagemin). Default options will be used.
 
 ## Usage
 
@@ -278,6 +285,10 @@ Original: Illustrator | Web optimized SVG export<br>
 
 Optimized<br>
 20 KB (76%)
+
+### webp
+
+Original: 
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
