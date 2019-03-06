@@ -4,9 +4,9 @@ namespace Spatie\ImageOptimizer\Optimizers;
 
 use Spatie\ImageOptimizer\Image;
 
-class Imagemin extends BaseOptimizer
+class Cwebp extends BaseOptimizer
 {
-    public $binaryName = 'imagemin';
+    public $binaryName = 'cwebp';
 
     public function canHandle(Image $image): bool
     {
@@ -16,10 +16,8 @@ class Imagemin extends BaseOptimizer
     public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
-
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
-            .' --plugin=webp '
             .' '.escapeshellarg($this->imagePath)
-            .' --out-dir='.escapeshellarg($this->imagePath);
+            .' -o '.escapeshellarg($this->imagePath);
     }
 }

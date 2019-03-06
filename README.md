@@ -51,8 +51,7 @@ sudo apt-get install optipng
 sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
-sudo npm install -g imagemin-cli
-sudo npm install -g imagemin-webp
+sudo apt-get install webp
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
@@ -63,8 +62,7 @@ brew install optipng
 brew install pngquant
 brew install svgo
 brew install gifsicle
-npm install -g imagemin-cli
-npm install -g imagemin-webp
+brew install webp
 ```
 
 ## Which tools will do what?
@@ -97,7 +95,13 @@ GIFs will be optimized by [Gifsicle](http://www.lcdf.org/gifsicle/). These optio
 
 ### WEBPs
 
-WEBPs will be optimized by [Imagemin](https://github.com/imagemin/imagemin). Default options will be used.
+WEBPs will be optimized by [Cwebp](https://developers.google.com/speed/webp/docs/cwebp). These options will be used:
+- `-m 6` for the slowest compression method in order to get the best compression.
+- `-pass 10` for maximizing the amount of analysis pass.
+- `-mt` multithreading for some speed improvements.
+- `-q 90` Quality factor that brings the least noticeable changes.
+
+(Settings are original taken from [here](https://medium.com/@vinhlh/how-i-apply-webp-for-optimizing-images-9b11068db349))
 
 ## Usage
 
@@ -296,7 +300,7 @@ Original: WebPonize<br>
 ![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
 
 Optimized<br>
-205 KB (56%)
+248 KB (68%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
 
