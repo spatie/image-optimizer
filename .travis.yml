@@ -22,9 +22,8 @@ before_script:
   - sudo apt-get install gifsicle
   - sudo apt-get install optipng
   - sudo apt-get install libjpeg-progs
+  - sudo apt-get install cwebp
   - npm install -g svgo
-  - npm install -g imagemin-cli
-  - npm install -g imagemin-webp
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
