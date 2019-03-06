@@ -42,7 +42,7 @@ class OptimizerChainFactory
                 '-m 6',
                 ' -pass 10',
                 '-mt',
-                ' -q 90'
+                ' -q 90',
             ]));
     }
 }
