@@ -286,11 +286,22 @@ Original: Illustrator | Web optimized SVG export<br>
 Optimized<br>
 20 KB (76%)
 
+![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
+
 ### webp
 
-Original: 
+Original: cwebp<br>
+205 KB
 
-![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
+![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
+
+Optimized<br>
+190 KB (92%)
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
+
+credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
+
 
 ## Changelog
 
