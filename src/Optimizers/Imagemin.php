@@ -18,8 +18,8 @@ class Imagemin extends BaseOptimizer
         $optionString = implode(' ', $this->options);
 
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
-            . ' --plugin=webp '
-            . ' ' . escapeshellarg($this->imagePath)
-            . ' --out-dir=' . escapeshellarg($this->imagePath);
+            .' --plugin=webp '
+            .' ' . escapeshellarg($this->imagePath)
+            .' --out-dir=' . escapeshellarg($this->imagePath);
     }
 }
