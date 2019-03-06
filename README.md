@@ -295,7 +295,7 @@ Optimized<br>
 ### webp
 
 Original: WebPonize<br>
-365 KB
+528 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
 
