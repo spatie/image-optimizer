@@ -39,6 +39,5 @@ class OptimizerChainFactory
                 '-O3',
             ]))
             ->addOptimizer(new Imagemin());
-
     }
 }
