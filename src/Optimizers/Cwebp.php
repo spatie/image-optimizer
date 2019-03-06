@@ -16,6 +16,7 @@ class Cwebp extends BaseOptimizer
     public function getCommand(): string
     {
         $optionString = implode(' ', $this->options);
+
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
             .' '.escapeshellarg($this->imagePath)
             .' -o '.escapeshellarg($this->imagePath);
