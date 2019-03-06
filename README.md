@@ -300,7 +300,7 @@ Original: WebPonize<br>
 ![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
 
 Optimized<br>
-330 KB (90%)
+328 KB (89%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
 

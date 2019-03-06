@@ -40,9 +40,9 @@ class OptimizerChainFactory
             ]))
             ->addOptimizer(new Cwebp([
                 '-m 6',
-                ' -pass 10',
+                '-pass 10',
                 '-mt',
-                ' -q 90',
+                '-q 80',
             ]));
     }
 }
