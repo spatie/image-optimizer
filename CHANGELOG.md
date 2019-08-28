@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.2.0 - 2019-08-28
+
+- add support for webp
+
 ## 1.1.6 - 2019-08-26
 
 - do not export docs directory
