@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.1.6 - 2019-08-26
+
+- do not export docs directory
+
 ## 1.1.5 - 2019-01-15
 
 - fix for svg's
