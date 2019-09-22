@@ -41,7 +41,7 @@ The package will use these optimizers if they are present on your system:
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
-- [Imagemin](https://github.com/imagemin/imagemin)
+- [cwebp](https://developers.google.com/speed/webp/docs/precompiled)
 
 Here's how to install all the optimizers on Ubuntu:
 
