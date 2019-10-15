@@ -91,16 +91,30 @@ class OptimizerChain
         $optimizer->setImagePath($image->path());
 
         $command = $optimizer->getCommand();
-
+   
         $this->logger->info("Executing `{$command}`");
 
-        $process = new Process($command);
-
+        if ($this->is_cli()) {
+            $process = new Process($command);
+            } else {
+            $process = Process::fromShellCommandline($command);
+        }
+        
         $process
             ->setTimeout($this->timeout)
             ->run();
 
         $this->logResult($process);
+    }
+     
+    /*
+     * Confirms cli execution environment with no server, cron, or cgi context
+     */
+    protected function isCli() {
+
+        return (! isset($_SERVER['SERVER_SOFTWARE']) && 
+        (php_sapi_name() == 'cli' || (is_numeric($_SERVER['argc']) && 
+        $_SERVER['argc'] > 0)));
     }
 
     protected function logResult(Process $process)
