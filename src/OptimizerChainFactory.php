@@ -22,6 +22,7 @@ class OptimizerChainFactory
 
             ->addOptimizer(new Pngquant([
                 '--force',
+                '--quality=65-80',
             ]))
 
             ->addOptimizer(new Optipng([
