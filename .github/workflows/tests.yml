@@ -21,9 +21,7 @@ jobs:
 
             -   name: Install optimizers
                 run: |
-                    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-                    sudo apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod
-                    sudo apt-get update
+                    sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
                     sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
                     sudo npm install -g svgo
 
