@@ -21,14 +21,14 @@ jobs:
 
             -   name: Install optimizers
                 run: |
-                    add-apt-repository -y ppa:danmbox/ppa
-                    apt-get install jpegoptim
-                    apt-get install pngquant
-                    apt-get install gifsicle
-                    apt-get install optipng
-                    apt-get install libjpeg-progs
-                    apt-get install webp
-                    npm install -g svgo
+                    sudo add-apt-repository -y ppa:danmbox/ppa
+                    sudo apt-get install jpegoptim
+                    sudo apt-get install pngquant
+                    sudo apt-get install gifsicle
+                    sudo apt-get install optipng
+                    sudo apt-get install libjpeg-progs
+                    sudo apt-get install webp
+                    sudo npm install -g svgo
 
             -   name: Cache dependencies
                 uses: actions/cache@v1
