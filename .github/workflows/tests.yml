@@ -21,13 +21,7 @@ jobs:
 
             -   name: Install optimizers
                 run: |
-                    sudo add-apt-repository -y ppa:danmbox/ppa
-                    sudo apt-get install jpegoptim
-                    sudo apt-get install pngquant
-                    sudo apt-get install gifsicle
-                    sudo apt-get install optipng
-                    sudo apt-get install libjpeg-progs
-                    sudo apt-get install webp
+                    sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
                     sudo npm install -g svgo
 
             -   name: Cache dependencies
