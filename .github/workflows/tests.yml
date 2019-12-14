@@ -21,6 +21,7 @@ jobs:
 
             -   name: Install optimizers
                 run: |
+                    sudo add-apt-repository -y ppa:danmbox/ppa
                     sudo apt-get update
                     sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
                     sudo npm install -g svgo
