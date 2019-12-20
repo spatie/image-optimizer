@@ -21,8 +21,6 @@ jobs:
 
             -   name: Install optimizers
                 run: |
-                    sudo apt-add-repository -r ppa:danmbox/ppa
-                    sudo apt update -q
                     sudo add-apt-repository -y ppa:danmbox/ppa
                     sudo apt-get update
                     sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
