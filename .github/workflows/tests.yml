@@ -1,0 +1,49 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+    test:
+
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [7.2, 7.3, 7.4]
+                dependency-version: [prefer-lowest, prefer-stable]
+
+
+        name: PHP ${{ matrix.php }} -  ${{ matrix.dependency-version }}
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v1
+
+            -   name: Install optimizers
+                run: |
+                    sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
+                    sudo apt-add-repository -r ppa:danmbox/ppa
+                    sudo apt update -q
+                    sudo add-apt-repository -y ppa:danmbox/ppa
+                    sudo apt-get update
+                    sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
+                    sudo npm install -g svgo
+
+            -   name: Cache dependencies
+                uses: actions/cache@v1
+                with:
+                    path: ~/.composer/cache/files
+                    key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+            -   name: Install dependencies
+                run: |
+                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+            -   name: Setup PHP
+                uses: nanasess/setup-php@master
+                with:
+                    php-version: ${{ matrix.php }}
+
+            -   name: Execute tests
+                run: vendor/bin/phpunit
+
