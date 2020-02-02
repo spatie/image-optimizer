@@ -13,16 +13,16 @@ class OptimizerChainFactory
 {
     public static function create(array $config = []): OptimizerChain
     {
-        $jpegQulity = '--max=85';
+        $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
         if (isset($config['quality'])) {
-            $jpegQulity = '--max='.$config['quality'];
+            $jpegQuality = '--max='.$config['quality'];
             $pngQuality = '--quality='.$config['quality'];
         }
 
         return (new OptimizerChain())
             ->addOptimizer(new Jpegoptim([
-                $jpegQulity,
+                $jpegQuality,
                 '--strip-all',
                 '--all-progressive',
             ]))
