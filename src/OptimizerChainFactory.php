@@ -16,8 +16,8 @@ class OptimizerChainFactory
         $jpegQulity = '--max=85';
         $pngQuality = '--quality=85';
         if (isset($config['quality'])) {
-            $jpegQulity = '--max=' . $config['quality'];
-            $pngQuality = '--quality=' . $config['quality'];
+            $jpegQulity = '--max='.$config['quality'];
+            $pngQuality = '--quality='.$config['quality'];
         }
 
         return (new OptimizerChain())
