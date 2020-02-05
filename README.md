@@ -64,6 +64,16 @@ brew install svgo
 brew install gifsicle
 brew install webp
 ```
+And here's how to install the binaries on Fedora/RHEL/CentOS:
+
+```bash
+sudo dnf install epel-release
+sudo dnf install jpegoptim
+sudo dnf install pngquant
+sudo npm install -g svgo
+sudo dnf install gifsicle
+sudo dnf install libwebp-tools
+```
 
 ## Which tools will do what?
 
