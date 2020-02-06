@@ -69,6 +69,7 @@ And here's how to install the binaries on Fedora/RHEL/CentOS:
 ```bash
 sudo dnf install epel-release
 sudo dnf install jpegoptim
+sudo dnf install optipng
 sudo dnf install pngquant
 sudo npm install -g svgo
 sudo dnf install gifsicle
