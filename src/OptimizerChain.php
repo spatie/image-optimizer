@@ -3,12 +3,15 @@
 namespace Spatie\ImageOptimizer;
 
 use Psr\Log\LoggerInterface;
+use Spatie\ImageOptimizer\Exceptions\OptimizerNotInstalledException;
 use Symfony\Component\Process\Process;
 
 class OptimizerChain
 {
     /* @var \Spatie\ImageOptimizer\Optimizer[] */
     protected $optimizers = [];
+
+    protected $optimized = [];
 
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
@@ -76,6 +79,8 @@ class OptimizerChain
         foreach ($this->optimizers as $optimizer) {
             $this->applyOptimizer($optimizer, $image);
         }
+
+        return $this->optimized;
     }
 
     protected function applyOptimizer(Optimizer $optimizer, Image $image)
@@ -100,17 +105,35 @@ class OptimizerChain
             ->setTimeout($this->timeout)
             ->run();
 
-        $this->logResult($process);
+        $this->logResult($process, $optimizer);
     }
 
-    protected function logResult(Process $process)
+    protected function logResult(Process $process, Optimizer $optimizer)
     {
         if (! $process->isSuccessful()) {
+            $optimized = false;
+
             $this->logger->error("Process errored with `{$process->getErrorOutput()}`");
 
-            return;
+            if (strpos($process->getErrorOutput(), $optimizer->binaryName() . ': ' . strtolower(Process::$exitCodes[127])) !== false)
+            {
+                throw new OptimizerNotInstalledException("Optimized not installed!");
+
+                return;
+            }
+        }else{
+            $optimized = true;
+
+            $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
         }
 
-        $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
+        $this->setOptimizerStatus($optimizer, $optimized);
+
+        return;
+    }
+
+    private function setOptimizerStatus(Optimizer $optimizer, $status)
+    {
+        $this->optimized[$optimizer->binaryName()] = $status;
     }
 }
