@@ -81,4 +81,15 @@ class TestCase extends BaseTest
 
         $this->assertStringNotContainsString('error', $logText, "The log contained errors: `$logText`");
     }
+
+    public function assertOptimized($optimizerClasses, $result)
+    {
+        if (! is_array($optimizerClasses)) {
+            $optimizerClasses = [$optimizerClasses];
+        }
+
+        foreach ($optimizerClasses as $optimizerClass) {
+            $this->assertTrue($result[(new $optimizerClass)->binaryName]);
+        }
+    }
 }
