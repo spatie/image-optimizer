@@ -11,6 +11,7 @@ class OptimizerChain
     /* @var \Spatie\ImageOptimizer\Optimizer[] */
     protected $optimizers = [];
 
+    /* @var \Spatie\ImageOptimizer\Optimizer[] */
     protected $optimized = [];
 
     /** @var \Psr\Log\LoggerInterface */
@@ -115,21 +116,18 @@ class OptimizerChain
 
             $this->logger->error("Process errored with `{$process->getErrorOutput()}`");
 
-            if (strpos($process->getErrorOutput(), $optimizer->binaryName() . ': ' . strtolower(Process::$exitCodes[127])) !== false)
-            {
-                throw new OptimizerNotInstalledException("Optimized not installed!");
+            if (strpos($process->getErrorOutput(), $optimizer->binaryName().': '.strtolower(Process::$exitCodes[127])) !== false) {
+                throw new OptimizerNotInstalledException('Optimized not installed!');
 
                 return;
             }
-        }else{
+        } else {
             $optimized = true;
 
             $this->logger->info("Process successfully ended with output `{$process->getOutput()}`");
         }
 
         $this->setOptimizerStatus($optimizer, $optimized);
-
-        return;
     }
 
     private function setOptimizerStatus(Optimizer $optimizer, $status)

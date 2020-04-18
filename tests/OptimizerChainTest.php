@@ -5,9 +5,9 @@ namespace Spatie\ImageOptimizer\Test;
 use Spatie\ImageOptimizer\Exceptions\OptimizerNotInstalledException;
 use Spatie\ImageOptimizer\OptimizerChain;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\OptimizerNotInstalled;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
-use Spatie\ImageOptimizer\Optimizers\OptimizerNotInstalled;
 
 class OptimizerChainTest extends TestCase
 {
@@ -43,7 +43,6 @@ class OptimizerChainTest extends TestCase
         $this->optimizerChain
             ->addOptimizer(new OptimizerNotInstalled())
             ->optimize($testImage);
-
     }
 
     /** @test */
