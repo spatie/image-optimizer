@@ -26,64 +26,84 @@ class OptimizerChainFactoryTest extends TestCase
     /** @test */
     public function it_can_optimize_a_jpg()
     {
+        $optimizer = Jpegoptim::class;
+
         $tempFilePath = $this->getTempFilePath('image.jpg');
 
-        $this->optimizerChain->optimize($tempFilePath);
+        $result = $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.jpg'));
 
-        $this->assertOptimizersUsed(Jpegoptim::class);
+        $this->assertOptimizersUsed($optimizer);
+
+        $this->assertTrue($result[(new $optimizer)->binaryName]);
     }
 
     /** @test */
     public function it_can_optimize_a_png()
     {
+        $optimizer = [
+            Optipng::class,
+            Pngquant::class,
+        ];
+
         $tempFilePath = $this->getTempFilePath('logo.png');
 
-        $this->optimizerChain->optimize($tempFilePath);
+        $result = $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('logo.png'));
 
-        $this->assertOptimizersUsed([
-            Optipng::class,
-            Pngquant::class,
-        ]);
+        $this->assertOptimizersUsed($optimizer);
+
+        $this->assertOptimized($optimizer, $result);
     }
 
     /** @test */
     public function it_can_optimize_an_svg()
     {
+        $optimizer = Svgo::class;
+
         $tempFilePath = $this->getTempFilePath('graph.svg');
 
-        $this->optimizerChain->optimize($tempFilePath);
+        $result = $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertOptimizersUsed(Svgo::class);
+        $this->assertOptimizersUsed($optimizer);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('graph.svg'));
+
+        $this->assertOptimized($optimizer, $result);
     }
 
     /** @test */
     public function it_can_optimize_a_gif()
     {
+        $optimizer = Gifsicle::class;
+
         $tempFilePath = $this->getTempFilePath('animated.gif');
 
-        $this->optimizerChain->optimize($tempFilePath);
+        $result = $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('animated.gif'));
 
-        $this->assertOptimizersUsed(Gifsicle::class);
+        $this->assertOptimizersUsed($optimizer);
+
+        $this->assertOptimized($optimizer, $result);
     }
 
     /** @test */
     public function it_can_optimize_a_webp()
     {
+        $optimizer = Cwebp::class;
+
         $tempFilePath = $this->getTempFilePath('image.webp');
 
-        $this->optimizerChain->optimize($tempFilePath);
+        $result = $this->optimizerChain->optimize($tempFilePath);
 
         $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.webp'));
 
         $this->assertOptimizersUsed(Cwebp::class);
+
+        $this->assertOptimized($optimizer, $result);
     }
 
     /** @test */
