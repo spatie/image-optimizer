@@ -2,10 +2,12 @@
 
 namespace Spatie\ImageOptimizer\Test;
 
+use Spatie\ImageOptimizer\Exceptions\OptimizerNotInstalledException;
 use Spatie\ImageOptimizer\OptimizerChain;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\OptimizerNotInstalled;
 
 class OptimizerChainTest extends TestCase
 {
@@ -29,6 +31,19 @@ class OptimizerChainTest extends TestCase
             ->optimize($testImage);
 
         $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('image.jpg'));
+    }
+
+    /** @test */
+    public function it_will_throw_an_exception_when_optimize_not_installed()
+    {
+        $this->expectException(OptimizerNotInstalledException::class);
+
+        $testImage = $this->getTempFilePath('image.jpg');
+
+        $this->optimizerChain
+            ->addOptimizer(new OptimizerNotInstalled())
+            ->optimize($testImage);
+
     }
 
     /** @test */
