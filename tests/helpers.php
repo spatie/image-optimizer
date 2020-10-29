@@ -15,6 +15,6 @@ if (! function_exists('dd')) {
             VarDumper::dump($argument);
         }
 
-        die(1);
+        exit(1);
     }
 }
