@@ -58,7 +58,8 @@ class TestCase extends BaseTest
 
         $modifiedFileSize = filesize($modifiedFilePath);
 
-        $this->assertTrue($modifiedFileSize < $originalFileSize,
+        $this->assertTrue(
+            $modifiedFileSize < $originalFileSize,
             "File {$modifiedFilePath} as size {$modifiedFileSize} which is not less than {$originalFileSize}. Log: {$this->log->getAllLinesAsString()}"
         );
 
