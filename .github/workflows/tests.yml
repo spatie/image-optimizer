@@ -4,42 +4,41 @@ on: [push, pull_request]
 
 jobs:
     test:
-
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: true
             matrix:
-                php: [7.2, 7.3, 7.4]
+                os: [ubuntu-latest]
+                php: [8.0, 7.4, 7.3, 7.2]
                 dependency-version: [prefer-lowest, prefer-stable]
 
-
-        name: PHP ${{ matrix.php }} -  ${{ matrix.dependency-version }}
+        name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
             -   name: Install optimizers
                 run: |
-                    sudo add-apt-repository -y ppa:danmbox/ppa
-                    sudo apt-get update
-                    sudo apt-get install jpegoptim, pngquant, gifsicle, optipng, libjpeg-progs, webp
+                    sudo apt-get update -y
+                    sudo apt-get install -y jpegoptim pngquant gifsicle optipng libjpeg-progs webp
                     sudo npm install -g svgo
 
-            -   name: Cache dependencies
-                uses: actions/cache@v1
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
                 with:
-                    path: ~/.composer/cache/files
-                    key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+                    php-version: ${{ matrix.php }}
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
+                    coverage: none
+
+            -   name: Setup Problem Matches
+                run: |
+                    echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+                    echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             -   name: Install dependencies
                 run: |
-                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
-
-            -   name: Setup PHP
-                uses: nanasess/setup-php@master
-                with:
-                    php-version: ${{ matrix.php }}
+                    composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
             -   name: Execute tests
                 run: vendor/bin/phpunit
