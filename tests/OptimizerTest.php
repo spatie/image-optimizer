@@ -28,6 +28,12 @@ class OptimizerTest extends TestCase
             ->setBinaryPath('testPath/');
 
         $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+
+        $optimizer = (new Jpegoptim())
+            ->setImagePath('my-image.jpg')
+            ->setBinaryPath('');
+
+        $this->assertEquals("\"jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
     }
 
     /** @test */
