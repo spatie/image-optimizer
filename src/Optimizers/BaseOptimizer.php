@@ -24,7 +24,7 @@ abstract class BaseOptimizer implements Optimizer
 
     public function setBinaryPath(string $binaryPath)
     {
-        if (substr($binaryPath, -1) !== DIRECTORY_SEPARATOR) {
+        if (strlen($binaryPath) > 0 && substr($binaryPath, -1) !== DIRECTORY_SEPARATOR) {
             $binaryPath = $binaryPath.DIRECTORY_SEPARATOR;
         }
 
