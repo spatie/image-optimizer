@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.3.1 - 2020-10-20
+
+- fix empty string setBinaryPath() (#129)
+
 ## 1.3.0 - 2020-10-10
 
 - add support for php 8.0
