@@ -12,4 +12,13 @@ class Gifsicle extends BaseOptimizer
     {
         return $image->mime() === 'image/gif';
     }
+
+    public function getCommand(): string
+    {
+        $optionString = implode(' ', $this->options);
+
+        return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
+            .' -i '.escapeshellarg($this->imagePath)
+            .' -o '.escapeshellarg($this->imagePath);
+    }
 }
