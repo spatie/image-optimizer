@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.3.2 - 2020-11-28
+
+- improve gifsicle (#131)
+
 ## 1.3.1 - 2020-10-20
 
 - fix empty string setBinaryPath() (#129)
