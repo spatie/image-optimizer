@@ -18,9 +18,9 @@ class OptimizerChainFactory
         $pngQuality = '--quality=85';
         $mozjpegQuality = '-quality 85';
         if (isset($config['quality'])) {
-            $jpegQuality = '--max=' . $config['quality'];
-            $pngQuality = '--quality=' . $config['quality'];
-            $mozjpegQuality = '-quality ' . $config['quality'];
+            $jpegQuality = '--max='.$config['quality'];
+            $pngQuality = '--quality='.$config['quality'];
+            $mozjpegQuality = '-quality '.$config['quality'];
         }
 
         return (new OptimizerChain())
