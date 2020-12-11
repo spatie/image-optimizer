@@ -16,11 +16,11 @@ class OptimizerChainFactory
     {
         $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
-        $MozjpegQuality = '-quality 85';
+        $mozjpegQuality = '-quality 85';
         if (isset($config['quality'])) {
             $jpegQuality = '--max=' . $config['quality'];
             $pngQuality = '--quality=' . $config['quality'];
-            $MozjpegQuality = '-quality ' . $config['quality'];
+            $mozjpegQuality = '-quality ' . $config['quality'];
         }
 
         return (new OptimizerChain())
@@ -31,7 +31,7 @@ class OptimizerChainFactory
             ]))
 
             ->addOptimizer(new Mozjpeg([
-                $jpegQuality
+                $mozjpegQuality,
             ]))
 
             ->addOptimizer(new Pngquant([
