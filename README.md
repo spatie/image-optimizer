@@ -99,8 +99,6 @@ PNGs will be made smaller by running them through two tools. The first one is [P
 - `-i0`: this will result in a non-interlaced, progressive scanned image
 - `-o2`: this set the optimization level to two (multiple IDAT compression trials)
 
-This package only supports Pngquant 2.5 and lower.
-
 ### SVGs
 
 SVGs will be minified by [SVGO](https://github.com/svg/svgo). SVGO's default configuration will be used, with the omission of the `cleanupIDs` plugin because that one is known to cause troubles when displaying multiple optimized SVGs on one page.
