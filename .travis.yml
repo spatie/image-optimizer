@@ -24,6 +24,7 @@ before_script:
   - sudo apt-get install libjpeg-progs
   - sudo apt-get install webp
   - npm install -g svgo
+  - npm install svgo
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
