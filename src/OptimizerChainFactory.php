@@ -40,7 +40,7 @@ class OptimizerChainFactory
             ]))
 
             ->addOptimizer(new Svgo([
-                '--config=svgo.config.js',
+                '--disable={cleanupIDs,removeViewBox}',
             ]))
 
             ->addOptimizer(new Gifsicle([
