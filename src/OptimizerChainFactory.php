@@ -19,7 +19,7 @@ class OptimizerChainFactory
         if (isset($config['quality'])) {
             $jpegQuality = '--max='.$config['quality'];
             $pngQuality = '--quality='.$config['quality'];
-            $gifCompression = '--lossy'.(100 - $config['quality']);
+            $gifCompression = '--lossy='.(100 - $config['quality']);
         }
 
         return (new OptimizerChain())
