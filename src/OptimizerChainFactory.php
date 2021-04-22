@@ -15,9 +15,11 @@ class OptimizerChainFactory
     {
         $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
+        $gifCompression = '--lossy=15';
         if (isset($config['quality'])) {
             $jpegQuality = '--max='.$config['quality'];
             $pngQuality = '--quality='.$config['quality'];
+            $gifCompression = '--lossy'.(100 - $config['quality']);
         }
 
         return (new OptimizerChain())
@@ -46,6 +48,7 @@ class OptimizerChainFactory
             ]))
 
             ->addOptimizer(new Gifsicle([
+                $gifCompression,
                 '-b',
                 '-O3',
                 '--no-app-extensions',
