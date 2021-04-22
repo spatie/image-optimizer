@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.4.0 - 2021-04-22
+
+- use `--skip-if-larger` pngquant option by default (#140)
+
 ## 1.3.2 - 2020-11-28
 
 - improve gifsicle (#131)
