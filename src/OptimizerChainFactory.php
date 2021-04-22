@@ -31,12 +31,14 @@ class OptimizerChainFactory
                 $pngQuality,
                 '--force',
                 '--skip-if-larger',
+                '--strip',
             ]))
 
             ->addOptimizer(new Optipng([
                 '-i0',
                 '-o2',
                 '-quiet',
+                '-strip all',
             ]))
 
             ->addOptimizer(new Svgo([
@@ -46,6 +48,7 @@ class OptimizerChainFactory
             ->addOptimizer(new Gifsicle([
                 '-b',
                 '-O3',
+                '--no-app-extensions',
             ]))
             ->addOptimizer(new Cwebp([
                 '-m 6',
