@@ -45,7 +45,7 @@ The package will use these optimizers if they are present on your system:
 - [JpegOptim](http://freecode.com/projects/jpegoptim)
 - [Optipng](http://optipng.sourceforge.net/)
 - [Pngquant 2](https://pngquant.org/)
-- [SVGO](https://github.com/svg/svgo)
+- [SVGO 1](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
 - [cwebp](https://developers.google.com/speed/webp/docs/precompiled)
 
@@ -55,7 +55,7 @@ Here's how to install all the optimizers on Ubuntu:
 sudo apt-get install jpegoptim
 sudo apt-get install optipng
 sudo apt-get install pngquant
-sudo npm install -g svgo
+sudo npm install -g svgo@1.3.2
 sudo apt-get install gifsicle
 sudo apt-get install webp
 ```
@@ -66,7 +66,7 @@ And here's how to install the binaries on MacOS (using [Homebrew](https://brew.s
 brew install jpegoptim
 brew install optipng
 brew install pngquant
-brew install svgo
+brew install svgo@1.3.2
 brew install gifsicle
 brew install webp
 ```
@@ -77,7 +77,7 @@ sudo dnf install epel-release
 sudo dnf install jpegoptim
 sudo dnf install optipng
 sudo dnf install pngquant
-sudo npm install -g svgo
+sudo npm install -g svgo@1.3.2
 sudo dnf install gifsicle
 sudo dnf install libwebp-tools
 ```
@@ -101,9 +101,11 @@ PNGs will be made smaller by running them through two tools. The first one is [P
 
 ### SVGs
 
-SVGs will be minified by [SVGO](https://github.com/svg/svgo). SVGO's default configuration will be used, with the omission of the `cleanupIDs` plugin because that one is known to cause troubles when displaying multiple optimized SVGs on one page.
+SVGs will be minified by [SVGO 1](https://github.com/svg/svgo). SVGO's default configuration will be used, with the omission of the `cleanupIDs` plugin because that one is known to cause troubles when displaying multiple optimized SVGs on one page.
 
 Please be aware that SVGO can break your svg. You'll find more info on that in this [excellent blogpost](https://www.sarasoueidan.com/blog/svgo-tools/) by [Sara Soueidan](https://twitter.com/SaraSoueidan).
+
+For now, the default configuration used for SVGO is only compatible with SVGO 1.x. To use options compatible with SVGO 2.x, you need to [create your own optimization chain](#creating-your-own-optimization-chains).
 
 ### GIFs
 

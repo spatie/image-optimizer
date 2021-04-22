@@ -23,7 +23,7 @@ before_script:
   - sudo apt-get install optipng
   - sudo apt-get install libjpeg-progs
   - sudo apt-get install webp
-  - npm install -g svgo
+  - npm install -g svgo@1.3.2
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
