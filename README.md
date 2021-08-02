@@ -66,7 +66,7 @@ And here's how to install the binaries on MacOS (using [Homebrew](https://brew.s
 brew install jpegoptim
 brew install optipng
 brew install pngquant
-brew install svgo@1.3.2
+npm install -g svgo@1.3.2
 brew install gifsicle
 brew install webp
 ```
