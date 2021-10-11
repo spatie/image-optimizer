@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.2|^8.0",
         "ext-fileinfo": "*",
-        "psr/log": "^1.0",
+        "psr/log": "^1.0 | ^2.0 | ^3.0",
         "symfony/process": "^4.2|^5.0"
     },
     "require-dev": {
