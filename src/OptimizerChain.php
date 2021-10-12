@@ -100,12 +100,18 @@ class OptimizerChain
             ->setTimeout($this->timeout)
             ->run();
 
-        $this->logResult($process);
+        $this->logResult($process, $optimizer->binaryName());
     }
 
-    protected function logResult(Process $process)
+    protected function logResult(Process $process, string $binaryName)
     {
         if (! $process->isSuccessful()) {
+            $exitCode = $process->getExitCode();
+            if (!isset(Process::$exitCodes[$exitCode])) {
+                $this->logger->error("Process errored with unknown code, `{$exitCode}` (from {$binaryName})");
+
+                return;
+            }
             $this->logger->error("Process errored with `{$process->getErrorOutput()}`");
 
             return;
