@@ -14,10 +14,11 @@ class OptimizerChainFactory
     public static function create(array $config = []): OptimizerChain
     {
         $jpegQuality = '--max=85';
-        $pngQuality = '--quality=85';
+        $pngQuality = '--quality 65-85';
         if (isset($config['quality'])) {
             $jpegQuality = '--max='.$config['quality'];
-            $pngQuality = '--quality='.$config['quality'];
+            $quality = (int) $config['quality'];
+            $pngQuality = '--quality '.($quality - 20).'-'.$config['quality'];
         }
 
         return (new OptimizerChain())
