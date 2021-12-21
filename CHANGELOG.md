@@ -2,6 +2,14 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.6.2 - 2021-12-21
+
+## What's Changed
+
+- add support for Symfony 6 by @Nielsvanpach in https://github.com/spatie/image-optimizer/pull/155
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.6.1...1.6.2
+
 ## 1.6.1 - 2021-11-17
 
 ## What's Changed
