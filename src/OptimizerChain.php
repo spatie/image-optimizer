@@ -16,9 +16,10 @@ class OptimizerChain
     /** @var int */
     protected $timeout = 60;
 
-    public function __construct()
+    public function __construct($timeout = 60)
     {
         $this->useLogger(new DummyLogger());
+        $this->timeout = $timeout;
     }
 
     public function getOptimizers(): array

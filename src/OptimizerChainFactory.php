@@ -11,7 +11,7 @@ use Spatie\ImageOptimizer\Optimizers\Svgo;
 
 class OptimizerChainFactory
 {
-    public static function create(array $config = []): OptimizerChain
+    public static function create(array $config = [], $timeout = 60): OptimizerChain
     {
         $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
@@ -20,7 +20,7 @@ class OptimizerChainFactory
             $pngQuality = '--quality='.$config['quality'];
         }
 
-        return (new OptimizerChain())
+        return (new OptimizerChain($timeout))
             ->addOptimizer(new Jpegoptim([
                 $jpegQuality,
                 '--strip-all',
