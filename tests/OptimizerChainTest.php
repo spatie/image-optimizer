@@ -1,73 +1,65 @@
 <?php
 
-namespace Spatie\ImageOptimizer\Test;
-
 use Spatie\ImageOptimizer\OptimizerChain;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
-class OptimizerChainTest extends TestCase
-{
-    /** @var \Spatie\ImageOptimizer\OptimizerChain; */
-    protected $optimizerChain;
+beforeEach(function () {
+    $this->optimizerChain = new OptimizerChain();
+});
 
-    public function setUp(): void
-    {
-        parent::setUp();
+it('will not throw an exception when not using a logger', function () {
+    $testImage = getTempFilePath('image.jpg');
 
-        $this->optimizerChain = new OptimizerChain();
-    }
+    $this
+        ->optimizerChain
+        ->addOptimizer(new Jpegoptim())
+        ->optimize($testImage);
 
-    /** @test */
-    public function it_will_not_throw_an_exception_when_not_using_a_logger()
-    {
-        $testImage = $this->getTempFilePath('image.jpg');
+    $this->assertDecreasedFileSize($testImage, getTestFilePath('image.jpg'));
+});
 
-        $this->optimizerChain
-            ->addOptimizer(new Jpegoptim())
-            ->optimize($testImage);
+it('can set the timeout when doing optimization', function () {
+    $testImage = getTempFilePath('image.jpg');
 
-        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('image.jpg'));
-    }
+    $this
+        ->optimizerChain
+        ->setTimeout(1)
+        ->addOptimizer(new Jpegoptim())
+        ->optimize($testImage);
 
-    /** @test */
-    public function it_can_set_the_timeout_when_doing_optimization()
-    {
-        $testImage = $this->getTempFilePath('image.jpg');
+    $this->assertDecreasedFileSize($testImage, getTestFilePath('image.jpg'));
+});
 
-        $this->optimizerChain
-            ->setTimeout(1)
-            ->addOptimizer(new Jpegoptim())
-            ->optimize($testImage);
+it('can get all optimizers', function () {
+    expect($this->optimizerChain->getOptimizers())
+        ->toBe([]);
 
-        $this->assertDecreasedFileSize($testImage, $this->getTestFilePath('image.jpg'));
-    }
+    $this->optimizerChain->addOptimizer(new Jpegoptim());
 
-    /** @test */
-    public function it_can_get_all_optimizers()
-    {
-        $this->assertEquals([], $this->optimizerChain->getOptimizers());
 
-        $this->optimizerChain->addOptimizer(new Jpegoptim());
+    expect($this->optimizerChain->getOptimizers()[0])
+        ->toBeInstanceOf(Jpegoptim::class);
+});
 
-        $this->assertInstanceOf(Jpegoptim::class, $this->optimizerChain->getOptimizers()[0]);
-    }
+it('can replace all optimizers with other ones', function () {
+    expect($this->optimizerChain->getOptimizers())
+        ->toBe([]);
 
-    /** @test */
-    public function it_can_replace_all_optimizers_with_other_ones()
-    {
-        $this->assertEquals([], $this->optimizerChain->getOptimizers());
+    $this->optimizerChain->addOptimizer(new Jpegoptim());
 
-        $this->optimizerChain->addOptimizer(new Jpegoptim());
+    $this->optimizerChain->setOptimizers([
+        new Optipng(),
+        new Pngquant(),
+    ]);
 
-        $this->optimizerChain->setOptimizers([
-            new Optipng(),
-            new Pngquant(),
-        ]);
+    $optimizers = $this->optimizerChain->getOptimizers();
 
-        $this->assertCount(2, $this->optimizerChain->getOptimizers());
-        $this->assertInstanceOf(Optipng::class, $this->optimizerChain->getOptimizers()[0]);
-        $this->assertInstanceOf(Pngquant::class, $this->optimizerChain->getOptimizers()[1]);
-    }
-}
+    expect($optimizers)
+        ->toHaveCount(2)
+        ->sequence(
+            fn ($optimizer) => $optimizer->toBeInstanceOf(Optipng::class),
+            fn ($optimizer) => $optimizer->toBeInstanceOf(Pngquant::class)
+        );
+});

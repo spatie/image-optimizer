@@ -8,47 +8,47 @@ class ArrayLogger implements LoggerInterface
 {
     protected $logLines = [];
 
-    public function emergency($message, array $context = []): void
+    public function emergency(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "emergency: {$message}";
     }
 
-    public function alert($message, array $context = []): void
+    public function alert(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "alert: {$message}";
     }
 
-    public function critical($message, array $context = []): void
+    public function critical(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "critical: {$message}";
     }
 
-    public function error($message, array $context = []): void
+    public function error(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "error: {$message}";
     }
 
-    public function warning($message, array $context = []): void
+    public function warning(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "warning: {$message}";
     }
 
-    public function notice($message, array $context = []): void
+    public function notice(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "notice: {$message}";
     }
 
-    public function info($message, array $context = []): void
+    public function info(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "info: {$message}";
     }
 
-    public function debug($message, array $context = []): void
+    public function debug(string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "debug: {$message}";
     }
 
-    public function log($level, $message, array $context = []): void
+    public function log($level, string|\Stringable $message, array $context = []): void
     {
         $this->logLines[] = "log: {$message}";
     }
