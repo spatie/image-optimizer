@@ -11,7 +11,7 @@ class OptimizerTest extends TestCase
     {
         $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
 
-        $this->assertEquals("\"jpegoptim\" option1 option2 'my-image.jpg'", $optimizer->getCommand());
+        $this->assertEquals('"jpegoptim" option1 option2 "my-image.jpg"', $optimizer->getCommand());
     }
 
     /** @test */
@@ -21,13 +21,13 @@ class OptimizerTest extends TestCase
             ->setImagePath('my-image.jpg')
             ->setBinaryPath('testPath');
 
-        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+        $this->assertEquals('"testPath/jpegoptim"  "my-image.jpg"', $optimizer->getCommand());
 
         $optimizer = (new Jpegoptim())
             ->setImagePath('my-image.jpg')
             ->setBinaryPath('testPath/');
 
-        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+        $this->assertEquals('"testPath/jpegoptim"  "my-image.jpg"', $optimizer->getCommand());
 
         $optimizer = (new Jpegoptim())
             ->setImagePath('my-image.jpg')
@@ -43,7 +43,7 @@ class OptimizerTest extends TestCase
 
         $optimizer->setOptions(['option3', 'option4']);
 
-        $this->assertEquals("\"jpegoptim\" option3 option4 'my-image.jpg'", $optimizer->getCommand());
+        $this->assertEquals('"jpegoptim" option3 option4 "my-image.jpg"', $optimizer->getCommand());
     }
 
     /** @test */

@@ -104,7 +104,7 @@ class OptimizerChainFactoryTest extends TestCase
     public function it_can_output_to_a_specified_path()
     {
         $tempFilePath = $this->getTempFilePath('logo.png');
-        $outputFilePath = __DIR__.'/temp/output.png';
+        $outputFilePath = __DIR__ . '/temp/output.png';
 
         $this->optimizerChain->optimize($tempFilePath, $outputFilePath);
 
