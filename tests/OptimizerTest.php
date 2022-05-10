@@ -11,7 +11,7 @@ it('can accept options via the constructor', function () {
         ->toBe('"jpegoptim" option1 option2 "my-image.jpg"');
 });
 
-it('a binary path can be set', function () {
+it('can set a binary path', function () {
     $optimizer = (new Jpegoptim())
         ->setImagePath('my-image.jpg')
         ->setBinaryPath('testPath');
