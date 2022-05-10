@@ -2,8 +2,9 @@
 
 use Spatie\ImageOptimizer\Image;
 
-it('will throw an exception when given a non existing file', fn () => new Image('non existing file'))
-    ->throws(InvalidArgumentException::class);
+it('will throw an exception when given a non existing file', function () {
+    new Image('non existing file');
+})->throws(InvalidArgumentException::class);
 
 it('can get type mime type', function () {
     $image = new Image(getTestFilePath('image.jpg'));
