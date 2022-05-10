@@ -59,7 +59,7 @@ it('can replace all optimizers with other ones', function () {
     expect($optimizers)
         ->toHaveCount(2)
         ->sequence(
-            fn ($optimizer) => $optimizer->toBeInstanceOf(Optipng::class),
-            fn ($optimizer) => $optimizer->toBeInstanceOf(Pngquant::class)
+            function ($optimizer) { $optimizer->toBeInstanceOf(Optipng::class); },
+            function ($optimizer) { $optimizer->toBeInstanceOf(Pngquant::class); }
         );
 });
