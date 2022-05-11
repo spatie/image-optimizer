@@ -1,9 +1,9 @@
 <?php
 
 use Spatie\ImageOptimizer\OptimizerChain;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
 beforeEach(function () {
     $this->optimizerChain = new OptimizerChain();
@@ -59,7 +59,11 @@ it('can replace all optimizers with other ones', function () {
     expect($optimizers)
         ->toHaveCount(2)
         ->sequence(
-            function ($optimizer) { $optimizer->toBeInstanceOf(Optipng::class); },
-            function ($optimizer) { $optimizer->toBeInstanceOf(Pngquant::class); }
+            function ($optimizer) {
+                $optimizer->toBeInstanceOf(Optipng::class);
+            },
+            function ($optimizer) {
+                $optimizer->toBeInstanceOf(Pngquant::class);
+            }
         );
 });
