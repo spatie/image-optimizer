@@ -1,43 +1,30 @@
 <?php
 
-namespace Spatie\ImageOptimizer\Test;
-
-use InvalidArgumentException;
 use Spatie\ImageOptimizer\Image;
 
-class ImageTest extends TestCase
-{
-    /** @test */
-    public function it_will_throw_an_exception_when_given_a_non_existing_file()
-    {
-        $this->expectException(InvalidArgumentException::class);
+it('will throw an exception when given a non existing file', function () {
+    new Image('non existing file');
+})->throws(InvalidArgumentException::class);
 
-        new Image('non existing file');
-    }
+it('can get type mime type', function () {
+    $image = new Image(getTestFilePath('image.jpg'));
 
-    /** @test */
-    public function it_can_get_type_mime_type()
-    {
-        $image = new Image($this->getTestFilePath('image.jpg'));
+    expect($image->mime())
+        ->toBe('image/jpeg');
+});
 
-        $this->assertEquals('image/jpeg', $image->mime());
-    }
+it('can get the path', function () {
+    $path = getTestFilePath('image.jpg');
 
-    /** @test */
-    public function it_can_get_the_path()
-    {
-        $path = $this->getTestFilePath('image.jpg');
+    $image = new Image($path);
 
-        $image = new Image($path);
+    expect($image->path())
+        ->toBe($path);
+});
 
-        $this->assertEquals($path, $image->path());
-    }
+it('can get the extension', function () {
+    $image = new Image(getTestFilePath('image.jpg'));
 
-    /** @test */
-    public function it_can_get_the_extension()
-    {
-        $image = new Image($this->getTestFilePath('image.jpg'));
-
-        $this->assertEquals('jpg', $image->extension());
-    }
-}
+    expect($image->extension())
+        ->toBe('jpg');
+});

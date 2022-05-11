@@ -1,119 +1,98 @@
 <?php
 
-namespace Spatie\ImageOptimizer\Test;
-
-use Spatie\ImageOptimizer\OptimizerChainFactory;
-use Spatie\ImageOptimizer\Optimizers\Cwebp;
-use Spatie\ImageOptimizer\Optimizers\Gifsicle;
-use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
-use Spatie\ImageOptimizer\Optimizers\Optipng;
-use Spatie\ImageOptimizer\Optimizers\Pngquant;
 use Spatie\ImageOptimizer\Optimizers\Svgo;
+use Spatie\ImageOptimizer\Optimizers\Cwebp;
+use Spatie\ImageOptimizer\Optimizers\Optipng;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
-class OptimizerChainFactoryTest extends TestCase
-{
-    /** @var \Spatie\ImageOptimizer\OptimizerChain */
-    protected $optimizerChain;
+use function PHPUnit\Framework\assertFileEquals;
 
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->optimizerChain = OptimizerChainFactory::create()
+beforeEach(function () {
+    $this->optimizerChain = OptimizerChainFactory::create()
             ->useLogger($this->log);
-    }
+});
 
-    /** @test */
-    public function it_can_optimize_a_jpg()
-    {
-        $tempFilePath = $this->getTempFilePath('image.jpg');
+it('can optimize a jpg', function () {
+    $tempFilePath = getTempFilePath('image.jpg');
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.jpg'));
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('image.jpg'));
 
-        $this->assertOptimizersUsed(Jpegoptim::class);
-    }
+    $this->assertOptimizersUsed(Jpegoptim::class);
+});
 
-    /** @test */
-    public function it_can_optimize_a_png()
-    {
-        $tempFilePath = $this->getTempFilePath('logo.png');
+it('can optimize a png', function () {
+    $tempFilePath = getTempFilePath('logo.png');
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('logo.png'));
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('logo.png'));
 
-        $this->assertOptimizersUsed([
-            Optipng::class,
-            Pngquant::class,
-        ]);
-    }
+    $this->assertOptimizersUsed([
+        Optipng::class,
+        Pngquant::class,
+    ]);
+});
 
-    /** @test */
-    public function it_can_optimize_an_svg()
-    {
-        $tempFilePath = $this->getTempFilePath('graph.svg');
+it('can optimize an svg', function () {
+    $tempFilePath = getTempFilePath('graph.svg');
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertOptimizersUsed(Svgo::class);
+    $this->assertOptimizersUsed(Svgo::class);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('graph.svg'));
-    }
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('graph.svg'));
+});
 
-    /** @test */
-    public function it_can_optimize_a_gif()
-    {
-        $tempFilePath = $this->getTempFilePath('animated.gif');
+it('can optimize a gif', function () {
+    $tempFilePath = getTempFilePath('animated.gif');
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('animated.gif'));
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('animated.gif'));
 
-        $this->assertOptimizersUsed(Gifsicle::class);
-    }
+    $this->assertOptimizersUsed(Gifsicle::class);
+});
 
-    /** @test */
-    public function it_can_optimize_a_webp()
-    {
-        $tempFilePath = $this->getTempFilePath('image.webp');
+it('can optimize a webp', function () {
+    $tempFilePath = getTempFilePath('image.webp');
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $this->assertDecreasedFileSize($tempFilePath, $this->getTestFilePath('image.webp'));
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('image.webp'));
 
-        $this->assertOptimizersUsed(Cwebp::class);
-    }
+    $this->assertOptimizersUsed(Cwebp::class);
+});
 
-    /** @test */
-    public function it_will_not_not_touch_a_non_image_file()
-    {
-        $tempFilePath = $this->getTempFilePath('test.txt');
+it('will not not touch a non image file', function () {
+    $tempFilePath = getTempFilePath('test.txt');
 
-        $originalContent = file_get_contents($tempFilePath);
+    $originalContent = file_get_contents($tempFilePath);
 
-        $this->optimizerChain->optimize($tempFilePath);
+    $this->optimizerChain->optimize($tempFilePath);
 
-        $optimizedContent = file_get_contents($tempFilePath);
+    $optimizedContent = file_get_contents($tempFilePath);
 
-        $this->assertEquals($optimizedContent, $originalContent);
-    }
+    expect($originalContent)
+        ->toBe($optimizedContent);
+});
 
-    /** @test */
-    public function it_can_output_to_a_specified_path()
-    {
-        $tempFilePath = $this->getTempFilePath('logo.png');
-        $outputFilePath = __DIR__.'/temp/output.png';
+it('can output to a specified path', function () {
+    $tempFilePath = getTempFilePath('logo.png');
+    $outputFilePath = __DIR__ . '/temp/output.png';
 
-        $this->optimizerChain->optimize($tempFilePath, $outputFilePath);
+    $this->optimizerChain->optimize($tempFilePath, $outputFilePath);
 
-        $this->assertFileEquals($tempFilePath, $this->getTestFilePath('logo.png'));
-        $this->assertDecreasedFileSize($outputFilePath, $this->getTestFilePath('logo.png'));
+    assertFileEquals($tempFilePath, getTestFilePath('logo.png'));
 
-        $this->assertOptimizersUsed([
-            Optipng::class,
-            Pngquant::class,
-        ]);
-    }
-}
+    $this->assertDecreasedFileSize($outputFilePath, getTestFilePath('logo.png'));
+
+    $this->assertOptimizersUsed([
+        Optipng::class,
+        Pngquant::class,
+    ]);
+});

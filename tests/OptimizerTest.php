@@ -1,58 +1,54 @@
 <?php
 
-namespace Spatie\ImageOptimizer\Test;
-
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
-class OptimizerTest extends TestCase
-{
-    /** @test */
-    public function it_can_accept_options_via_the_constructor()
-    {
-        $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
+it('can accept options via the constructor', function () {
+    $optimizer = new Jpegoptim(['option1', 'option2']);
 
-        $this->assertEquals("\"jpegoptim\" option1 option2 'my-image.jpg'", $optimizer->getCommand());
-    }
+    $optimizer->setImagePath('my-image.jpg');
 
-    /** @test */
-    public function a_binary_path_can_be_set()
-    {
-        $optimizer = (new Jpegoptim())
-            ->setImagePath('my-image.jpg')
-            ->setBinaryPath('testPath');
+    expect($optimizer->getCommand())
+        ->toBe("\"jpegoptim\" option1 option2 'my-image.jpg'");
+});
 
-        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+it('can set a binary path', function () {
+    $optimizer = (new Jpegoptim())
+        ->setImagePath('my-image.jpg')
+        ->setBinaryPath('testPath');
 
-        $optimizer = (new Jpegoptim())
-            ->setImagePath('my-image.jpg')
-            ->setBinaryPath('testPath/');
+    expect($optimizer->getCommand())
+        ->toBe("\"testPath/jpegoptim\"  'my-image.jpg'");
 
-        $this->assertEquals("\"testPath/jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
+    $optimizer = (new Jpegoptim())
+        ->setImagePath('my-image.jpg')
+        ->setBinaryPath('testPath/');
 
-        $optimizer = (new Jpegoptim())
-            ->setImagePath('my-image.jpg')
-            ->setBinaryPath('');
+    expect($optimizer->getCommand())
+        ->toBe("\"testPath/jpegoptim\"  'my-image.jpg'");
 
-        $this->assertEquals("\"jpegoptim\"  'my-image.jpg'", $optimizer->getCommand());
-    }
+    $optimizer = (new Jpegoptim())
+        ->setImagePath('my-image.jpg')
+        ->setBinaryPath('');
 
-    /** @test */
-    public function it_can_override_options()
-    {
-        $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
+    expect($optimizer->getCommand())
+        ->toBe("\"jpegoptim\"  'my-image.jpg'");
+});
 
-        $optimizer->setOptions(['option3', 'option4']);
+it('can override options', function () {
+    $optimizer = (new Jpegoptim(['option1', 'option2']))
+        ->setImagePath('my-image.jpg');
 
-        $this->assertEquals("\"jpegoptim\" option3 option4 'my-image.jpg'", $optimizer->getCommand());
-    }
+    $optimizer->setOptions(['option3', 'option4']);
 
-    /** @test */
-    public function it_can_get_jpeg_binary_name()
-    {
-        $optimizer = (new Jpegoptim(['option1', 'option2']))->setImagePath('my-image.jpg');
+    expect($optimizer->getCommand())
+        ->toBe("\"jpegoptim\" option3 option4 'my-image.jpg'");
+});
 
-        $optimizer->setOptions(['option3', 'option4']);
+it('can get jpeg binary name', function () {
+    $optimizer = new Jpegoptim(['option1', 'option2']);
 
-        $this->assertEquals('jpegoptim', $optimizer->binaryName());
-    }
-}
+    $optimizer->setImagePath('my-image.jpg');
+
+    expect($optimizer->binaryName())
+        ->toBe('jpegoptim');
+});

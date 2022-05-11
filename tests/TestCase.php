@@ -12,7 +12,7 @@ class TestCase extends BaseTest
     /** @var \Monolog\Logger */
     public $logger;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->emptyTempDirectory();
 
@@ -21,7 +21,7 @@ class TestCase extends BaseTest
 
     protected function emptyTempDirectory()
     {
-        $tempDirPath = __DIR__.'/temp';
+        $tempDirPath = __DIR__ . '/temp';
 
         $files = scandir($tempDirPath);
 
@@ -30,22 +30,6 @@ class TestCase extends BaseTest
                 unlink("{$tempDirPath}/{$file}");
             }
         }
-    }
-
-    public function getTempFilePath(string $fileName)
-    {
-        $source = __DIR__."/testfiles/{$fileName}";
-
-        $destination = __DIR__."/temp/{$fileName}";
-
-        copy($source, $destination);
-
-        return $destination;
-    }
-
-    public function getTestFilePath(string $fileName)
-    {
-        return __DIR__."/testfiles/{$fileName}";
     }
 
     public function assertDecreasedFileSize(string $modifiedFilePath, string $originalFilePath)
