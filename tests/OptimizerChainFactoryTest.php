@@ -1,6 +1,7 @@
 <?php
 
 use function PHPUnit\Framework\assertFileEquals;
+
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
