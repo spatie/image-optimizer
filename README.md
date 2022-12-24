@@ -25,6 +25,8 @@ Loving Laravel? Then head over to [the Laravel specific integration](https://git
 
 Using WordPress? Then try out [the WP CLI command](https://github.com/TypistTech/image-optimize-command).
 
+SilverStripe enthusiast? Don't waste time, go to [the SilverStripe module](https://github.com/axllent/silverstripe-image-optimiser).
+
 ## Support us
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/image-optimizer.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/image-optimizer)
