@@ -32,7 +32,7 @@ interface Optimizer
     /**
      * Set the options the optimizer should use.
      *
-     * @param array $options
+     * @param string[] $options
      *
      * @return $this
      */

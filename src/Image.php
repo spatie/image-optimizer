@@ -6,6 +6,7 @@ use InvalidArgumentException;
 
 class Image
 {
+    /** @var string */
     protected $pathToImage = '';
 
     public function __construct(string $pathToImage)

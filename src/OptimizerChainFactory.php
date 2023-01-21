@@ -11,6 +11,9 @@ use Spatie\ImageOptimizer\Optimizers\Svgo;
 
 class OptimizerChainFactory
 {
+    /**
+     * @param array{quality?: string|int} $config
+     */
     public static function create(array $config = []): OptimizerChain
     {
         $jpegQuality = '--max=85';

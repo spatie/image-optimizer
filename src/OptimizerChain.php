@@ -7,7 +7,7 @@ use Symfony\Component\Process\Process;
 
 class OptimizerChain
 {
-    /* @var \Spatie\ImageOptimizer\Optimizer[] */
+    /** @var \Spatie\ImageOptimizer\Optimizer[] */
     protected $optimizers = [];
 
     /** @var \Psr\Log\LoggerInterface */
@@ -26,6 +26,9 @@ class OptimizerChain
         return $this->optimizers;
     }
 
+    /**
+     * @return static
+     */
     public function addOptimizer(Optimizer $optimizer)
     {
         $this->optimizers[] = $optimizer;
@@ -33,6 +36,10 @@ class OptimizerChain
         return $this;
     }
 
+    /**
+     * @param Optimizer[] $optimizers
+     * @return static
+     */
     public function setOptimizers(array $optimizers)
     {
         $this->optimizers = [];
@@ -44,8 +51,9 @@ class OptimizerChain
         return $this;
     }
 
-    /*
+    /**
      * Set the amount of seconds each separate optimizer may use.
+     * @return static
      */
     public function setTimeout(int $timeoutInSeconds)
     {
@@ -54,6 +62,9 @@ class OptimizerChain
         return $this;
     }
 
+    /**
+     * @return static
+     */
     public function useLogger(LoggerInterface $log)
     {
         $this->logger = $log;
@@ -61,7 +72,7 @@ class OptimizerChain
         return $this;
     }
 
-    public function optimize(string $pathToImage, string $pathToOutput = null)
+    public function optimize(string $pathToImage, string $pathToOutput = null): void
     {
         if ($pathToOutput) {
             copy($pathToImage, $pathToOutput);
@@ -78,7 +89,7 @@ class OptimizerChain
         }
     }
 
-    protected function applyOptimizer(Optimizer $optimizer, Image $image)
+    protected function applyOptimizer(Optimizer $optimizer, Image $image): void
     {
         if (! $optimizer->canHandle($image)) {
             return;
@@ -103,7 +114,7 @@ class OptimizerChain
         $this->logResult($process);
     }
 
-    protected function logResult(Process $process)
+    protected function logResult(Process $process): void
     {
         if (! $process->isSuccessful()) {
             $this->logger->error("Process errored with `{$process->getErrorOutput()}`");
