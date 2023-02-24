@@ -10,5 +10,6 @@
 /.scrutinizer.yml   export-ignore
 /tests              export-ignore
 /.editorconfig      export-ignore
+/CHANGELOG.md       export-ignore
 /docs               export-ignore
-.php-cs-fixer.dist.php export-ignore
+/.php-cs-fixer.dist.php export-ignore
