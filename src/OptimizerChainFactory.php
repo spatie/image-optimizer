@@ -19,7 +19,7 @@ class OptimizerChainFactory
         if (isset($config['quality'])) {
             $jpegQuality = '--max='.$config['quality'];
             $pngQuality = '--quality='.$config['quality'];
-            $webpQuality = '-q 80'.$config['quality'];
+            $webpQuality = '-q '.$config['quality'];
         }
 
         return (new OptimizerChain())
