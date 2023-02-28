@@ -15,9 +15,11 @@ class OptimizerChainFactory
     {
         $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
+        $webpQuality = '-q 80';
         if (isset($config['quality'])) {
             $jpegQuality = '--max='.$config['quality'];
             $pngQuality = '--quality='.$config['quality'];
+            $webpQuality = '-q '.$config['quality'];
         }
 
         return (new OptimizerChain())
@@ -48,10 +50,10 @@ class OptimizerChainFactory
                 '-O3',
             ]))
             ->addOptimizer(new Cwebp([
+                $webpQuality,
                 '-m 6',
                 '-pass 10',
                 '-mt',
-                '-q 80',
             ]));
     }
 }
