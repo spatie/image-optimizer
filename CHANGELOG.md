@@ -2,6 +2,31 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.6.3 - 2023-02-28
+
+### What's Changed
+
+- Update .gitattributes by @PaolaRuby in https://github.com/spatie/image-optimizer/pull/161
+- Feature: Convert PHPUnit tests to Pest by @mansoorkhan96 in https://github.com/spatie/image-optimizer/pull/167
+- Add dependabot automation by @patinthehat in https://github.com/spatie/image-optimizer/pull/173
+- Allow Pest Composer Plugin (fix failing tests) by @patinthehat in https://github.com/spatie/image-optimizer/pull/176
+- Update Dependabot Automation by @patinthehat in https://github.com/spatie/image-optimizer/pull/175
+- DOC: adding SilverStripe link by @sunnysideup in https://github.com/spatie/image-optimizer/pull/177
+- Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 by @dependabot in https://github.com/spatie/image-optimizer/pull/183
+- WebP Quality Option by @jan-tricks in https://github.com/spatie/image-optimizer/pull/185
+- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/spatie/image-optimizer/pull/174
+
+### New Contributors
+
+- @PaolaRuby made their first contribution in https://github.com/spatie/image-optimizer/pull/161
+- @mansoorkhan96 made their first contribution in https://github.com/spatie/image-optimizer/pull/167
+- @patinthehat made their first contribution in https://github.com/spatie/image-optimizer/pull/173
+- @sunnysideup made their first contribution in https://github.com/spatie/image-optimizer/pull/177
+- @dependabot made their first contribution in https://github.com/spatie/image-optimizer/pull/183
+- @jan-tricks made their first contribution in https://github.com/spatie/image-optimizer/pull/185
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.6.2...1.6.3
+
 ## 1.6.2 - 2021-12-21
 
 ## What's Changed
