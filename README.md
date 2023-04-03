@@ -44,7 +44,7 @@ composer require spatie/image-optimizer
 
 The package will use these optimizers if they are present on your system:
 
-- [JpegOptim](http://freecode.com/projects/jpegoptim)
+- [JpegOptim](https://github.com/tjko/jpegoptim)
 - [Optipng](http://optipng.sourceforge.net/)
 - [Pngquant 2](https://pngquant.org/)
 - [SVGO 1](https://github.com/svg/svgo)
