@@ -4,7 +4,7 @@
 ![Tests](https://github.com/spatie/image-optimizer/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize PNGs, JPGs, SVGs and GIFs by running them through a chain of various [image optimization tools](#optimization-tools). Here's how you can use it:
+This package can optimize PNGs, JPGs, WEBPs, SVGs and GIFs by running them through a chain of various [image optimization tools](#optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\OptimizerChainFactory;
@@ -276,24 +276,24 @@ Here are some real life example conversions done by this package.
 ### png
 
 Original: Photoshop 'Save for web' | PNG-24 with transparency<br>
-40 KB
+39 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/logo.png)
 
 Optimized<br>
-16 KB (40%)
+16 KB (-59%, DSSIM: 0.00000251)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
 ### jpg
 
 Original: Photoshop 'Save for web' | quality 60, optimized<br>
-547 KB
+534 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
 
 Optimized<br>
-525 KB (95%)
+514 KB (-3.9%, DSSIM: 0.00000000)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
 
@@ -302,24 +302,24 @@ credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 ### svg
 
 Original: Illustrator | Web optimized SVG export<br>
-26 KB
+25 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/graph.svg)
 
 Optimized<br>
-20 KB (76%)
+20 KB (-21.5%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
 
 ### webp
 
 Original: WebPonize<br>
-528 KB
+502 KB
 
 ![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
 
 Optimized<br>
-328 KB (89%)
+413 KB (-17.7%, DSSIM: 0.00040705)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
 
