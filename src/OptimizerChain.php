@@ -100,6 +100,13 @@ class OptimizerChain
             ->setTimeout($this->timeout)
             ->run();
 
+        if (
+            ($tmpPath = $optimizer->getTmpPath()) &&
+            file_exists($tmpPath)
+        ) {
+            unlink($tmpPath);
+        }
+
         $this->logResult($process);
     }
 
