@@ -3,6 +3,7 @@
 use function PHPUnit\Framework\assertFileEquals;
 
 use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Spatie\ImageOptimizer\Optimizers\Avifenc;
 use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
@@ -67,6 +68,16 @@ it('can optimize a webp', function () {
     $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('image.webp'));
 
     $this->assertOptimizersUsed(Cwebp::class);
+});
+
+it('can optimize an avif', function () {
+    $tempFilePath = getTempFilePath('image.avif');
+
+    $this->optimizerChain->optimize($tempFilePath);
+
+    $this->assertDecreasedFileSize($tempFilePath, getTestFilePath('image.avif'));
+
+    $this->assertOptimizersUsed(Avifenc::class);
 });
 
 it('will not not touch a non image file', function () {

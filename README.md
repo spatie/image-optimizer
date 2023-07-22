@@ -4,7 +4,7 @@
 ![Tests](https://github.com/spatie/image-optimizer/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/image-optimizer.svg?style=flat-square)](https://packagist.org/packages/spatie/image-optimizer)
 
-This package can optimize PNGs, JPGs, WEBPs, SVGs and GIFs by running them through a chain of various [image optimization tools](#optimization-tools). Here's how you can use it:
+This package can optimize PNGs, JPGs, WEBPs, AVIFs, SVGs and GIFs by running them through a chain of various [image optimization tools](#optimization-tools). Here's how you can use it:
 
 ```php
 use Spatie\ImageOptimizer\OptimizerChainFactory;
@@ -50,6 +50,7 @@ The package will use these optimizers if they are present on your system:
 - [SVGO 1](https://github.com/svg/svgo)
 - [Gifsicle](http://www.lcdf.org/gifsicle/)
 - [cwebp](https://developers.google.com/speed/webp/docs/precompiled)
+- [avifenc](https://github.com/AOMediaCodec/libavif/blob/main/doc/avifenc.1.md)
 
 Here's how to install all the optimizers on Ubuntu:
 
@@ -60,6 +61,7 @@ sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
 sudo apt-get install webp
+sudo apt-get install libavif-bin
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
@@ -71,6 +73,7 @@ brew install pngquant
 npm install -g svgo
 brew install gifsicle
 brew install webp
+brew install libavif
 ```
 And here's how to install the binaries on Fedora/RHEL/CentOS:
 
@@ -82,6 +85,7 @@ sudo dnf install pngquant
 sudo npm install -g svgo
 sudo dnf install gifsicle
 sudo dnf install libwebp-tools
+sudo dnf install libavif-tools
 ```
 
 ## Which tools will do what?
@@ -121,6 +125,20 @@ WEBPs will be optimized by [Cwebp](https://developers.google.com/speed/webp/docs
 - `-q 90` Quality factor that brings the least noticeable changes.
 
 (Settings are original taken from [here](https://medium.com/@vinhlh/how-i-apply-webp-for-optimizing-images-9b11068db349))
+
+### AVIFs
+
+AVIFs will be optimized by [avifenc](https://github.com/AOMediaCodec/libavif/blob/main/doc/avifenc.1.md). These options will be used:
+- `-a cq-level=23`: Constant Quality level. Lower values mean better quality and greater file size (0-63).
+- `-j all`: Number of jobs (worker threads, `all` uses all available cores).
+- `--min 0`: Min quantizer for color (0-63).
+- `--max 63`: Max quantizer for color (0-63).
+- `--minalpha 0`: Min quantizer for alpha (0-63).
+- `--maxalpha 63`: Max quantizer for alpha (0-63).
+- `-a end-usage=q` Rate control mode set to Constant Quality mode.
+- `-a tune=ssim`: SSIM as tune the encoder for distortion metric.
+
+(Settings are original taken from [here](https://web.dev/compress-images-avif/#create-an-avif-image-with-default-settings) and [here](https://github.com/feat-agency/avif))
 
 ## Usage
 
@@ -273,6 +291,50 @@ A logger is a class that implements `Psr\Log\LoggerInterface`. A good logging li
 
 Here are some real life example conversions done by this package.
 
+Methodology for JPG, WEBP, AVIF images: the [original image](https://unsplash.com/photos/jTeQavJjBDs) has been fed to [spatie/image](https://github.com/spatie/image) (using the default GD driver) and resized to 2048px width:
+
+```php
+Spatie\Image\Image::load('original.jpg')
+    ->width(2048)
+    ->save('image.jpg'); // image.png, image.webp, image.avif
+```
+
+### jpg
+
+![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
+Original<br>
+771 KB
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
+Optimized<br>
+511 KB (-33.7%, DSSIM: 0.00052061)
+
+credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
+
+### webp
+
+![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
+Original<br>
+461 KB
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
+Optimized<br>
+184 KB (-60.0%, DSSIM: 0.00166036)
+
+credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
+
+### avif
+
+![Original](https://spatie.github.io/image-optimizer/examples/image.avif)
+Original<br>
+725 KB
+
+![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.avif)
+Optimized<br>
+194 KB (-73.2%, DSSIM: 0.00163751)
+
+credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
+
 ### png
 
 Original: Photoshop 'Save for web' | PNG-24 with transparency<br>
@@ -285,20 +347,6 @@ Optimized<br>
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/logo-optimized.png)
 
-### jpg
-
-Original: Photoshop 'Save for web' | quality 60, optimized<br>
-534 KB
-
-![Original](https://spatie.github.io/image-optimizer/examples/image.jpg)
-
-Optimized<br>
-514 KB (-3.9%, DSSIM: 0.00000000)
-
-![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.jpg)
-
-credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
-
 ### svg
 
 Original: Illustrator | Web optimized SVG export<br>
@@ -310,20 +358,6 @@ Optimized<br>
 20 KB (-21.5%)
 
 ![Optimized](https://spatie.github.io/image-optimizer/examples/graph-optimized.svg)
-
-### webp
-
-Original: WebPonize<br>
-502 KB
-
-![Original](https://spatie.github.io/image-optimizer/examples/image.webp)
-
-Optimized<br>
-413 KB (-17.7%, DSSIM: 0.00040705)
-
-![Optimized](https://spatie.github.io/image-optimizer/examples/image-optimized.webp)
-
-credits: Jeff Sheldon, via [Unsplash](https://unsplash.com)
 
 ## Changelog
 

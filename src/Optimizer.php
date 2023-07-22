@@ -44,4 +44,11 @@ interface Optimizer
      * @return string
      */
     public function getCommand(): string;
+
+    /**
+     * Get the temporary file's path.
+     *
+     * @return null|string
+     */
+    public function getTmpPath(): ?string;
 }
