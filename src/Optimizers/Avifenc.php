@@ -11,7 +11,7 @@ class Avifenc extends BaseOptimizer
 
     public function canHandle(Image $image): bool
     {
-        return $image->mime() === 'image/avif';
+        return $image->mime() === 'image/avif' || $image->extension() === 'avif';
     }
 
     public function getCommand(): string
