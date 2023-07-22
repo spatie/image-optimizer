@@ -2,6 +2,15 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.7.0 - 2023-07-22
+
+### What's Changed
+
+- README.md file size fixes, DSSIM score, optimized webp replaced by @0xb4lint in https://github.com/spatie/image-optimizer/pull/197
+- added AVIF support by @0xb4lint in https://github.com/spatie/image-optimizer/pull/198
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.6.4...1.7.0
+
 ## 1.6.4 - 2023-03-10
 
 ### What's Changed
