@@ -20,24 +20,32 @@ class Avifenc extends BaseOptimizer
 
     public function getCommand(): string
     {
+        return $this->getDecodeCommand() .' && '
+            .$this->getEncodeCommand();
+    }
+
+    protected function getDecodeCommand()
+    {
         $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec') . '.png';
 
-        $decodeOptionString = implode(' ', [
+        $optionString = implode(' ', [
             '-j all',
             '--ignore-icc',
             '--no-strict',
             '--png-compress 0',
         ]);
-        $encodeOptionString = implode(' ', $this->options);
 
-        $decode = "\"{$this->binaryPath}{$this->decodeBinaryName}\" {$decodeOptionString}"
+        return "\"{$this->binaryPath}{$this->decodeBinaryName}\" {$optionString}"
             .' '.escapeshellarg($this->imagePath)
             .' '.escapeshellarg($this->tmpPath);
+    }
 
-        $encode = "\"{$this->binaryPath}{$this->binaryName}\" {$encodeOptionString}"
+    protected function getEncodeCommand()
+    {
+        $optionString = implode(' ', $this->options);
+
+        return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
             .' '.escapeshellarg($this->tmpPath)
             .' '.escapeshellarg($this->imagePath);
-
-        return $decode . ' && ' . $encode;
     }
 }
