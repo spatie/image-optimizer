@@ -20,13 +20,13 @@ class Avifenc extends BaseOptimizer
 
     public function getCommand(): string
     {
-        return $this->getDecodeCommand() .' && '
+        return $this->getDecodeCommand().' && '
             .$this->getEncodeCommand();
     }
 
     protected function getDecodeCommand()
     {
-        $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec') . '.png';
+        $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec').'.png';
 
         $optionString = implode(' ', [
             '-j all',
