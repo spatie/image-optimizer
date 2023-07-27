@@ -2,6 +2,14 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.7.1 - 2023-07-27
+
+### What's Changed
+
+- libavif version note by @0xb4lint in https://github.com/spatie/image-optimizer/pull/199
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.7.0...1.7.1
+
 ## 1.7.0 - 2023-07-22
 
 ### What's Changed
