@@ -52,7 +52,7 @@ The package will use these optimizers if they are present on your system:
 - [cwebp](https://developers.google.com/speed/webp/docs/precompiled)
 - [avifenc](https://github.com/AOMediaCodec/libavif/blob/main/doc/avifenc.1.md)
 
-Here's how to install all the optimizers on Ubuntu:
+Here's how to install all the optimizers on Ubuntu/Debian:
 
 ```bash
 sudo apt-get install jpegoptim
@@ -61,7 +61,7 @@ sudo apt-get install pngquant
 sudo npm install -g svgo
 sudo apt-get install gifsicle
 sudo apt-get install webp
-sudo apt-get install libavif-bin
+sudo apt-get install libavif-bin # minimum 0.9.3
 ```
 
 And here's how to install the binaries on MacOS (using [Homebrew](https://brew.sh/)):
@@ -75,6 +75,7 @@ brew install gifsicle
 brew install webp
 brew install libavif
 ```
+
 And here's how to install the binaries on Fedora/RHEL/CentOS:
 
 ```bash

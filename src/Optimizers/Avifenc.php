@@ -11,29 +11,41 @@ class Avifenc extends BaseOptimizer
 
     public function canHandle(Image $image): bool
     {
-        return $image->mime() === 'image/avif' || $image->extension() === 'avif';
+        if (version_compare(PHP_VERSION, '8.1.0', '<')) {
+            return $image->extension() === 'avif';
+        }
+
+        return $image->mime() === 'image/avif';
     }
 
     public function getCommand(): string
     {
-        $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec') . '.png';
+        return $this->getDecodeCommand().' && '
+            .$this->getEncodeCommand();
+    }
 
-        $decodeOptionString = implode(' ', [
+    protected function getDecodeCommand()
+    {
+        $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec').'.png';
+
+        $optionString = implode(' ', [
             '-j all',
             '--ignore-icc',
             '--no-strict',
             '--png-compress 0',
         ]);
-        $encodeOptionString = implode(' ', $this->options);
 
-        $decode = "\"{$this->binaryPath}{$this->decodeBinaryName}\" {$decodeOptionString}"
+        return "\"{$this->binaryPath}{$this->decodeBinaryName}\" {$optionString}"
             .' '.escapeshellarg($this->imagePath)
             .' '.escapeshellarg($this->tmpPath);
+    }
 
-        $encode = "\"{$this->binaryPath}{$this->binaryName}\" {$encodeOptionString}"
+    protected function getEncodeCommand()
+    {
+        $optionString = implode(' ', $this->options);
+
+        return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
             .' '.escapeshellarg($this->tmpPath)
             .' '.escapeshellarg($this->imagePath);
-
-        return $decode . ' && ' . $encode;
     }
 }
