@@ -60,4 +60,9 @@ abstract class BaseOptimizer implements Optimizer
     {
         return $this->tmpPath;
     }
+
+    public function getVersionCommand(): string
+    {
+        return "\"{$this->binaryPath}{$this->binaryName}\" --version";
+    }
 }

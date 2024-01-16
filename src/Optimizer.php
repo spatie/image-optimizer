@@ -51,4 +51,11 @@ interface Optimizer
      * @return null|string
      */
     public function getTmpPath(): ?string;
+
+    /**
+     * Get the command that should return the installed binary version.
+     *
+     * @return string
+     */
+    public function getVersionCommand(): string;
 }

@@ -21,4 +21,9 @@ class Cwebp extends BaseOptimizer
             .' '.escapeshellarg($this->imagePath)
             .' -o '.escapeshellarg($this->imagePath);
     }
+
+    public function getVersionCommand(): string
+    {
+        return "\"{$this->binaryPath}{$this->binaryName}\" -version";
+    }
 }

@@ -16,6 +16,9 @@ class OptimizerChain
     /** @var int */
     protected $timeout = 60;
 
+    /** @var bool */
+    protected $checkBinaries = false;
+
     public function __construct()
     {
         $this->useLogger(new DummyLogger());
@@ -26,9 +29,18 @@ class OptimizerChain
         return $this->optimizers;
     }
 
+    public function setCheckBinaries(bool $checkBinaries)
+    {
+        $this->checkBinaries = $checkBinaries;
+
+        return $this;
+    }
+
     public function addOptimizer(Optimizer $optimizer)
     {
-        $this->optimizers[] = $optimizer;
+        if (! $this->checkBinaries || $this->checkOptimizerBinaryInstallation($optimizer)) {
+            $this->optimizers[] = $optimizer;
+        }
 
         return $this;
     }
@@ -108,6 +120,15 @@ class OptimizerChain
         }
 
         $this->logResult($process);
+    }
+
+    protected function checkOptimizerBinaryInstallation(Optimizer $optimizer)
+    {
+        $process = Process::fromShellCommandline($optimizer->getVersionCommand());
+        $process->setTimeout($this->timeout);
+        $process->run();
+
+        return $process->isSuccessful();
     }
 
     protected function logResult(Process $process)

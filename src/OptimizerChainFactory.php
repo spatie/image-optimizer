@@ -14,6 +14,8 @@ class OptimizerChainFactory
 {
     public static function create(array $config = []): OptimizerChain
     {
+        $checkBinaries = isset($config['checkBinaries']) && $config['checkBinaries'] === true;
+
         $jpegQuality = '--max=85';
         $pngQuality = '--quality=85';
         $webpQuality = '-q 80';
@@ -26,6 +28,7 @@ class OptimizerChainFactory
         }
 
         return (new OptimizerChain())
+            ->setCheckBinaries($checkBinaries)
             ->addOptimizer(new Jpegoptim([
                 $jpegQuality,
                 '--strip-all',
