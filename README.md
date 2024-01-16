@@ -180,6 +180,20 @@ $optimizerChain
 
 In this example each optimizer in the chain will get a maximum 10 seconds to do it's job.
 
+### Checking for binary installation of optimizers
+
+You can set the factory to only add optimizers to the chain if the binary is installed on your system:
+
+```php
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+
+$config = [
+    'checkBinaries' => true
+];
+
+$optimizerChain = OptimizerChainFactory::create($config);
+```
+
 ### Creating your own optimization chains
 
 If you want to customize the chain of optimizers you can do so by adding `Optimizer`s manually to an `OptimizerChain`.
@@ -255,6 +269,20 @@ interface Optimizer
      * @return string
      */
     public function getCommand(): string;
+
+    /**
+     * Get the temporary file's path.
+     *
+     * @return null|string
+     */
+    public function getTmpPath(): ?string;
+
+    /**
+     * Get the command that should return the installed binary version.
+     *
+     * @return string
+     */
+    public function getVersionCommand(): string;
 }
 ```
 
