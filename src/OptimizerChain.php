@@ -63,16 +63,13 @@ class OptimizerChain
 
     public function optimize(string $pathToImage, string $pathToOutput = null)
     {
-        /*
-         * Check $pathToImage before passing it into the copy() function.
-        */
-        $image = new Image($pathToImage);
         if ($pathToOutput) {
-            copy($pathToImage, $pathToOutput);
-
-            $pathToImage = $pathToOutput;
+            $check = copy($pathToImage, $pathToOutput);
+            if($check == false){
+                throw new InvalidArgumentException("Cannot copy file");
+            }
         }
-
+        $image = new Image($pathToImage);
         $this->logger->info("Start optimizing {$pathToImage}");
 
         foreach ($this->optimizers as $optimizer) {
