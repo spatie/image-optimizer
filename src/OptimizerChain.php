@@ -68,6 +68,7 @@ class OptimizerChain
             if($check == false){
                 throw new InvalidArgumentException("Cannot copy file");
             }
+            $pathToImage = $pathToOutput;
         }
         $image = new Image($pathToImage);
         $this->logger->info("Start optimizing {$pathToImage}");
