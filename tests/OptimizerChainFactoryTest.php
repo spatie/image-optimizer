@@ -1,7 +1,9 @@
 <?php
 
+use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertFileEquals;
 
+use Spatie\ImageOptimizer\Optimizer;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 use Spatie\ImageOptimizer\Optimizers\Avifenc;
 use Spatie\ImageOptimizer\Optimizers\Cwebp;
@@ -9,12 +11,52 @@ use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 use Spatie\ImageOptimizer\Optimizers\Optipng;
 use Spatie\ImageOptimizer\Optimizers\Pngquant;
-
 use Spatie\ImageOptimizer\Optimizers\Svgo;
 
 beforeEach(function () {
     $this->optimizerChain = OptimizerChainFactory::create()
             ->useLogger($this->log);
+});
+
+it('can use config', function () {
+    $this->optimizerChain = OptimizerChainFactory::create([
+        Jpegoptim::class => ['--foo'],
+        Pngquant::class => ['--foo'],
+        Optipng::class => ['--foo'],
+        Svgo::class => ['--foo'],
+        Gifsicle::class => ['--foo'],
+        Cwebp::class => ['--foo'],
+        Avifenc::class => ['--foo'],
+    ])
+    ->useLogger($this->log);
+
+    assertEquals(
+        [
+            new Jpegoptim(['--foo']),
+            new Pngquant(['--foo']),
+            new Optipng(['--foo']),
+            new Svgo(['--foo']),
+            new Gifsicle(['--foo']),
+            new Cwebp(['--foo']),
+            new Avifenc(['--foo']),
+        ],
+        $this->optimizerChain->getOptimizers()
+    );
+});
+
+it('can use default config', function () {
+    assertEquals(
+        [
+           Jpegoptim::class,
+           Pngquant::class,
+           Optipng::class,
+           Svgo::class,
+           Gifsicle::class,
+           Cwebp::class,
+           Avifenc::class,
+        ],
+        array_map(fn (Optimizer $optimizer) => get_class($optimizer), $this->optimizerChain->getOptimizers())
+    );
 });
 
 it('can optimize a jpg', function () {
