@@ -14,52 +14,54 @@ class OptimizerChainFactory
 {
     public static function create(array $config = []): OptimizerChain
     {
-        $jpegQuality = '--max=85';
-        $pngQuality = '--quality=85';
-        $webpQuality = '-q 80';
-        $avifQuality = '-a cq-level=23';
-        if (isset($config['quality'])) {
-            $jpegQuality = '--max='.$config['quality'];
-            $pngQuality = '--quality='.$config['quality'];
-            $webpQuality = '-q '.$config['quality'];
-            $avifQuality = '-a cq-level='.round(63 - $config['quality'] * 0.63);
+        $optimizers = self::getOptimizers($config);
+        $optimizerChain = new OptimizerChain();
+
+        foreach ($optimizers as $optimizer => $optimizerConfig) {
+            $optimizerChain->addOptimizer(new $optimizer($optimizerConfig));
         }
 
-        return (new OptimizerChain())
-            ->addOptimizer(new Jpegoptim([
-                $jpegQuality,
+        return $optimizerChain;
+    }
+
+    /**
+     * @return array<class-string, array>
+     */
+    private static function getOptimizers(array $config): array
+    {
+        if (self::configHasOptimizer($config)) {
+            return $config;
+        }
+
+        return [
+            Jpegoptim::class => [
+                '-m' . ($config['quality'] ?? 85),
+                '--force',
                 '--strip-all',
                 '--all-progressive',
-            ]))
-
-            ->addOptimizer(new Pngquant([
-                $pngQuality,
+            ],
+            Pngquant::class => [
+                '--quality=' . ($config['quality'] ?? 85),
                 '--force',
-                '--skip-if-larger',
-            ]))
-
-            ->addOptimizer(new Optipng([
+            ],
+            Optipng::class => [
                 '-i0',
                 '-o2',
                 '-quiet',
-            ]))
-
-            ->addOptimizer(new Svgo([
-                '--config=svgo.config.js',
-            ]))
-
-            ->addOptimizer(new Gifsicle([
+            ],
+            Svgo::class => [],
+            Gifsicle::class => [
                 '-b',
                 '-O3',
-            ]))
-            ->addOptimizer(new Cwebp([
-                $webpQuality,
+            ],
+            Cwebp::class => [
                 '-m 6',
                 '-pass 10',
                 '-mt',
-            ]))
-            ->addOptimizer(new Avifenc([
-                $avifQuality,
+                '-q ' . ($config['quality'] ?? 90),
+            ],
+            Avifenc::class => [
+                '-a cq-level=' . (isset($config['quality']) ? round(63 - $config['quality'] * 0.63) : 23),
                 '-j all',
                 '--min 0',
                 '--max 63',
@@ -67,6 +69,20 @@ class OptimizerChainFactory
                 '--maxalpha 63',
                 '-a end-usage=q',
                 '-a tune=ssim',
-            ]));
+            ],
+        ];
+    }
+
+    private static function configHasOptimizer(array $config): bool
+    {
+        return (bool)array_diff_key($config, [
+            Jpegoptim::class,
+            Pngquant::class,
+            Optipng::class,
+            Svgo::class,
+            Gifsicle::class,
+            Cwebp::class,
+            Avifenc::class,
+        ]);
     }
 }
