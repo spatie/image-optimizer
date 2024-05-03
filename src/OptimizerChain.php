@@ -64,13 +64,13 @@ class OptimizerChain
     public function optimize(string $pathToImage, string $pathToOutput = null)
     {
         if ($pathToOutput) {
-            copy($pathToImage, $pathToOutput);
-
+            $check = copy($pathToImage, $pathToOutput);
+            if($check == false){
+                throw new InvalidArgumentException("Cannot copy file");
+            }
             $pathToImage = $pathToOutput;
         }
-
         $image = new Image($pathToImage);
-
         $this->logger->info("Start optimizing {$pathToImage}");
 
         foreach ($this->optimizers as $optimizer) {
