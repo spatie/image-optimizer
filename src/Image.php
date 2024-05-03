@@ -10,13 +10,14 @@ class Image
     protected const ALLOWED_PROTOCOLS = ['file'];
 
     protected const WINDOWS_LOCAL_FILENAME_REGEX = '/^[a-z]:(?:[\\\\\/]?(?:[\w\s!#()-]+|[\.]{1,2})+)*[\\\\\/]?/i';
+
     public function __construct(string $pathToImage)
     {
-        if (!$this->isProtocolAllowed($pathToImage)) {
+        if (! $this->isProtocolAllowed($pathToImage)) {
             throw new InvalidArgumentException(\sprintf('The output file scheme is not supported. Expected one of [\'%s\'].', \implode('\', \'', self::ALLOWED_PROTOCOLS)));
         }
 
-        if (!file_exists($pathToImage)) {
+        if (! file_exists($pathToImage)) {
             throw new InvalidArgumentException("`{$pathToImage}` does not exist");
         }
 
@@ -39,6 +40,7 @@ class Image
 
         return strtolower($extension);
     }
+
     protected function isProtocolAllowed($filename)
     {
         if (false === $parsedFilename = \parse_url($filename)) {

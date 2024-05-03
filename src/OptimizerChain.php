@@ -65,7 +65,7 @@ class OptimizerChain
     {
         if ($pathToOutput) {
             $check = copy($pathToImage, $pathToOutput);
-            if($check == false){
+            if($check == false) {
                 throw new InvalidArgumentException("Cannot copy file");
             }
             $pathToImage = $pathToOutput;
