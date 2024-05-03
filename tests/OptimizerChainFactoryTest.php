@@ -55,7 +55,12 @@ it('can use default config', function () {
            Cwebp::class,
            Avifenc::class,
         ],
-        array_map(fn (Optimizer $optimizer) => get_class($optimizer), $this->optimizerChain->getOptimizers())
+        array_map(
+            function (Optimizer $optimizer) {
+                return get_class($optimizer);
+            },
+            $this->optimizerChain->getOptimizers()
+        )
     );
 });
 
