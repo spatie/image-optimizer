@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer;
 
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Process\Process;
 
