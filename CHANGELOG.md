@@ -2,6 +2,10 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.7.4 - 2024-05-06
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.7.3...1.7.4
+
 ## 1.7.3 - 2024-05-03
 
 ### What's Changed
