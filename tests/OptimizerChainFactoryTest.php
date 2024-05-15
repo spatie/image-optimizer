@@ -64,6 +64,53 @@ it('can use default config', function () {
     );
 });
 
+it('can use quality parameter with default config', function () {
+    $this->optimizerChain = OptimizerChainFactory::create(['quality' => 50])
+            ->useLogger($this->log);
+
+    assertEquals(
+        [
+            new Jpegoptim([
+                '-m50',
+                '--force',
+                '--strip-all',
+                '--all-progressive',
+            ]),
+            new Pngquant([
+                '--quality=50',
+                '--force',
+            ]),
+            new Optipng([
+                '-i0',
+                '-o2',
+                '-quiet',
+            ]),
+            new Svgo([]),
+            new Gifsicle([
+                '-b',
+                '-O3',
+            ]),
+            new Cwebp([
+                '-m 6',
+                '-pass 10',
+                '-mt',
+                '-q 50',
+            ]),
+            new Avifenc([
+                '-a cq-level=32',
+                '-j all',
+                '--min 0',
+                '--max 63',
+                '--minalpha 0',
+                '--maxalpha 63',
+                '-a end-usage=q',
+                '-a tune=ssim',
+            ]),
+        ],
+        $this->optimizerChain->getOptimizers()
+    );
+});
+
 it('can optimize a jpg', function () {
     $tempFilePath = getTempFilePath('image.jpg');
 
