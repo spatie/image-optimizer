@@ -75,14 +75,14 @@ class OptimizerChainFactory
 
     private static function configHasOptimizer(array $config): bool
     {
-        return (bool)array_diff_key($config, [
-            Jpegoptim::class,
-            Pngquant::class,
-            Optipng::class,
-            Svgo::class,
-            Gifsicle::class,
-            Cwebp::class,
-            Avifenc::class,
+        return (bool)array_intersect_key($config, [
+            Jpegoptim::class => null,
+            Pngquant::class => null,
+            Optipng::class => null,
+            Svgo::class => null,
+            Gifsicle::class => null,
+            Cwebp::class => null,
+            Avifenc::class => null,
         ]);
     }
 }
