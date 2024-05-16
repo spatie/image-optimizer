@@ -2,6 +2,15 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.7.5 - 2024-05-16
+
+### What's Changed
+
+* Fix `quality` config parameter by @0xb4lint in https://github.com/spatie/image-optimizer/pull/219
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.1.0 by @dependabot in https://github.com/spatie/image-optimizer/pull/215
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.7.4...1.7.5
+
 ## 1.7.4 - 2024-05-06
 
 **Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.7.3...1.7.4
