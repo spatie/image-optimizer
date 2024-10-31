@@ -62,7 +62,7 @@ class OptimizerChain
         return $this;
     }
 
-    public function optimize(string $pathToImage, string $pathToOutput = null)
+    public function optimize(string $pathToImage, ?string $pathToOutput = null)
     {
         if ($pathToOutput) {
             $check = copy($pathToImage, $pathToOutput);
