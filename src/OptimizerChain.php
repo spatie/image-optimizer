@@ -62,11 +62,11 @@ class OptimizerChain
         return $this;
     }
 
-    public function optimize(string $pathToImage, string $pathToOutput = null)
+    public function optimize(string $pathToImage, ?string $pathToOutput = null)
     {
         if ($pathToOutput) {
             $check = copy($pathToImage, $pathToOutput);
-            if($check == false) {
+            if ($check == false) {
                 throw new InvalidArgumentException("Cannot copy file");
             }
             $pathToImage = $pathToOutput;
