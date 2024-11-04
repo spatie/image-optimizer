@@ -2,6 +2,15 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.8.0 - 2024-11-04
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/spatie/image-optimizer/pull/221
+* PHP 8.4 tests by @erikn69 in https://github.com/spatie/image-optimizer/pull/224
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.7.5...1.8.0
+
 ## 1.7.5 - 2024-05-16
 
 ### What's Changed
