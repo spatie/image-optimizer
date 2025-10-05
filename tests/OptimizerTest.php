@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
 use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
 
 it('can accept options via the constructor', function () {
@@ -51,4 +52,10 @@ it('can get jpeg binary name', function () {
 
     expect($optimizer->binaryName())
         ->toBe('jpegoptim');
+});
+
+it('does not hardcode Gifsicle interlace option', function () {
+    $optimizer = new Gifsicle();
+    $optimizer->setImagePath('my-image.gif');
+    expect($optimizer->getCommand())->toBe("\"gifsicle\"  'my-image.gif' --output 'my-image.gif'");
 });
