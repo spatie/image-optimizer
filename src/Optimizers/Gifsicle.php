@@ -18,7 +18,6 @@ class Gifsicle extends BaseOptimizer
         $optionString = implode(' ', $this->options);
 
         return "\"{$this->binaryPath}{$this->binaryName}\" {$optionString}"
-            // Not using `-i` since that means turn on interlacing, not input file.
             .' '.escapeshellarg($this->imagePath)
             .' --output '.escapeshellarg($this->imagePath);
     }
