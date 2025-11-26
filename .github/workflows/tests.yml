@@ -9,14 +9,14 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ubuntu-latest]
-                php: [8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3]
+                php: [8.5, 8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3]
                 dependency-version: [prefer-lowest, prefer-stable]
 
         name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v4
+                uses: actions/checkout@v6
 
             -   name: Install optimizers
                 run: |
@@ -29,7 +29,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
-                    coverage: none
+                    coverage: pcov
 
             -   name: Setup Problem Matches
                 run: |
