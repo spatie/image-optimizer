@@ -2,6 +2,28 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.8.1 - 2025-11-26
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/225
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/226
+* Update issue template by @AlexVanderbist in https://github.com/spatie/image-optimizer/pull/230
+* Drop hard-coded `-i` option from Gifsicle by @paulrrogers in https://github.com/spatie/image-optimizer/pull/231
+* feat: add tests for PHP 8.5 by @Chris53897 in https://github.com/spatie/image-optimizer/pull/234
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/236
+* Bump stefanzweifel/git-auto-commit-action from 5 to 7 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/232
+* Added Symfony 8 support to all symfony/* packages. by @thecaliskan in https://github.com/spatie/image-optimizer/pull/235
+
+### New Contributors
+
+* @AlexVanderbist made their first contribution in https://github.com/spatie/image-optimizer/pull/230
+* @paulrrogers made their first contribution in https://github.com/spatie/image-optimizer/pull/231
+* @Chris53897 made their first contribution in https://github.com/spatie/image-optimizer/pull/234
+* @thecaliskan made their first contribution in https://github.com/spatie/image-optimizer/pull/235
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.8.0...1.8.1
+
 ## 1.8.0 - 2024-11-04
 
 ### What's Changed
