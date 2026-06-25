@@ -2,6 +2,21 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.9.0 - 2026-06-25
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/237
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/238
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/239
+* Add throws() to OptimizerChain for optimizer failure handling by @mathiasgrimm in https://github.com/spatie/image-optimizer/pull/241
+
+### New Contributors
+
+* @mathiasgrimm made their first contribution in https://github.com/spatie/image-optimizer/pull/241
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.8.1...1.9.0
+
 ## 1.8.1 - 2025-11-26
 
 ### What's Changed
