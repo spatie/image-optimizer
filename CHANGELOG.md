@@ -2,6 +2,15 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.10.0 - 2026-06-29
+
+### What's Changed
+
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/spatie/image-optimizer/pull/240
+* Add SelfHandlingOptimizer for optimizers without a binary by @mathiasgrimm in https://github.com/spatie/image-optimizer/pull/242
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.9.0...1.10.0
+
 ## 1.9.0 - 2026-06-25
 
 ### What's Changed
