@@ -309,6 +309,35 @@ $optimizerChain
    ->optimize($pathToImage);
 ```
 
+### Writing an optimizer without a binary
+
+Sometimes an optimizer has no binary and no shell command to run, for example one that sends the image to an external optimization API. For these cases implement `Spatie\ImageOptimizer\SelfHandlingOptimizer` instead. The chain delegates execution to your `handle` method rather than building and running a process.
+
+The easiest way is to extend `Spatie\ImageOptimizer\Optimizers\BaseSelfHandlingOptimizer`, which leaves you to implement only `canHandle` and `handle`:
+
+```php
+use Psr\Log\LoggerInterface;
+use Spatie\ImageOptimizer\Image;
+use Spatie\ImageOptimizer\Optimizers\BaseSelfHandlingOptimizer;
+
+class ApiOptimizer extends BaseSelfHandlingOptimizer
+{
+    public function canHandle(Image $image): bool
+    {
+        return $image->mime() === 'image/jpeg';
+    }
+
+    public function handle(Image $image, LoggerInterface $logger): void
+    {
+        // Optimize $image->path() however you like, e.g. by calling an API,
+        // and write the optimized bytes back to that path. Throw on failure.
+        // The chain's logger is passed in so you can log your progress.
+    }
+}
+```
+
+Add it to a chain with `addOptimizer()` just like any other optimizer. Failures are governed by [`throws`](#handling-errors) in exactly the same way as binary optimizers: by default the failure is logged and the chain continues, while `throws()` (or a callable) lets you abort or handle it.
+
 ## Logging the optimization process
 
 By default the package will not throw any errors and just operate silently. To verify what the package is doing you can set a logger:

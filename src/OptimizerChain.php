@@ -150,6 +150,22 @@ class OptimizerChain
 
     protected function runOptimizer(Optimizer $optimizer, Image $image)
     {
+        if ($optimizer instanceof SelfHandlingOptimizer) {
+            $className = get_class($optimizer);
+
+            $this->logger->info("Executing `{$className}`");
+
+            try {
+                $optimizer->handle($image, $this->logger);
+            } catch (Throwable $exception) {
+                $this->logger->error("Optimizer errored with `{$exception->getMessage()}`");
+
+                throw $exception;
+            }
+
+            return;
+        }
+
         $command = $optimizer->getCommand();
 
         $this->logger->info("Executing `{$command}`");
