@@ -3,6 +3,7 @@
 use Spatie\ImageOptimizer\OptimizerChain;
 use Spatie\ImageOptimizer\Optimizers\Avifenc;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 it('reserves the decoder output until the command runs', function () {
     $optimizer = (new Avifenc())->setImagePath(getTestFilePath('image.avif'));
@@ -36,7 +37,11 @@ it('optimizes AVIF images without leaving temporary files', function () {
 
         $this->assertOptimizersUsed(Avifenc::class);
         $this->assertDecreasedFileSize($image, getTestFilePath('image.avif'));
-        expect((new finfo(FILEINFO_MIME_TYPE))->file($image))->toBe('image/avif');
+
+        $decode = new Process(['avifdec', '--info', $image]);
+        $decode->run();
+
+        expect($decode->isSuccessful())->toBeTrue();
         expect(glob(sys_get_temp_dir().'/avifdec*'))->toBe($existingFiles);
     } finally {
         $basePath = substr($optimizer->getTmpPath(), 0, -4);
