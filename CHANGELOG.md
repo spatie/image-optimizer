@@ -2,6 +2,18 @@
 
 All notable changes to `image-optimizer` will be documented in this file
 
+## 1.10.1 - 2026-11-04
+
+### Fixed
+
+- Fix an empty temporary-file leak on every AVIF optimization, including when the AVIF binaries are unavailable (#246).
+- Preserve the securely allocated decoder temporary file while adding the required PNG extension, and clean it up on successful and failed optimization.
+- Add regression coverage for cleanup, tempfile permissions, unavailable binaries, encoder failures, and non-AVIF inputs.
+
+No PHP requirements or public API signatures changed.
+
+**Full Changelog**: https://github.com/spatie/image-optimizer/compare/1.10.0...1.10.1
+
 ## 1.10.0 - 2026-06-29
 
 ### What's Changed
