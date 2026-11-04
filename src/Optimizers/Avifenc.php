@@ -2,6 +2,7 @@
 
 namespace Spatie\ImageOptimizer\Optimizers;
 
+use RuntimeException;
 use Spatie\ImageOptimizer\Image;
 
 class Avifenc extends BaseOptimizer
@@ -26,7 +27,19 @@ class Avifenc extends BaseOptimizer
 
     protected function getDecodeCommand()
     {
-        $this->tmpPath = tempnam(sys_get_temp_dir(), 'avifdec').'.png';
+        $tmpPath = tempnam(sys_get_temp_dir(), 'avifdec');
+
+        if ($tmpPath === false) {
+            throw new RuntimeException('Cannot create temporary file for avifdec.');
+        }
+
+        $this->tmpPath = $tmpPath;
+
+        if (! rename($tmpPath, $tmpPath.'.png')) {
+            throw new RuntimeException('Cannot rename temporary file for avifdec.');
+        }
+
+        $this->tmpPath = $tmpPath.'.png';
 
         $optionString = implode(' ', [
             '-j all',
